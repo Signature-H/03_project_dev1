@@ -16,7 +16,7 @@
 	<u:isLogin>
 	<span id="icon"><a href="list.do">메인으로</a></span>
 		<span id="login_join">
-				<a href="myPage.jsp"><input	type="button" value="마이페이지"></a>
+				<a href="myInfoForm.jsp"><input	type="button" value="마이페이지"></a>
 				<a href="logout.do"><input type="button" value="로그아웃"></a>
 		</span>
 		</u:isLogin>
@@ -29,23 +29,23 @@
 				style="border-spacing: 0; padding: 0; margin: auto; width: 700px;">
 				<tr>
 					<td>글 번호</td>
-					<td align="left">${board.number}</td>
+					<td align="left">${article.article_No}</td>
 				</tr>
 				<tr>
 					<td>글 제목</td>
-					<td align="left"><input type="text" name="title" value="${board.title}"></td>
+					<td align="left"><input type="text" name="title" value="${article.title}"></td>
 				</tr>
 				<tr>
 					<td>작성자</td>
-					<td align="left">${board.name}</td>
+					<td align="left">${article.name}</td>
 				</tr>
 				<tr>
 					<td>등록일</td>
-					<td align="left">${board.regDate}</td>
+					<td align="left">${article.article_RegDate}</td>
 				</tr>
 				<tr>
 					<td>글 내용</td>
-					<td align="left"><textarea cols="30" rows="5" name="content">${board.content}</textarea></td>
+					<td align="left"><textarea cols="30" rows="5" name="content">${article.content}</textarea></td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="submit" value="글 수정"></td>

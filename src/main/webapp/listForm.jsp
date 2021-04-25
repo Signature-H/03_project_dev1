@@ -19,13 +19,13 @@
 		
 		<u:isLogin>
 		<span id="login_join">
-				<a href="myPage.jsp"><input	type="button" value="마이페이지"></a>
+				<a href="myInfoForm.jsp"><input	type="button" value="마이페이지"></a>
 				<a href="logout.do"><input type="button" value="로그아웃"></a>
 		</span>
 		</u:isLogin>
 		<u:notLogin>
-		<span id="login_join"><a href="login.jsp"><input type="button"
-				value="로그인"></a> <a href="joinMember.jsp"><input
+		<span id="login_join"><a href="loginForm.jsp"><input type="button"
+				value="로그인"></a> <a href="joinForm.jsp"><input
 				type="button" value="회원가입"></a> 
 				</span>
 		</u:notLogin>		
@@ -38,7 +38,7 @@
 	<a href="writeArticle.do"><input type="button" value="새 글 등록"></a><br/>
 	</u:isLogin>
 		<!-- 검색 -->
-		<form action="listArticle.do">
+		<form action="list.do">
 			<table border="1"
 				style="border-spacing: 0; padding: 0; margin: auto; width: 700px;">
 				<tr>
@@ -61,13 +61,13 @@
 				<th width="100">등록일</th>
 				<th width="100">조회수</th>
 			</tr>
-			<c:forEach items="${boardList}" var="board" >
+			<c:forEach items="${ArticleList}" var="article" >
 				<tr>
-					<td>${board.number}</td>
-					<td align="left"><a href="getArticle.do?number=${board.number}">${board.title}</a></td>
-					<td>${board.name}</td>
-					<td>${board.regDate}</td>
-					<td>${board.read_cnt}</td>
+					<td>${article.article_No}</td>
+					<td align="left"><a href="readArticle.do?number=${article.article_No}">${article.title}</a></td>
+					<td>${article.writer_Name}</td>
+					<td>${article.article_RegDate}</td>
+					<td>${article.read_Cnt}</td>
 				</tr>
 			</c:forEach>
 		</table>

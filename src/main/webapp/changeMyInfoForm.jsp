@@ -16,7 +16,7 @@
 		<span id="icon"><a href="list.do">메인으로</a></span>
 		<u:isLogin>
 		<span id="login_join">
-				<a href="myPage.jsp"><input	type="button" value="마이페이지"></a>
+				<a href="myInfoForm.jsp"><input	type="button" value="마이페이지"></a>
 				<a href="logout.do"><input type="button" value="로그아웃"></a>
 		</span>
 		</u:isLogin>
@@ -41,7 +41,7 @@
 					type="text" name="phoneNumber3" style="width: 50px" value="${member.phoneNumber3}"></td>
 	<tr>
 	<tr>
-	<td>이메일</td><td align="left"><input type="email" name="eMail" value="${member.eMail}"></td>
+	<td>이메일</td><td align="left"><input type="email" name="email" value="${member.email}"></td>
 	<tr>
 </table>
 <br>

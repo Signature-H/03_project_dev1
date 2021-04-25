@@ -20,7 +20,6 @@
 		<h1>로그인</h1>
 		<hr>
 		<form action="login.do" method="post">
-		<!-- <form action="getBoardList.jsp" method="post"> -->
 			<table border="1"
 				style="border-spacing: 0; padding: 0; margin: auto;">
 				<tr>
@@ -33,7 +32,7 @@
 				</tr>
 				<tr>
 					<td colspan="2"><input type="submit" value="로그인">&emsp;
-						<a href="joinMember.jsp"><input type="button" value="회원가입"></a>
+						<a href="joinForm.jsp"><input type="button" value="회원가입"></a>
 					</td>
 				</tr>
 			</table>

@@ -15,14 +15,14 @@
 		<span id="icon"><a href="list.do">메인으로</a></span>
 		<u:isLogin>
 		<span id="login_join">
-				<a href="myPage.jsp"><input	type="button" value="마이페이지"></a>
+				<a href="myInfoForm.jsp"><input	type="button" value="마이페이지"></a>
 				<a href="logout.do"><input type="button" value="로그아웃"></a>
 		</span>
 		</u:isLogin>
 		<u:notLogin>
 		<span
-			id="login_join"><a href="login.jsp"><input type="button"
-				value="로그인"></a> <a href="joinMember.jsp"><input
+			id="login_join"><a href="loginForm.jsp"><input type="button"
+				value="로그인"></a> <a href="joinForm.jsp"><input
 				type="button" value="회원가입"></a> 
 				</span>
 		</u:notLogin>
@@ -31,35 +31,35 @@
 <!-- 실제 body -->
 	<div id="b_contents">
 	<u:isLogin>
-		<a href="writeBoard.jsp"><input type="button" value="새 글 등록"></a><br>
+		<a href="writeArticleForm.jsp"><input type="button" value="새 글 등록"></a><br>
 	</u:isLogin>
-		<form action="updateBoard.jsp" method="post">
+		<form action="updateArticleForm.jsp" method="post">
 			<table border="1"
 				style="border-spacing: 0; padding: 0; margin: auto; width: 700px;">
 				<tr>
 					<td>글 번호</td>
-					<td align="left">${board.number}</td>
+					<td align="left">${article.article_No}</td>
 				</tr>
 				<tr>
 					<td>글 제목</td>
-					<td align="left">${board.title}</td>
+					<td align="left">${article.title}</td>
 				</tr>
 				<tr>
 					<td>작성자</td>
-					<td align="left">${board.name}</td>
+					<td align="left">${article.name}</td>
 				</tr>
 				<tr>
 					<td>등록일</td>
-					<td align="left">${board.regDate}</td>
+					<td align="left">${article.article_RegDate}</td>
 				</tr>
 				<tr>
 					<td>글 내용</td>
-					<td align="left">${board.content}</td>
+					<td align="left">${article.content}</td>
 				</tr>
-				<c:if test="${board.name eq member.name}">
+				<c:if test="${article.writer_Id eq member.name}">
 				<tr>
 					<td colspan="2"><input type="submit" value="글 수정하기">
-					<a href="deleteArticle.do?number=${board.number}"><input type="button" value="글 삭제하기"></a></td>
+					<a href="deleteArticle.do?number=${article.article_No}"><input type="button" value="글 삭제하기"></a></td>
 					</tr>
 				</c:if>
 			</table>
