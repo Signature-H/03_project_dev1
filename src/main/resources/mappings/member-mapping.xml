@@ -9,14 +9,21 @@
 <result property="password" column="PASSWORD"/>
 <result property="regDate" column="REGDATE"/>
 <result property="eMail" column="EMAIL"/>
+<result property="birthday" column="BIRTHDAY"/>
 <result property="phoneNumber1" column="PHONENUMBER1"/>
 <result property="phoneNumber2" column="PHONENUMBER2"/>
 <result property="phoneNumber3" column="PHONENUMBER3"/>
+<result property="address1" column="ADRESS1"/>
+<result property="address2" column="ADRESS2"/>
+<result property="zipcode" column="ZIPCODE"/>
+<result property="manager" column="MANAGER"/>
+<result property="path" column="PATH"/>
 </resultMap>
 
 <insert id="insertMember">
-INSERT INTO DEV_MEMBER(ID,NAME,PASSWORD,REGDATE,EMAIL,PHONENUMBER1,PHONENUMBER2,PHONENUMBER3)
-values(#{id},#{name},#{password},#{regDate},#{eMail},#{phoneNumber1},#{phoneNumber2},#{phoneNumber3})
+INSERT INTO DEV_MEMBER(ID,NAME,PASSWORD,REGDATE,EMAIL,BIRTHDAY,PHONENUMBER1,PHONENUMBER2,PHONENUMBER3,ADRESS1,ADRESS2,ZIPCODE,MANAGER,PATH)
+values(#{id},#{name},#{password},#{regDate},#{eMail},#{birthday},#{phoneNumber1},#{phoneNumber2},
+#{phoneNumber3},#{address1},#{address2},#{zipcode},#{manager},#{path})
 </insert>
 
 <select id="selectMember" resultType="member">
@@ -28,9 +35,8 @@ DELETE FROM DEV_MEMBER WHERE ID= #{ID} AND PASSWORD=#{password}
 </delete>
 
 <update id="changeMyInfo">
-UPDATE DEV_MEMBER SET ID = #{id},NAME = #{name},
-PASSWORD = #{password},REGDATE = #{regDate},EMAIL = #{eMail},PHONENUMBER1 = #{phoneNumber1},
-PHONENUMBER2 = #{phoneNumber2},PHONENUMBER3 =#{phoneNumber3} WHERE ID=#{id} 
+UPDATE DEV_MEMBER SET ID = #{id},NAME = #{name},PASSWORD = #{password},REGDATE = #{regDate},EMAIL = #{eMail},BIRTHDAY=#{birthday},
+PHONENUMBER1 = #{phoneNumber1},PHONENUMBER2 = #{phoneNumber2},PHONENUMBER3 =#{phoneNumber3},ADRESS1=#{address1},ADRESS2=#{address2},
+ZIPCODE=#{zipcode},MANAGER=#{manager},PATH=#{path} WHERE ID=#{id} 
 </update>
-
 </mapper>

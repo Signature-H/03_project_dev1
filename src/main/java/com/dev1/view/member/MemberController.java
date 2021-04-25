@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,13 +21,12 @@ public class MemberController {
 	private MemberService memberservice;
 
 	// joinMember
-	@RequestMapping(value = "/joinMember.do", method = RequestMethod.GET)
-	public String joinView(MemberVO vo) {
-		System.out.println("==> Call joinview() Get method");
-		return "login.jsp";
+	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
+	public String joinForm(MemberVO vo) {
+		return "loginForm.jsp";
 	}
 
-	@RequestMapping(value = "/joinMember.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/join.do", method = RequestMethod.POST)
 	public String join(MemberVO vo) {
 		long timeInMilliSeconds = new java.util.Date().getTime();
 		Date now = new Date(timeInMilliSeconds);
@@ -39,9 +37,8 @@ public class MemberController {
 
 	// login
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
-	public String loginView(MemberVO vo) {
-		System.out.println("==> Call loginView() Get method");
-		return "login.jsp";
+	public String loginForm(MemberVO vo) {
+		return "loginForm.jsp";
 	}
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
@@ -51,7 +48,7 @@ public class MemberController {
 		if (mvo != null)
 			return "list.do";
 		else
-			return "login.jsp";
+			return "loginForm.jsp";
 	}
 
 	// logout
@@ -62,16 +59,15 @@ public class MemberController {
 	}
 
 	// MyInfo
-	@RequestMapping("/MyInfo.do")
-	public String MyInfo(@ModelAttribute("member") MemberVO vo) {
-		return "MyInfo.jsp";
+	@RequestMapping("/myInfo.do")
+	public String myInfo(@ModelAttribute("member") MemberVO vo) {
+		return "myInfoForm.jsp";
 	}
 
 	// changeMyInfo
 	@RequestMapping(value = "/changeMyInfo.do", method = RequestMethod.GET)
-	public String changeMyInfoView(MemberVO vo) {
-		System.out.println("==> Call changeMyInfoView Get Method");
-		return "changeMyInfo.jsp";
+	public String changeMyInfoForm(MemberVO vo) {
+		return "changeMyInfoForm.jsp";
 	}
 
 	@RequestMapping(value = "/changeMyInfo.do", method = RequestMethod.POST)
@@ -79,11 +75,11 @@ public class MemberController {
 		
 		if(vo.getPassword() == null || vo.getPassword().isEmpty())
 		{
-			return "changeMyInfo.jsp";
+			return "changeMyInfoForm.jsp";
 		}
 		
 		memberservice.changeMyInfo(vo);
-		return "myPage.jsp";
+		return "myInfoForm.jsp";
 	}
 
 }
