@@ -5,13 +5,13 @@
 <configuration>	
 	<!-- Alias 설정 -->
 	<typeAliases>
-		<typeAlias alias="board" type="com.dev1.springproject.board.BoardVO" />
+		<typeAlias alias="article" type="com.dev1.springproject.article.ArticleVO" />
 		<typeAlias alias="member" type="com.dev1.springproject.member.MemberVO" />
 	</typeAliases>
 	
 	<!-- Sql Mapper 설정 -->
 	<mappers>
-		<mapper resource="mappings/board-mapping.xml" />
+		<mapper resource="mappings/article-mapping.xml" />
 		<mapper resource="mappings/member-mapping.xml" />
 	</mappers>
 	

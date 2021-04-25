@@ -56,9 +56,13 @@
 		<filter-name>LoginCheckFilter</filter-name>
 		<url-pattern>/myInfo.do</url-pattern>
 		<url-pattern>/changeMyInfo.do</url-pattern>
+		<url-pattern>/quit.do</url-pattern>
 		<url-pattern>/writeArticle.do</url-pattern>
-		<url-pattern>/deleteArticle.do</url-pattern>
 		<url-pattern>/updateArticle.do</url-pattern>
+		<url-pattern>/deleteArticle.do</url-pattern>
+		<url-pattern>/likeArticle.do</url-pattern>
+		<url-pattern>/writeReply.do</url-pattern>
+		<url-pattern>/likeReply.do</url-pattern>
 	</filter-mapping>
 
 

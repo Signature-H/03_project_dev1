@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ArticleDAO">
+
+	<resultMap id="ArticleVO" type="article">
+		<id property="article_no" column="ARTICLE_NO" />
+		<result property="title" column="TITLE" />
+		<result property="writer_id" column="WRITER_ID" />
+		<result property="writer_name" column="WRITER_NAME" />
+		<result property="content" column="CONTENT" />
+		<result property="article_regDate" column="ARTICLE_REGDATE" />
+		<result property="article_modDate" column="ARTICLE_MODDATE" />
+		<result property="read_cnt" column="READ_CNT" />
+		<result property="reply_cnt" column="REPLY_CNT" />
+		<result property="like_cnt" column="LIKE_CNT" />
+		<result property="unlike_cnt" column="UNLIKE_CNT" />
+		<result property="notice" column="NOTICE" />
+	</resultMap>
+
+	<insert id="writeArticle">
+		INSERT INTO ARTICLE(
+		ARTICLE_NO,
+		TITLE,
+		WRITER_ID,
+		WRITER_NAME,
+		CONTENT,
+		ARTICLE_REGDATE
+		)
+		VALUES(
+		ARTICLE_NO_SEQ.NEXTVAL,
+		#{title},
+		#{writer_id},
+		#{writer_name},
+		#{content},
+		SYSDATE
+		)
+	</insert>
+
+	<update id="updateArticle">
+		UPDATE ARTICLE SET TITLE=#{title}, MODDATE=SYSDATE,
+		CONTENT=#{content}
+		WHERE ARTICLE_NO=#{article_no}
+	</update>
+
+	<update id="read_cnt_seq">
+		UPDATE ARTICLE SET READ_CNT=READ_CNT+1 WHERE
+		ARTICLE_NO=#{article_no}
+	</update>
+	<select id="readArticle" resultType="article">
+		SELECT * FROM ARTICLE WHERE
+		ARTICLE_NO=#{article_no}
+	</select>
+
+	<select id="articleList" resultType="article">
+		SELECT * FROM ARTICLE ORDER
+		BY ARTICLE_NO DESC
+	</select>
+
+	<delete id="deleteArticle">
+		DELETE FROM ARTICLE WHERE ARTICLE_NO=#{article_no}
+	</delete>
+
+</mapper>
