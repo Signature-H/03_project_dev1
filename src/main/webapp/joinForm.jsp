@@ -18,7 +18,7 @@
 	<div id="b_contents">
 		<h1>회원가입</h1>
 		<hr>
-		<form action="joinMember.do" method="post">
+		<form action="join.do" method="post">
 			<table border="1"
 				style="border-spacing: 0; padding: 0; margin: auto;">
 				<tr>
@@ -41,7 +41,7 @@
 				</tr>
 				<tr>
 					<td>이메일</td>
-					<td><input type="email" name="eMail"></td>
+					<td><input type="email" name="email"></td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="submit" value="회원가입"></td>

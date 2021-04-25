@@ -34,7 +34,7 @@
 	<td>전화번호</td><td align="left">${member.phoneNumber1}-${member.phoneNumber2}-${member.phoneNumber3}</td>
 	<tr>
 	<tr>
-	<td>이메일</td><td align="left">${member.eMail}</td>
+	<td>이메일</td><td align="left">${member.email}</td>
 	<tr>
 </table>
 <br>
