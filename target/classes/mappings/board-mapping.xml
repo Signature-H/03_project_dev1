@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BoardDAO">
+
+<resultMap id="BoardVO" type="board">
+	<result property="number" column="NUMBER" />
+	<result property="id" column="ID" />
+	<result property="name" column="NAME" />
+	<result property="title" column="TITLE" />
+	<result property="regDate" column="REGDATE" />
+	<result property="modDate" column="MODDATE" />
+	<result property="read_cnt" column="READ_CNT" />
+	<result property="content" column="CONTENT" />
+</resultMap>
+
+<insert id="insertBoard">
+	INSERT INTO DEV_BOARD(
+						NUMBER
+						,ID
+						,NAME
+						,TITLE
+						,REGDATE
+						,MODDATE
+						,READ_CNT
+						,CONTENT)
+				VALUES((SELECT NVL(MAX(NUMBER), 
+							0)+1 FROM DEV_BOARD)
+						,#{id}
+						,#{name}
+						,#{title}
+						,#{regDate}
+						,#{modDate}
+						,#{read_cnt}
+						,#{content})
+</insert>
+
+<select id="getBoardList" resultType="board">
+	SELECT * FROM DEV_BOARD	ORDER BY NUMBER DESC
+</select>
+
+<select id="getBoard" resultType="board">
+	SELECT * FROM DEV_BOARD WHERE NUMBER=#{number}
+</select>
+
+<update id="updateBoard">
+	UPDATE DEV_BOARD SET TITLE=#{title}, MODDATE=#{modDate}, CONTENT=#{content} WHERE NUMBER=#{number}
+</update>
+
+<update id="readArticle">
+	UPDATE DEV_BOARD SET READ_CNT=READ_CNT+1 WHERE NUMBER=#{number}
+</update>
+
+<delete id="deleteBoard">
+	DELETE FROM DEV_BOARD WHERE NUMBER=#{number}
+</delete>
+
+</mapper>
