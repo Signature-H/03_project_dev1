@@ -30,20 +30,40 @@ public class ArticleDAO {
 	}
 
 	// list.do
+	public int articleCount(ArticleVO vo) {
+		return mybatis.selectOne("ArticleDAO.articleCount", vo);
+	}
+
 	public List<ArticleVO> articleList(ArticleVO vo) {
 		return mybatis.selectList("ArticleDAO.articleList", vo);
+	}
+
+	public int searchCount_title(ArticleVO vo) {
+		return mybatis.selectOne("ArticleDAO.searchCount_title", vo);
 	}
 
 	public List<ArticleVO> searchList_title(ArticleVO vo) {
 		return mybatis.selectList("ArticleDAO.searchList_title", vo);
 	}
 
+	public int searchCount_content(ArticleVO vo) {
+		return mybatis.selectOne("ArticleDAO.searchCount_content", vo);
+	}
+
 	public List<ArticleVO> searchList_content(ArticleVO vo) {
 		return mybatis.selectList("ArticleDAO.searchList_content", vo);
 	}
 
+	public int searchCount_writer_name(ArticleVO vo) {
+		return mybatis.selectOne("ArticleDAO.searchCount_writer_name", vo);
+	}
+
 	public List<ArticleVO> searchList_writer_name(ArticleVO vo) {
 		return mybatis.selectList("ArticleDAO.searchList_writer_name", vo);
+	}
+
+	public int searchCount_article(ArticleVO vo) {
+		return mybatis.selectOne("ArticleDAO.searchCount_article", vo);
 	}
 
 	public List<ArticleVO> searchList_article(ArticleVO vo) {

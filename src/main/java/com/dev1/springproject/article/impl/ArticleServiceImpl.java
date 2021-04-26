@@ -30,14 +30,31 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
+	public int countArticle(ArticleVO vo) {
+		int totalArticle;
+		switch (vo.getCondition()) {
+		case "TITLE":
+			totalArticle = articleDAO.searchCount_title(vo);
+			break;
+		case "CONTENT":
+			totalArticle = articleDAO.searchCount_content(vo);
+			break;
+		case "WRITER":
+			totalArticle = articleDAO.searchCount_writer_name(vo);
+			break;
+		case "ARTICLE":
+			totalArticle = articleDAO.searchCount_article(vo);
+			break;
+		default:
+			totalArticle = articleDAO.articleCount(vo);
+			break;
+		}
+		return totalArticle;
+	}
+
+	@Override
 	public List<ArticleVO> articleList(ArticleVO vo) {
-
 		List<ArticleVO> list;
-		if (vo.getCondition() == null)
-			vo.setCondition("");
-		if (vo.getKeyword() == null)
-			vo.setKeyword("");
-
 		switch (vo.getCondition()) {
 		case "TITLE":
 			list = articleDAO.searchList_title(vo);
