@@ -1,4 +1,4 @@
-<%@page import="com.dev1.springproject.board.BoardService"%>
+<%@page import="com.dev1.springproject.article.ArticleService"%>
 <%@page import="org.apache.ibatis.session.SqlSession"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -61,13 +61,13 @@
 				<th width="100">등록일</th>
 				<th width="100">조회수</th>
 			</tr>
-			<c:forEach items="${ArticleList}" var="article" >
+			<c:forEach items="${articleList}" var="article" >
 				<tr>
-					<td>${article.article_No}</td>
-					<td align="left"><a href="readArticle.do?number=${article.article_No}">${article.title}</a></td>
-					<td>${article.writer_Name}</td>
-					<td>${article.article_RegDate}</td>
-					<td>${article.read_Cnt}</td>
+					<td>${article.article_no}</td>
+					<td align="left"><a href="readArticle.do?article_no=${article.article_no}">${article.title}</a></td>
+					<td>${article.writer_name}</td>
+					<td>${article.article_regDate}</td>
+					<td>${article.read_cnt}</td>
 				</tr>
 			</c:forEach>
 		</table>

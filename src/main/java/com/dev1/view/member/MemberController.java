@@ -1,7 +1,5 @@
 package com.dev1.view.member;
 
-import java.sql.Date;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,21 +18,6 @@ public class MemberController {
 	@Autowired
 	private MemberService memberservice;
 
-	// joinMember
-	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
-	public String joinForm(MemberVO vo) {
-		return "loginForm.jsp";
-	}
-
-	@RequestMapping(value = "/join.do", method = RequestMethod.POST)
-	public String join(MemberVO vo) {
-		long timeInMilliSeconds = new java.util.Date().getTime();
-		Date now = new Date(timeInMilliSeconds);
-		vo.setRegDate(now);
-		memberservice.insert(vo);
-		return "list.do";
-	}
-
 	// login
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String loginForm(MemberVO vo) {
@@ -43,7 +26,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String login(MemberVO vo, HttpSession session) {
-		MemberVO mvo = memberservice.select(vo);
+		MemberVO mvo = memberservice.login(vo);
 		session.setAttribute("member", mvo);
 		if (mvo != null)
 			return "list.do";
@@ -72,14 +55,24 @@ public class MemberController {
 
 	@RequestMapping(value = "/changeMyInfo.do", method = RequestMethod.POST)
 	public String changeMyInfo(@ModelAttribute("member") MemberVO vo) {
-		
-		if(vo.getPassword() == null || vo.getPassword().isEmpty())
-		{
+
+		if (vo.getPassword() == null || vo.getPassword().isEmpty()) {
 			return "changeMyInfoForm.jsp";
 		}
-		
+
 		memberservice.changeMyInfo(vo);
 		return "myInfoForm.jsp";
 	}
 
+	// joinMember
+	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
+	public String joinForm(MemberVO vo) {
+		return "loginForm.jsp";
+	}
+
+	@RequestMapping(value = "/join.do", method = RequestMethod.POST)
+	public String join(MemberVO vo) {
+		memberservice.join(vo);
+		return "list.do";
+	}
 }

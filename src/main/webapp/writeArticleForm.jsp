@@ -25,8 +25,8 @@
 	<!-- 실제 body -->
 	<div id="b_contents">
 		<form action="writeArticle.do" method="post">
-		<input type="hidden" name="id" value="${member.id}">
-		<input type="hidden" name="name" value="${member.name}">
+		<input type="hidden" name="writer_id" value="${member.id}">
+		<input type="hidden" name="writer_name" value="${member.name}">
 			<table border="1"
 				style="border-spacing: 0; padding: 0; margin: auto; width: 700px;">
 				<tr>

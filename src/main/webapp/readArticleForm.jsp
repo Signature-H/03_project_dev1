@@ -38,7 +38,7 @@
 				style="border-spacing: 0; padding: 0; margin: auto; width: 700px;">
 				<tr>
 					<td>글 번호</td>
-					<td align="left">${article.article_No}</td>
+					<td align="left">${article.article_no}</td>
 				</tr>
 				<tr>
 					<td>글 제목</td>
@@ -46,20 +46,20 @@
 				</tr>
 				<tr>
 					<td>작성자</td>
-					<td align="left">${article.name}</td>
+					<td align="left">${article.writer_name}</td>
 				</tr>
 				<tr>
 					<td>등록일</td>
-					<td align="left">${article.article_RegDate}</td>
+					<td align="left">${article.article_regDate}</td>
 				</tr>
 				<tr>
 					<td>글 내용</td>
 					<td align="left">${article.content}</td>
 				</tr>
-				<c:if test="${article.writer_Id eq member.name}">
+				<c:if test="${article.writer_id eq member.id}">
 				<tr>
 					<td colspan="2"><input type="submit" value="글 수정하기">
-					<a href="deleteArticle.do?number=${article.article_No}"><input type="button" value="글 삭제하기"></a></td>
+					<a href="deleteArticle.do?article_no=${article.article_no}"><input type="button" value="글 삭제하기"></a></td>
 					</tr>
 				</c:if>
 			</table>

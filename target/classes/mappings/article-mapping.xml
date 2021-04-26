@@ -38,13 +38,13 @@
 	</insert>
 
 	<update id="updateArticle">
-		UPDATE ARTICLE SET TITLE=#{title}, MODDATE=SYSDATE,
+		UPDATE ARTICLE SET TITLE=#{title}, ARTICLE_MODDATE=SYSDATE,
 		CONTENT=#{content}
 		WHERE ARTICLE_NO=#{article_no}
 	</update>
 
 	<update id="read_cnt_seq">
-		UPDATE ARTICLE SET READ_CNT=READ_CNT+1 WHERE
+		UPDATE ARTICLE SET READ_CNT=#{read_cnt}+1 WHERE
 		ARTICLE_NO=#{article_no}
 	</update>
 	<select id="readArticle" resultType="article">

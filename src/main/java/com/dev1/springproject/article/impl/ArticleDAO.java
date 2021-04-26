@@ -17,24 +17,21 @@ public class ArticleDAO {
 	// writeArticle.do
 	public void writeArticle(ArticleVO vo) {
 		mybatis.insert("ArticleDAO.writeArticle", vo);
-		mybatis.commit();
 	}
 
 	// updateArticle.do
 	public void updateBoard(ArticleVO vo) {
 		mybatis.update("ArticleDAO.updateArticle", vo);
-		mybatis.commit();
 	}
-
-	// readArticle.do
+	
 	public ArticleVO readArticle(ArticleVO vo) {
-		mybatis.update("ArticleDao.read_cnt_seq", vo);
-		mybatis.commit();
+		mybatis.update("ArticleDAO.read_cnt_seq", vo);
 		return mybatis.selectOne("ArticleDAO.readArticle", vo);
 	}
 	
 	// list.do
 	public List<ArticleVO> articleList(ArticleVO vo) {
+		System.out.println("ArticleDAO.articleList 호출");
 		return mybatis.selectList("ArticleDAO.articleList", vo);
 	}
 

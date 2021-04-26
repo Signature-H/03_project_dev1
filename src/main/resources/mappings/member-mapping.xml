@@ -3,40 +3,52 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MemberDAO">
 
-<resultMap id="MemberVO" type="member" >
-<id property="id" column="ID"/>
-<result property="name" column="NAME"/>
-<result property="password" column="PASSWORD"/>
-<result property="regDate" column="REGDATE"/>
-<result property="email" column="EMAIL"/>
-<result property="birthday" column="BIRTHDAY"/>
-<result property="phoneNumber1" column="PHONENUMBER1"/>
-<result property="phoneNumber2" column="PHONENUMBER2"/>
-<result property="phoneNumber3" column="PHONENUMBER3"/>
-<result property="address1" column="ADRESS1"/>
-<result property="address2" column="ADRESS2"/>
-<result property="zipcode" column="ZIPCODE"/>
-<result property="manager" column="MANAGER"/>
-<result property="path" column="PATH"/>
-</resultMap>
+	<resultMap id="MemberVO" type="member">
+		<id property="id" column="ID" />
+		<result property="password" column="PASSWORD" />
+		<result property="email" column="EMAIL" />
+		<result property="name" column="NAME" />
+		<result property="birthday" column="BIRTHDAY" />
+		<result property="phoneNumber1" column="PHONENUMBER1" />
+		<result property="phoneNumber2" column="PHONENUMBER2" />
+		<result property="phoneNumber3" column="PHONENUMBER3" />
+		<result property="address1" column="ADRESS1" />
+		<result property="address2" column="ADRESS2" />
+		<result property="zipcode" column="ZIPCODE" />
+		<result property="manager" column="MANAGER" />
+		<result property="regDate" column="REGDATE" />
+		<result property="path" column="PATH" />
+	</resultMap>
 
-<insert id="insertMember">
-INSERT INTO DEV_MEMBER(ID,NAME,PASSWORD,REGDATE,EMAIL,BIRTHDAY,PHONENUMBER1,PHONENUMBER2,PHONENUMBER3,ADRESS1,ADRESS2,ZIPCODE,MANAGER,PATH)
-values(#{id},#{name},#{password},#{regDate},#{email},#{birthday},#{phoneNumber1},#{phoneNumber2},
-#{phoneNumber3},#{address1},#{address2},#{zipcode},#{manager},#{path})
-</insert>
+	<select id="login" resultType="member">
+		SELECT * FROM MEMBER WHERE ID=
+		#{id} AND PASSWORD=#{password}
+	</select>
 
-<select id="selectMember" resultType="member">
-SELECT * FROM DEV_MEMBER WHERE ID= #{id} AND PASSWORD=#{password}
-</select>
+	<select id='myInfo' resultType="member">
+		SELECT * FROM MEMBER WHERE
+		ID=#{id}
+	</select>
 
-<delete id="deleteMember">
-DELETE FROM DEV_MEMBER WHERE ID= #{ID} AND PASSWORD=#{password} 
-</delete>
+	<update id="changeMyInfo">
+		UPDATE MEMBER SET NAME=#{name},
+		PASSWORD=#{password}, EMAIL=#{email}, BIRTHDAY=#{birthday},
+		PHONENUMBER1= #{phoneNumber1}, PHONENUMBER2 =#{phoneNumber2},
+		PHONENUMBER3=#{phoneNumber3},
+		ADRESS1=#{address1}, ADRESS2=#{address2},
+		ZIPCODE=#{zipcode}, PATH=#{path}
+		WHERE ID=#{id}
+	</update>
 
-<update id="changeMyInfo">
-UPDATE DEV_MEMBER SET ID = #{id},NAME = #{name},PASSWORD = #{password},REGDATE = #{regDate},EMAIL = #{email},BIRTHDAY=#{birthday},
-PHONENUMBER1 = #{phoneNumber1},PHONENUMBER2 = #{phoneNumber2},PHONENUMBER3 =#{phoneNumber3},ADRESS1=#{address1},ADRESS2=#{address2},
-ZIPCODE=#{zipcode},MANAGER=#{manager},PATH=#{path} WHERE ID=#{id} 
-</update>
+	<insert id="join">
+		INSERT INTO
+		MEMBER(ID,PASSWORD,EMAIL,NAME,BIRTHDAY,PHONENUMBER1,PHONENUMBER2,PHONENUMBER3,ADRESS1,ADRESS2,ZIPCODE,REGDATE,PATH)
+		VALUES(#{id},#{password},#{email},#{name},SYSDATE,#{phoneNumber1},#{phoneNumber2},#{phoneNumber3},'aaa','bbb','ccc',SYSDATE,'ddd')
+	</insert>
+
+	<delete id="deleteMember">
+		DELETE FROM MEMBER WHERE ID= #{ID} AND
+		PASSWORD=#{password}
+	</delete>
+
 </mapper>

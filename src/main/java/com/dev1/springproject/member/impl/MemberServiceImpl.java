@@ -8,18 +8,27 @@ import com.dev1.springproject.member.MemberVO;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
+
 	@Autowired
 	private MemberDAO memberDAO;
+
 	@Override
-	public void insert(MemberVO vo) {
-		memberDAO.insert(vo);
+	public MemberVO login(MemberVO vo) {
+		return memberDAO.login(vo);
 	}
+
 	@Override
-	public MemberVO select(MemberVO vo) {
-		return memberDAO.select(vo);
+	public MemberVO myInfo(MemberVO vo) {
+		return memberDAO.myInfo(vo);
 	}
-	
+
+	@Override
 	public void changeMyInfo(MemberVO vo) {
 		memberDAO.changeMyInfo(vo);
+	}
+
+	@Override
+	public void join(MemberVO vo) {
+		memberDAO.join(vo);
 	}
 }

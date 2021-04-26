@@ -29,7 +29,7 @@
 				style="border-spacing: 0; padding: 0; margin: auto; width: 700px;">
 				<tr>
 					<td>글 번호</td>
-					<td align="left">${article.article_No}</td>
+					<td align="left">${article.article_no}</td>
 				</tr>
 				<tr>
 					<td>글 제목</td>
@@ -37,11 +37,11 @@
 				</tr>
 				<tr>
 					<td>작성자</td>
-					<td align="left">${article.name}</td>
+					<td align="left">${article.writer_name}</td>
 				</tr>
 				<tr>
 					<td>등록일</td>
-					<td align="left">${article.article_RegDate}</td>
+					<td align="left">${article.article_regDate}</td>
 				</tr>
 				<tr>
 					<td>글 내용</td>
