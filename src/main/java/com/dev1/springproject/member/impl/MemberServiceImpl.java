@@ -31,4 +31,20 @@ public class MemberServiceImpl implements MemberService {
 	public void join(MemberVO vo) {
 		memberDAO.join(vo);
 	}
+
+	@Override
+	public void quit(MemberVO vo) {
+		memberDAO.quit(vo);
+	}
+
+	@Override
+	public MemberVO findId(MemberVO vo) {
+		return memberDAO.findId(vo);
+	}
+	
+	@Override
+	public MemberVO findPassword(MemberVO vo) {
+		return memberDAO.findPassword(vo);
+	}
+
 }

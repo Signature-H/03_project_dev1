@@ -32,11 +32,14 @@
 
 	<update id="changeMyInfo">
 		UPDATE MEMBER SET NAME=#{name},
-		PASSWORD=#{password}, EMAIL=#{email}, BIRTHDAY=#{birthday},
-		PHONENUMBER1= #{phoneNumber1}, PHONENUMBER2 =#{phoneNumber2},
+		PASSWORD=#{password},
+		EMAIL=#{email}, BIRTHDAY=#{birthday},
+		PHONENUMBER1= #{phoneNumber1},
+		PHONENUMBER2 =#{phoneNumber2},
 		PHONENUMBER3=#{phoneNumber3},
 		ADRESS1=#{address1}, ADRESS2=#{address2},
-		ZIPCODE=#{zipcode}, PATH=#{path}
+		ZIPCODE=#{zipcode},
+		PATH=#{path}
 		WHERE ID=#{id}
 	</update>
 
@@ -46,9 +49,15 @@
 		VALUES(#{id},#{password},#{email},#{name},SYSDATE,#{phoneNumber1},#{phoneNumber2},#{phoneNumber3},'aaa','bbb','ccc',SYSDATE,'ddd')
 	</insert>
 
-	<delete id="deleteMember">
-		DELETE FROM MEMBER WHERE ID= #{ID} AND
+	<delete id="quit">
+		DELETE FROM MEMBER WHERE ID= #{id} AND
 		PASSWORD=#{password}
 	</delete>
+	<select id="findId">
+		SELECT ID FROM MEMBER WHERE EMAIL=#{email}
+	</select>
+	<select id="findPassword">
+		SELECT PASSWORD FROM MEMBER WHERE ID=#{id} AND EMAIL=#{email}
+	</select>
 
 </mapper>
