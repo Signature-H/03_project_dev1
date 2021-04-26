@@ -36,4 +36,10 @@ public class MemberServiceImpl implements MemberService {
 	public void quit(MemberVO vo) {
 		memberDAO.quit(vo);
 	}
+
+	@Override
+	public MemberVO findId(MemberVO vo) {
+		return memberDAO.findId(vo);
+	}
+
 }

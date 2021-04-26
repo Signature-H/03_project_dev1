@@ -6,4 +6,6 @@ public interface MemberService {
 	public void changeMyInfo(MemberVO vo);
 	public void join(MemberVO vo);
 	public void quit(MemberVO vo);
+	public MemberVO findId(MemberVO vo);
+
 }

@@ -80,6 +80,7 @@ public class MemberController {
 	public String quitForm(MemberVO vo) {
 		return "quitForm.jsp";
 	}
+	
 	@RequestMapping(value="/quit.do", method=RequestMethod.POST)
 	public String quit(@ModelAttribute("member") MemberVO vo) {
 		if(memberservice.login(vo) != null) {
@@ -89,17 +90,18 @@ public class MemberController {
 		}else {
 			return "quit.do";
 		}
-			
 	}
-	//FindPassword
-//	@RequestMapping(value="/findPassword.do",method=RequestMethod.GET)
-//	public String findPasswordForm(MemberVO vo) {
-//		return "findPasswordForm.jsp";
-//	}
-//	
-//	@RequestMapping(value="/findPassword.do",method=RequestMethod.POST)
-//	public String findPassword(MemberVO vo) {
-//		
-//		return "findPasswordForm.jsp";
-//	}
+	//findId
+		@RequestMapping(value="/findId.do",method=RequestMethod.GET)
+		public String findIdForm(MemberVO vo) {
+			return "findIdForm.jsp";
+		}
+		
+		@RequestMapping(value="/findId.do",method=RequestMethod.POST)
+		public String findId(MemberVO vo) {
+			memberservice.findId(vo);
+			return "findIdSuccess.jsp";
+		}
+		
+
 }

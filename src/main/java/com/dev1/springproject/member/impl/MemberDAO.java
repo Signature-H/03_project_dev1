@@ -15,7 +15,7 @@ public class MemberDAO {
 	public MemberVO login(MemberVO vo) {
 		return (MemberVO) mybatis.selectOne("MemberDAO.login", vo);
 	}
-	
+
 	public MemberVO myInfo(MemberVO vo) {
 		return mybatis.selectOne("MemberDAO.myInfo", vo);
 	}
@@ -28,8 +28,14 @@ public class MemberDAO {
 		mybatis.insert("MemberDAO.join", vo);
 
 	}
+
 	public void quit(MemberVO vo) {
 		mybatis.delete("MemberDAO.quit", vo);
-
 	}
+
+	public MemberVO findId(MemberVO vo) {
+		return mybatis.selectOne("MemberDAO.findId", vo);
+	}
+
+
 }
