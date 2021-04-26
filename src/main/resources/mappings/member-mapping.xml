@@ -46,7 +46,7 @@
 		VALUES(#{id},#{password},#{email},#{name},SYSDATE,#{phoneNumber1},#{phoneNumber2},#{phoneNumber3},'aaa','bbb','ccc',SYSDATE,'ddd')
 	</insert>
 
-	<delete id="deleteMember">
+	<delete id="quit">
 		DELETE FROM MEMBER WHERE ID= #{ID} AND
 		PASSWORD=#{password}
 	</delete>

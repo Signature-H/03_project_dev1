@@ -18,6 +18,17 @@ public class MemberController {
 	@Autowired
 	private MemberService memberservice;
 
+	// joinMember
+	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
+	public String joinForm(MemberVO vo) {
+		return "joinForm.jsp";
+	}
+	
+	@RequestMapping(value = "/join.do", method = RequestMethod.POST)
+	public String join(MemberVO vo) {
+		memberservice.join(vo);
+		return "list.do";
+	}
 	// login
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String loginForm(MemberVO vo) {
@@ -64,15 +75,31 @@ public class MemberController {
 		return "myInfoForm.jsp";
 	}
 
-	// joinMember
-	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
-	public String joinForm(MemberVO vo) {
-		return "loginForm.jsp";
+	//DeleteMember
+	@RequestMapping(value="/quit.do",method=RequestMethod.GET)
+	public String quitForm(MemberVO vo) {
+		return "quitForm.jsp";
 	}
-
-	@RequestMapping(value = "/join.do", method = RequestMethod.POST)
-	public String join(MemberVO vo) {
-		memberservice.join(vo);
-		return "list.do";
+	@RequestMapping(value="/quit.do", method=RequestMethod.POST)
+	public String quit(@ModelAttribute("member") MemberVO vo) {
+		if(memberservice.login(vo) != null) {
+		memberservice.quit(vo);
+		return "quitForm.jsp";
+		
+		}else {
+			return "quit.do";
+		}
+			
 	}
+	//FindPassword
+//	@RequestMapping(value="/findPassword.do",method=RequestMethod.GET)
+//	public String findPasswordForm(MemberVO vo) {
+//		return "findPasswordForm.jsp";
+//	}
+//	
+//	@RequestMapping(value="/findPassword.do",method=RequestMethod.POST)
+//	public String findPassword(MemberVO vo) {
+//		
+//		return "findPasswordForm.jsp";
+//	}
 }

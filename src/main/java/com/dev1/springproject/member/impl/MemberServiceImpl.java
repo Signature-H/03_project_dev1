@@ -31,4 +31,9 @@ public class MemberServiceImpl implements MemberService {
 	public void join(MemberVO vo) {
 		memberDAO.join(vo);
 	}
+
+	@Override
+	public void quit(MemberVO vo) {
+		memberDAO.quit(vo);
+	}
 }

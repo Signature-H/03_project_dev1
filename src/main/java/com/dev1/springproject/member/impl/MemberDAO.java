@@ -13,7 +13,6 @@ public class MemberDAO {
 	private SqlSessionTemplate mybatis;
 
 	public MemberVO login(MemberVO vo) {
-		System.out.println("==> Call login() method to mybatis");
 		return (MemberVO) mybatis.selectOne("MemberDAO.login", vo);
 	}
 	
@@ -22,13 +21,15 @@ public class MemberDAO {
 	}
 
 	public void changeMyInfo(MemberVO vo) {
-		System.out.println("==> Call changeMyInfo() method to mybatis");
 		mybatis.update("MemberDAO.changeMyInfo", vo);
 	}
 
 	public void join(MemberVO vo) {
-		System.out.println("==> Call join() method to mybatis");
 		mybatis.insert("MemberDAO.join", vo);
+
+	}
+	public void quit(MemberVO vo) {
+		mybatis.delete("MemberDAO.quit", vo);
 
 	}
 }
