@@ -11,11 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.dev1.springproject.article.ArticlePageVO;
 import com.dev1.springproject.article.ArticleService;
 import com.dev1.springproject.article.ArticleVO;
 import com.dev1.springproject.member.MemberVO;
-
-import oracle.jdbc.proxy.annotation.Methods;
 
 @Controller
 @SessionAttributes("article")
@@ -46,31 +45,38 @@ public class ArticleController {
 		return "readArticle.do?article_no=" + vo.getArticle_no();
 	}
 
-	@RequestMapping(value = "/readArticle.do", params = { "article_no" })
-	public String readArticle(ArticleVO vo, Model model, @RequestParam("article_no") int article_no) {
-		vo.setRead_cnt(vo.getRead_cnt());
-		vo.setArticle_no(article_no);
+	@RequestMapping("/readArticle.do")
+	public String readArticle(ArticleVO vo, Model model) {
 		model.addAttribute("article", articleService.readArticle(vo));
 		return "readArticleForm.jsp";
 	}
 
 	@RequestMapping("/list.do")
-	public String articleList(ArticleVO vo, Model model) {
+	public String articleList(ArticleVO vo, HttpSession session, Model model, @RequestParam(value="currentPage", required=false)String currentPage) {
+		// 검색 조건이 null일 경우
+		if (vo.getCondition() == null)
+			vo.setCondition("");
+		// 검색 키워드가 null일 경우
+		if (vo.getKeyword() == null)
+			vo.setKeyword("");
+		// 요청 페이지가 null일 경우
+		if (currentPage == null)
+			currentPage = "1";
+		
+		ArticlePageVO pvo = new ArticlePageVO(articleService.countArticle(vo), Integer.parseInt(currentPage));
+		vo.setStart(pvo.getStart());
+		vo.setEnd(pvo.getEnd());
+		
+		model.addAttribute("page", pvo);
 		model.addAttribute("articleList", articleService.articleList(vo));
 		return "listForm.jsp";
 	}
 
-	@RequestMapping(value = "/deleteArticle.do")
+	@RequestMapping("/deleteArticle.do")
 	public String deleteBoard(ArticleVO vo, HttpSession session) {
-		
-		MemberVO member = (MemberVO)session.getAttribute("member");
-		System.out.println("member.id : " + member.getId());
-		
-		ArticleVO article = (ArticleVO)session.getAttribute("article");
-		System.out.println("vo.getWriter_id() : " + article.getWriter_id());
-		
-		
-		if (session.getAttribute("id") == vo.getWriter_id()) {
+		MemberVO mvo = (MemberVO) session.getAttribute("member");
+		ArticleVO avo = (ArticleVO) session.getAttribute("article");
+		if (mvo.getId().equals(avo.getWriter_id())) {
 			articleService.deleteArticle(vo);
 		}
 		return "list.do";

@@ -10,7 +10,7 @@ import com.dev1.springproject.article.ArticleVO;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
-	
+
 	@Autowired
 	private ArticleDAO articleDAO;
 
@@ -30,8 +30,49 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
+	public int countArticle(ArticleVO vo) {
+		int totalArticle;
+		switch (vo.getCondition()) {
+		case "TITLE":
+			totalArticle = articleDAO.searchCount_title(vo);
+			break;
+		case "CONTENT":
+			totalArticle = articleDAO.searchCount_content(vo);
+			break;
+		case "WRITER":
+			totalArticle = articleDAO.searchCount_writer_name(vo);
+			break;
+		case "ARTICLE":
+			totalArticle = articleDAO.searchCount_article(vo);
+			break;
+		default:
+			totalArticle = articleDAO.articleCount(vo);
+			break;
+		}
+		return totalArticle;
+	}
+
+	@Override
 	public List<ArticleVO> articleList(ArticleVO vo) {
-		return articleDAO.articleList(vo);
+		List<ArticleVO> list;
+		switch (vo.getCondition()) {
+		case "TITLE":
+			list = articleDAO.searchList_title(vo);
+			break;
+		case "CONTENT":
+			list = articleDAO.searchList_content(vo);
+			break;
+		case "WRITER":
+			list = articleDAO.searchList_writer_name(vo);
+			break;
+		case "ARTICLE":
+			list = articleDAO.searchList_article(vo);
+			break;
+		default:
+			list = articleDAO.articleList(vo);
+			break;
+		}
+		return list;
 	}
 
 	@Override

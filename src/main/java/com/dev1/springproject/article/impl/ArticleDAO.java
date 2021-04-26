@@ -23,21 +23,56 @@ public class ArticleDAO {
 	public void updateBoard(ArticleVO vo) {
 		mybatis.update("ArticleDAO.updateArticle", vo);
 	}
-	
+
 	public ArticleVO readArticle(ArticleVO vo) {
 		mybatis.update("ArticleDAO.read_cnt_seq", vo);
 		return mybatis.selectOne("ArticleDAO.readArticle", vo);
 	}
-	
+
 	// list.do
+	public int articleCount(ArticleVO vo) {
+		return mybatis.selectOne("ArticleDAO.articleCount", vo);
+	}
+
 	public List<ArticleVO> articleList(ArticleVO vo) {
-		System.out.println("ArticleDAO.articleList 호출");
 		return mybatis.selectList("ArticleDAO.articleList", vo);
+	}
+
+	public int searchCount_title(ArticleVO vo) {
+		return mybatis.selectOne("ArticleDAO.searchCount_title", vo);
+	}
+
+	public List<ArticleVO> searchList_title(ArticleVO vo) {
+		return mybatis.selectList("ArticleDAO.searchList_title", vo);
+	}
+
+	public int searchCount_content(ArticleVO vo) {
+		return mybatis.selectOne("ArticleDAO.searchCount_content", vo);
+	}
+
+	public List<ArticleVO> searchList_content(ArticleVO vo) {
+		return mybatis.selectList("ArticleDAO.searchList_content", vo);
+	}
+
+	public int searchCount_writer_name(ArticleVO vo) {
+		return mybatis.selectOne("ArticleDAO.searchCount_writer_name", vo);
+	}
+
+	public List<ArticleVO> searchList_writer_name(ArticleVO vo) {
+		return mybatis.selectList("ArticleDAO.searchList_writer_name", vo);
+	}
+
+	public int searchCount_article(ArticleVO vo) {
+		return mybatis.selectOne("ArticleDAO.searchCount_article", vo);
+	}
+
+	public List<ArticleVO> searchList_article(ArticleVO vo) {
+		return mybatis.selectList("ArticleDAO.searchList_title_and_content", vo);
 	}
 
 	// deleteArticle.do
 	public void deleteArticle(ArticleVO vo) {
 		mybatis.delete("ArticleDAO.deleteArticle", vo);
 	}
-	
+
 }

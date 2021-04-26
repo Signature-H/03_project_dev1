@@ -38,13 +38,15 @@
 	</insert>
 
 	<update id="updateArticle">
-		UPDATE ARTICLE SET TITLE=#{title}, ARTICLE_MODDATE=SYSDATE,
+		UPDATE ARTICLE SET TITLE=#{title},
+		ARTICLE_MODDATE=SYSDATE,
 		CONTENT=#{content}
-		WHERE ARTICLE_NO=#{article_no}
+		WHERE
+		ARTICLE_NO=#{article_no}
 	</update>
 
 	<update id="read_cnt_seq">
-		UPDATE ARTICLE SET READ_CNT=#{read_cnt}+1 WHERE
+		UPDATE ARTICLE SET READ_CNT=READ_CNT+1 WHERE
 		ARTICLE_NO=#{article_no}
 	</update>
 	<select id="readArticle" resultType="article">
@@ -52,9 +54,75 @@
 		ARTICLE_NO=#{article_no}
 	</select>
 
+	<select id="articleCount" resultType="int">
+		SELECT COUNT(*) FROM
+		ARTICLE
+	</select>
 	<select id="articleList" resultType="article">
-		SELECT * FROM ARTICLE ORDER
-		BY ARTICLE_NO DESC
+		SELECT * FROM (
+		SELECT ROWNUM RN, ARTICLE.* FROM
+		ARTICLE ORDER BY ARTICLE_NO DESC
+		) WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+
+	<select id="searchCount_title" resultType="int">
+		SELECT COUNT(*) FROM ARTICLE WHERE TITLE LIKE
+		'%'||#{keyword}||'%'
+	</select>
+	<select id="searchList_title" resultType="article">
+		SELECT * FROM (
+		SELECT ROWNUM RN, ARTICLE.*
+		FROM ARTICLE
+		WHERE TITLE LIKE '%'||#{keyword}||'%'
+		ORDER BY ARTICLE_NO
+		DESC
+		) WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+
+	<select id="searchCount_content" resultType="int">
+		SELECT COUNT(*) FROM ARTICLE WHERE CONTENT LIKE
+		'%'||#{keyword}||'%'
+	</select>
+	<select id="searchList_content" resultType="article">
+		SELECT * FROM (
+		SELECT ROWNUM RN, ARTICLE.* FROM ARTICLE
+		WHERE CONTENT LIKE '%'||#{keyword}||'%'
+		ORDER BY
+		ARTICLE_NO DESC
+		) WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+
+	<select id="searchCount_writer_name" resultType="int">
+		SELECT COUNT(*) FROM ARTICLE WHERE WRITER_NAME LIKE
+		'%'||#{keyword}||'%'
+	</select>
+	<select id="searchList_writer_name" resultType="article">
+		SELECT * FROM (
+		SELECT ROWNUM RN, ARTICLE.* FROM
+		ARTICLE
+		WHERE WRITER_NAME LIKE '%'||#{keyword}||'%'
+		ORDER
+		BY ARTICLE_NO
+		DESC
+		) WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+
+	<select id="searchCount_article" resultType="int">
+		SELECT COUNT(*) FROM ARTICLE WHERE TITLE LIKE
+		'%'||#{keyword}||'%'
+		AND CONTENT LIKE
+		'%'||#{keyword}||'%'
+	</select>
+	<select id="searchList_article" resultType="article">
+		SELECT * FROM (
+		SELECT ROWNUM RN, ARTICLE.* FROM ARTICLE
+		WHERE TITLE LIKE '%'||#{keyword}||'%'
+		AND CONTENT
+		LIKE
+		'%'||#{keyword}||'%'
+		ORDER BY ARTICLE_NO DESC
+		) WHERE RN BETWEEN
+		#{start} AND #{end}
 	</select>
 
 	<delete id="deleteArticle">
