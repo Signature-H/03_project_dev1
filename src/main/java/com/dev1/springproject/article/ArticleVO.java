@@ -29,6 +29,11 @@ public class ArticleVO {
 	// NOTICE
 	private String notice;
 	
+	// 검색조건
+	private String condition;
+	// 검색키워드
+	private String keyword;
+	
 	public int getArticle_no() {
 		return article_no;
 	}
@@ -100,6 +105,18 @@ public class ArticleVO {
 	}
 	public void setNotice(String notice) {
 		this.notice = notice;
+	}
+	public String getCondition() {
+		return condition;
+	}
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 	
 	@Override

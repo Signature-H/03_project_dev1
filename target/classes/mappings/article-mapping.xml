@@ -38,9 +38,11 @@
 	</insert>
 
 	<update id="updateArticle">
-		UPDATE ARTICLE SET TITLE=#{title}, ARTICLE_MODDATE=SYSDATE,
+		UPDATE ARTICLE SET TITLE=#{title},
+		ARTICLE_MODDATE=SYSDATE,
 		CONTENT=#{content}
-		WHERE ARTICLE_NO=#{article_no}
+		WHERE
+		ARTICLE_NO=#{article_no}
 	</update>
 
 	<update id="read_cnt_seq">
@@ -55,6 +57,31 @@
 	<select id="articleList" resultType="article">
 		SELECT * FROM ARTICLE ORDER
 		BY ARTICLE_NO DESC
+	</select>
+
+	<select id="searchList_title" resultType="article">
+		SELECT * FROM ARTICLE
+		WHERE TITLE LIKE '%'||#{keyword}||'%'
+		ORDER BY ARTICLE_NO DESC
+	</select>
+
+	<select id="searchList_content" resultType="article">
+		SELECT * FROM ARTICLE
+		WHERE CONTENT LIKE '%'||#{keyword}||'%'
+		ORDER BY ARTICLE_NO DESC
+	</select>
+
+	<select id="searchList_writer_name" resultType="article">
+		SELECT * FROM ARTICLE
+		WHERE WRITER_NAME LIKE '%'||#{keyword}||'%'
+		ORDER BY ARTICLE_NO DESC
+	</select>
+
+	<select id="searchList_article" resultType="article">
+		SELECT * FROM ARTICLE
+		WHERE TITLE LIKE '%'||#{keyword}||'%'
+		AND CONTENT LIKE '%'||#{keyword}||'%' 
+		ORDER BY ARTICLE_NO DESC
 	</select>
 
 	<delete id="deleteArticle">
