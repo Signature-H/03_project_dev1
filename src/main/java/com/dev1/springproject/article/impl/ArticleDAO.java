@@ -31,7 +31,6 @@ public class ArticleDAO {
 	
 	// list.do
 	public List<ArticleVO> articleList(ArticleVO vo) {
-		System.out.println("ArticleDAO.articleList 호출");
 		return mybatis.selectList("ArticleDAO.articleList", vo);
 	}
 
