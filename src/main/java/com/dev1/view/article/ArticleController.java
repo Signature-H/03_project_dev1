@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.dev1.springproject.article.ArticleService;
 import com.dev1.springproject.article.ArticleVO;
+import com.dev1.springproject.member.MemberVO;
+
+import oracle.jdbc.proxy.annotation.Methods;
 
 @Controller
 @SessionAttributes("article")
@@ -45,6 +48,7 @@ public class ArticleController {
 
 	@RequestMapping(value = "/readArticle.do", params = { "article_no" })
 	public String readArticle(ArticleVO vo, Model model, @RequestParam("article_no") int article_no) {
+		vo.setRead_cnt(vo.getRead_cnt());
 		vo.setArticle_no(article_no);
 		model.addAttribute("article", articleService.readArticle(vo));
 		return "readArticleForm.jsp";
@@ -56,10 +60,17 @@ public class ArticleController {
 		return "listForm.jsp";
 	}
 
-	@RequestMapping(value = "/deleteArticle.do", params = { "article_no" })
-	public String deleteBoard(ArticleVO vo, HttpSession session, @RequestParam("article_no") int article_no) {
+	@RequestMapping(value = "/deleteArticle.do")
+	public String deleteBoard(ArticleVO vo, HttpSession session) {
+		
+		MemberVO member = (MemberVO)session.getAttribute("member");
+		System.out.println("member.id : " + member.getId());
+		
+		ArticleVO article = (ArticleVO)session.getAttribute("article");
+		System.out.println("vo.getWriter_id() : " + article.getWriter_id());
+		
+		
 		if (session.getAttribute("id") == vo.getWriter_id()) {
-			vo.setArticle_no(article_no);
 			articleService.deleteArticle(vo);
 		}
 		return "list.do";

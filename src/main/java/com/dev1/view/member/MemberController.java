@@ -75,4 +75,17 @@ public class MemberController {
 		memberservice.join(vo);
 		return "list.do";
 	}
+	
+	//searchAddress
+	@RequestMapping(value="/searchAddress.do")
+	public String search(HttpSession session) throws Exception
+	{
+		try {
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return "jusoPopup.jsp";
+	}
 }
