@@ -32,9 +32,11 @@ public class MemberDAO {
 	public void quit(MemberVO vo) {
 		mybatis.delete("MemberDAO.quit", vo);
 	}
-
 	public MemberVO findId(MemberVO vo) {
 		return mybatis.selectOne("MemberDAO.findId", vo);
+	}
+	public MemberVO findPassword(MemberVO vo) {
+		return mybatis.selectOne("MemberDAO.findPassword", vo);
 	}
 
 

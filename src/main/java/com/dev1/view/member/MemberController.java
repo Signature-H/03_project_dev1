@@ -23,12 +23,13 @@ public class MemberController {
 	public String joinForm(MemberVO vo) {
 		return "joinForm.jsp";
 	}
-	
+
 	@RequestMapping(value = "/join.do", method = RequestMethod.POST)
 	public String join(MemberVO vo) {
 		memberservice.join(vo);
 		return "list.do";
 	}
+
 	// login
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String loginForm(MemberVO vo) {
@@ -75,33 +76,44 @@ public class MemberController {
 		return "myInfoForm.jsp";
 	}
 
-	//DeleteMember
-	@RequestMapping(value="/quit.do",method=RequestMethod.GET)
+	// DeleteMember
+	@RequestMapping(value = "/quit.do", method = RequestMethod.GET)
 	public String quitForm(MemberVO vo) {
 		return "quitForm.jsp";
 	}
-	
-	@RequestMapping(value="/quit.do", method=RequestMethod.POST)
+
+	@RequestMapping(value = "/quit.do", method = RequestMethod.POST)
 	public String quit(@ModelAttribute("member") MemberVO vo) {
-		if(memberservice.login(vo) != null) {
-		memberservice.quit(vo);
-		return "quitForm.jsp";
-		
-		}else {
+		if (memberservice.login(vo) != null) {
+			memberservice.quit(vo);
+			return "quitForm.jsp";
+		} else {
 			return "quit.do";
 		}
 	}
-	//findId
-		@RequestMapping(value="/findId.do",method=RequestMethod.GET)
-		public String findIdForm(MemberVO vo) {
-			return "findIdForm.jsp";
-		}
-		
-		@RequestMapping(value="/findId.do",method=RequestMethod.POST)
-		public String findId(MemberVO vo) {
-			memberservice.findId(vo);
-			return "findIdSuccess.jsp";
-		}
-		
+
+	// findId
+	@RequestMapping(value = "/findId.do", method = RequestMethod.GET)
+	public String findIdForm(MemberVO vo) {
+		return "findIdForm.jsp";
+	}
+
+	@RequestMapping(value = "/findId.do", method = RequestMethod.POST)
+	public String findId(MemberVO vo) {
+		memberservice.findId(vo);
+		return "findIdSuccess.jsp";
+	}
+
+	// findPassword
+	@RequestMapping(value = "/findPassword.do", method = RequestMethod.GET)
+	public String findPasswordForm(MemberVO vo) {
+		return "findPasswordForm.jsp";
+	}
+
+	@RequestMapping(value = "/findPassword.do", method = RequestMethod.POST)
+	public String findPassword(MemberVO vo) {
+		memberservice.findPassword(vo);
+		return "findPasswordSuccess.jsp";
+	}
 
 }

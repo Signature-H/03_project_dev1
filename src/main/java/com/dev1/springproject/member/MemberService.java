@@ -7,5 +7,5 @@ public interface MemberService {
 	public void join(MemberVO vo);
 	public void quit(MemberVO vo);
 	public MemberVO findId(MemberVO vo);
-
+	public MemberVO findPassword(MemberVO vo);
 }

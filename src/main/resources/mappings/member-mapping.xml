@@ -54,8 +54,10 @@
 		PASSWORD=#{password}
 	</delete>
 	<select id="findId">
-	    SELECT ID FROM MEMBER WHERE EMAIL=#{email} 
+		SELECT ID FROM MEMBER WHERE EMAIL=#{email}
 	</select>
-	
+	<select id="findPassword">
+		SELECT PASSWORD FROM MEMBER WHERE ID=#{id} AND EMAIL=#{email}
+	</select>
 
 </mapper>
