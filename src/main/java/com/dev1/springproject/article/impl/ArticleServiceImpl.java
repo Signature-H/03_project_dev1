@@ -31,7 +31,13 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public List<ArticleVO> articleList(ArticleVO vo) {
+
 		List<ArticleVO> list;
+		if (vo.getCondition() == null)
+			vo.setCondition("");
+		if (vo.getKeyword() == null)
+			vo.setKeyword("");
+
 		switch (vo.getCondition()) {
 		case "TITLE":
 			list = articleDAO.searchList_title(vo);
