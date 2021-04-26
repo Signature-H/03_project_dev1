@@ -8,8 +8,9 @@ header {
 	right: 0;
 	top: 0;
 	height: 4rem;
-	background-color: aqua;
+	background-color: #DAFFFF;
 	line-height: 4rem;
+	opacity: 0.75;
 }
 
 #icon{ 
@@ -33,4 +34,11 @@ header {
 	right: 0;
 	bottom: 0;
 	overflow: auto;
+}
+
+
+
+#dev1_mainLogo{
+	width: 100px;
+	height: auto;
 }
