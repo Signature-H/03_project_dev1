@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dev1.springproject.article.ArticlePageVO;
 import com.dev1.springproject.article.ArticleService;
 import com.dev1.springproject.article.ArticleVO;
 
@@ -30,7 +31,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public int countArticle(ArticleVO vo) {
+	public int countArticle(ArticlePageVO vo) {
 		int totalArticle;
 		switch (vo.getCondition()) {
 		case "TITLE":
@@ -53,7 +54,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public List<ArticleVO> articleList(ArticleVO vo) {
+	public List<ArticleVO> articleList(ArticlePageVO vo) {
 		List<ArticleVO> list;
 		switch (vo.getCondition()) {
 		case "TITLE":
