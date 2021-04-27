@@ -81,7 +81,7 @@
 		<br />
 		<div>
 			<c:if test="${page.startPage != 1 }">
-				<a href="/list.do?currentPage=${page.startPage - 1 }">&lt;</a>
+				<a href="list.do?currentPage=${page.startPage - 1 }&condition=${page.condition}&keyword=${page.keyword}">&lt;</a>
 			</c:if>
 			<c:forEach begin="${page.startPage }" end="${page.endPage }" var="p">
 				<c:choose>
@@ -89,12 +89,12 @@
 						<b>${p }</b>
 					</c:when>
 					<c:when test="${p != page.currentPage }">
-						<a href="/list.do?currentPage=${p }">${p }</a>
+						<a href="list.do?currentPage=${p }&condition=${page.condition}&keyword=${page.keyword}">${p }</a>
 					</c:when>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${page.endPage != page.totalPage}">
-				<a href="/list.do?currentPage=${page.endPage+1 }">&gt;</a>
+				<a href="list.do?currentPage=${page.endPage+1 }&condition=${page.condition}&keyword=${page.keyword}">&gt;</a>
 			</c:if>
 		</div>
 		<br />

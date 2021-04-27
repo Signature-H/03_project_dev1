@@ -29,16 +29,6 @@ public class ArticleVO {
 	// NOTICE
 	private String notice;
 
-	// 검색조건
-	private String condition;
-	// 검색키워드
-	private String keyword;
-
-	// 시작 ROWNUM
-	private int start;
-	// 마지막 ROWNUM
-	private int end;
-
 	public int getArticle_no() {
 		return article_no;
 	}
@@ -133,34 +123,6 @@ public class ArticleVO {
 
 	public void setNotice(String notice) {
 		this.notice = notice;
-	}
-
-	public String getCondition() {
-		return condition;
-	}
-
-	public void setCondition(String condition) {
-		this.condition = condition;
-	}
-
-	public String getKeyword() {
-		return keyword;
-	}
-
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
-	}
-	public int getStart() {
-		return start;
-	}
-	public void setStart(int start) {
-		this.start = start;
-	}
-	public int getEnd() {
-		return end;
-	}
-	public void setEnd(int end) {
-		this.end = end;
 	}
 
 	@Override
