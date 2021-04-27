@@ -31,7 +31,7 @@
 	<td>이름</td><td align="left">${member.name}</td>
 	<tr>
 	<tr>
-	<td>전화번호</td><td align="left">${member.phoneNumber1}-${member.phoneNumber2}-${member.phoneNumber3}</td>
+	<td>전화번호</td><td align="left">${member.phoneNumber}</td>
 	<tr>
 	<tr>
 	<td>이메일</td><td align="left">${member.email}</td>

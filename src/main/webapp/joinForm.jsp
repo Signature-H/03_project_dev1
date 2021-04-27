@@ -47,59 +47,81 @@ function jusoCallBack(roadAddrPart1, addrDetail, zipNo){
 			src="resources/img/dev1_logo.svg" id="dev1_logo"></a>
 			
 		<form action="join.do" method="post">
+		<!-- 아이디 입력 -->
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">아이디</span>
 				</div>
 				<input type="text" class="form-control" placeholder="ID" name="id">
 			</div>
+			
+			<!-- 비밀번호 입력 -->
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">비밀번호</span>
 				</div>
 				<input type="password" class="form-control" placeholder="PASSWORD" name="password">
 			</div>
+			
+			<!-- 이름 입력 -->
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">이름</span>
 				</div>
 				<input type="text" class="form-control" placeholder="NAME" name="name">
 			</div>
+			
+			<!-- 이메일 입력 -->
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">이메일</span>
 				</div>
 				<input type="text" class="form-control" placeholder="example@gmail.com" name="email">
 			</div>
+			
+			<!-- 생년월일 입력 -->
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">생년월일</span>
 				</div>
 				<input type="date" class="form-control" name="birthday">
 			</div>
+			
+			<!-- 전화번호 입력 -->
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">전화번호</span>
 				</div>
 				<input type="text" class="form-control" name="phoneNumber">
 			</div>
+			
+			<!-- 우편번호 입력 -->
 			<div class="input-group mb-3">
 				<input type="text" class="form-control" placeholder="ZIPCODE" name="zipcode" id="zipcode" readonly="readonly">
 				<div class="input-group-append">
 					<button class="btn btn-secondary" type="button" onclick="goPopup();">검색</button>
 				</div>
 			</div>
+			
+			<!-- 주소 입력 -->
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">기본 주소</span>
 				</div>
 				<input type="text" class="form-control" name="address1" id="address1" readonly="readonly">
 			</div>
+			
+			<!-- 상세 주소 입력 -->
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">상세 주소</span>
 				</div>
 				<input type="text" class="form-control" name="address2" id="address2">
+			</div>
+			
+			<!-- 프로필 사진 -->
+			<div class="input-group mb-3">
+				
 			</div>
 			
 			<br /> <br />
