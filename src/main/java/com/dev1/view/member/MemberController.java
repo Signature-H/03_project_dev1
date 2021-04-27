@@ -67,7 +67,7 @@ public class MemberController {
 	// joinMember
 	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
 	public String joinForm(MemberVO vo) {
-		return "loginForm.jsp";
+		return "joinForm.jsp";
 	}
 
 	@RequestMapping(value = "/join.do", method = RequestMethod.POST)

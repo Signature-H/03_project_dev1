@@ -42,7 +42,7 @@
 	<insert id="join">
 		INSERT INTO
 		MEMBER(ID,PASSWORD,EMAIL,NAME,BIRTHDAY,PHONENUMBER,ADDRESS1,ADDRESS2,ZIPCODE,REGDATE,PATH)
-		VALUES(#{id},#{password},#{email},#{name},SYSDATE,#{phoneNumber},'aaa','bbb','ccc',SYSDATE,'ddd')
+		VALUES(#{id},#{password},#{email},#{name},#{birthday},#{phoneNumber},#{address1},#{address2},#{zipcode},SYSDATE,'ddd')
 	</insert>
 
 	<delete id="quit">

@@ -15,7 +15,7 @@ public class MemberVO {
 	// EMAIL
 	private String email;
 	// BIRTHDAY
-	private Date birthday;
+	private String birthday;
 	// PHONENUMBER
 	private String phoneNumber;
 	// ADRESS1
@@ -61,11 +61,11 @@ public class MemberVO {
 		this.regDate = regDate;
 	}
 
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 
@@ -124,4 +124,13 @@ public class MemberVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	@Override
+	public String toString() {
+		return "MemberVO[id : " + id + " | password : " + password + " | name : " + name + " | regDate : " + regDate +
+				" | phoneNumber : " + phoneNumber + " | birthday : " + birthday + " | address1 : " + address1 + " | address2 : " + address2 +
+				" | zipcode : " + zipcode + " | manager : " + manager + " | path : " + path + " | email : " + email + "]";
+	}
+	
+	
 }

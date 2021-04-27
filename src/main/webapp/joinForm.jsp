@@ -45,6 +45,7 @@ function jusoCallBack(roadAddrPart1, addrDetail, zipNo){
 	<div class="container col-md-6">
 		<a href="list.do"><img alt="dev1_logo"
 			src="resources/img/dev1_logo.svg" id="dev1_logo"></a>
+			
 		<form action="join.do" method="post">
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
@@ -80,7 +81,7 @@ function jusoCallBack(roadAddrPart1, addrDetail, zipNo){
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">전화번호</span>
 				</div>
-				<input type="tel" class="form-control" name="phoneNumber">
+				<input type="text" class="form-control" name="phoneNumber">
 			</div>
 			<div class="input-group mb-3">
 				<input type="text" class="form-control" placeholder="ZIPCODE" name="zipcode" id="zipcode" readonly="readonly">

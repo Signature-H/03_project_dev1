@@ -37,7 +37,7 @@
 		<u:notLogin>
 			<span id="login_join"><a href="loginForm.jsp"><button
 						type="button" class="btn btn-primary">로그인</button></a> <a
-				href="joinForm.jsp"><button type="button"
+				href="join.do"><button type="button"
 						class="btn btn-success">회원가입</button></a> </span>
 		</u:notLogin>
 
@@ -57,11 +57,11 @@
 				style="margin: auto; width: auto;">
 				<thead>
 					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>글쓴이</th>
-						<th>등록일</th>
-						<th>조회수</th>
+						<th class="col-md-1">번호</th>
+						<th class="col-md-4">제목</th>
+						<th class="col-md-3">글쓴이</th>
+						<th class="col-md-2">등록일</th>
+						<th class="col-md-1">조회수</th>
 					</tr>
 				</thead>
 				<tbody>
