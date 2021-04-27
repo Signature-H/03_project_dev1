@@ -31,7 +31,7 @@
 </style>
 <script type="text/javascript">
 function goPopup(){
-	var pop = window.open("searchAddress.do","pop","width=400px, height=650px,scrollbars=yes, resizable=yes");
+	var pop = window.open("jusoPopup.jsp","pop","width=400px, height=650px,scrollbars=yes, resizable=yes"); 
 }
 
 function jusoCallBack(roadAddrPart1, addrDetail, zipNo){
