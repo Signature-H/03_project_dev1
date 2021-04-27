@@ -56,7 +56,7 @@
 					<td>글 내용</td>
 					<td align="left">${article.content}</td>
 				</tr>
-				<c:if test="${article.writer_id eq member.id}">
+				<c:if test="${article.writer_id eq auth.id}">
 				<tr>
 					<td colspan="2"><input type="submit" value="글 수정하기">
 					<a href="deleteArticle.do?article_no=${article.article_no}"><input type="button" value="글 삭제하기"></a></td>

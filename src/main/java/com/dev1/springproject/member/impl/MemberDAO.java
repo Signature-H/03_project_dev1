@@ -30,6 +30,7 @@ public class MemberDAO {
 	}
 
 	public void quit(MemberVO vo) {
+		System.out.println("==> Call quit() method to MemberDAO");
 		mybatis.delete("MemberDAO.quit", vo);
 	}
 	public MemberVO findId(MemberVO vo) {

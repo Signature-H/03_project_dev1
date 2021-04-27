@@ -74,7 +74,7 @@ public class ArticleController {
 
 	@RequestMapping("/deleteArticle.do")
 	public String deleteBoard(ArticleVO vo, HttpSession session) {
-		MemberVO mvo = (MemberVO) session.getAttribute("member");
+		MemberVO mvo = (MemberVO) session.getAttribute("auth");
 		ArticleVO avo = (ArticleVO) session.getAttribute("article");
 		if (mvo.getId().equals(avo.getWriter_id())) {
 			articleService.deleteArticle(vo);

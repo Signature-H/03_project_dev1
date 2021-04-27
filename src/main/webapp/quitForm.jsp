@@ -8,7 +8,7 @@
 </head>
 <body>
 <form action="quit.do" method="post">
-<input type="hidden" name="id" value="${member.id}">
+<input type="hidden" name="id" value="${auth.id}">
 	<table>
 		<tr>
 			<td>비밀번호</td>

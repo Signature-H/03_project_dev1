@@ -1,7 +1,12 @@
+<%@page import="com.dev1.springproject.member.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags" %>
+<%
+	MemberVO mvo = (MemberVO) request.getSession().getAttribute("member");
+	System.out.println(mvo.toString());
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,16 +30,16 @@
 <form action="changeMyInfo.do">
 <table border="1" style="border-spacing: 0; padding: 0; margin: auto; width: 600px;">
 	<tr>
-	<td>아이디</td><td align="left">${member.id}</td>
+	<td>아이디</td><td align="left"><%= mvo.getId() %></td>
 	<tr>
 	<tr>
-	<td>이름</td><td align="left">${member.name}</td>
+	<td>이름</td><td align="left"><%= mvo.getName() %></td>
 	<tr>
 	<tr>
-	<td>전화번호</td><td align="left">${member.phoneNumber}</td>
+	<td>전화번호</td><td align="left"><%= mvo.getPhoneNumber() %></td>
 	<tr>
 	<tr>
-	<td>이메일</td><td align="left">${member.email}</td>
+	<td>이메일</td><td align="left"><%= mvo.getEmail() %></td>
 	<tr>
 </table>
 <br>
@@ -42,6 +47,7 @@
 <a href="quit.do"><button type="button">회원탈퇴하기</button></a>
 </form>
 </div>
+
 
 </body>
 </html>

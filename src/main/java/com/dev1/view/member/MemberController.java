@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.dev1.springproject.auth.AuthMemberVO;
 import com.dev1.springproject.member.MemberService;
 import com.dev1.springproject.member.MemberVO;
 
@@ -27,9 +28,14 @@ public class MemberController {
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String login(MemberVO vo, HttpSession session) {
 		MemberVO mvo = memberservice.login(vo);
-		session.setAttribute("member", mvo);
 		if (mvo != null)
+		{
+			AuthMemberVO amvo = new AuthMemberVO();
+			amvo.setId(mvo.getId());
+			amvo.setName(mvo.getName());
+			session.setAttribute("auth", amvo);
 			return "list.do";
+		}
 		else
 			return "loginForm.jsp";
 	}
@@ -38,13 +44,19 @@ public class MemberController {
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "list.do";
+		return "redirect:list.do";
 	}
 
 	// MyInfo
 	@RequestMapping("/myInfo.do")
-	public String myInfo(@ModelAttribute("member") MemberVO vo) {
-		return "myInfoForm.jsp";
+	public String myInfo(MemberVO vo, HttpSession session) {
+		AuthMemberVO amvo = (AuthMemberVO) session.getAttribute("auth");
+		if(amvo != null)
+		{
+			session.setAttribute("member", memberservice.myInfo(amvo));
+			return "myInfoForm.jsp";
+		}
+		return "list.do";
 	}
 
 	// changeMyInfo
@@ -83,12 +95,14 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/quit.do", method = RequestMethod.POST)
-	public String quit(@ModelAttribute("member") MemberVO vo) {
-		if (memberservice.login(vo) != null) {
-			memberservice.quit(vo);
-			return "quitForm.jsp";
+	public String quit(@ModelAttribute("member") MemberVO vo, HttpSession session) {
+		MemberVO mvo = memberservice.login(vo);
+		if (mvo != null) {
+			logout(session);
+			memberservice.quit(mvo);
+			return "list.do";
 		} else {
-			return "quit.do";
+			return "quitForm.jsp";
 		}
 	}
 

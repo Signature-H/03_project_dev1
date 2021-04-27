@@ -25,8 +25,8 @@
 	<!-- 실제 body -->
 	<div id="b_contents">
 		<form action="writeArticle.do" method="post">
-		<input type="hidden" name="writer_id" value="${member.id}">
-		<input type="hidden" name="writer_name" value="${member.name}">
+		<input type="hidden" name="writer_id" value="${auth.id}">
+		<input type="hidden" name="writer_name" value="${auth.name}">
 			<table border="1"
 				style="border-spacing: 0; padding: 0; margin: auto; width: 700px;">
 				<tr>
@@ -35,7 +35,7 @@
 				</tr>
 				<tr>
 					<td>작성자</td>
-					<td align="left" >${member.name}</td>
+					<td align="left" >${auth.name}</td>
 				</tr>
 				<tr>
 					<td>글 내용</td>

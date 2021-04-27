@@ -23,7 +23,7 @@ public class LoginCheckFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession(false);
-		if (session == null || session.getAttribute("member") == null) {
+		if (session == null || session.getAttribute("auth") == null) {
 			HttpServletResponse res = (HttpServletResponse)response;
 			res.sendRedirect(req.getContextPath()+"/login.do");
 		} else {
