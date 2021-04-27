@@ -1,11 +1,11 @@
 package com.dev1.springproject.auth;
 
-import com.dev1.springproject.member.MemberVO;
-
-public class AuthMemberVO extends MemberVO{
+public class AuthMemberVO {
 
 	private String id;
 	private String name;
+	private String manager;
+	
 	public String getId() {
 		return id;
 	}
@@ -17,6 +17,12 @@ public class AuthMemberVO extends MemberVO{
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getManager() {
+		return manager;
+	}
+	public void setManager(String manager) {
+		this.manager = manager;
 	}
 	
 }
