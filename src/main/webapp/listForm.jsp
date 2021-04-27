@@ -29,13 +29,13 @@
 				src="resources/img/dev1_logo.svg" id="dev1_mainLogo"></a></span>
 
 		<u:isLogin>
-			<span id="login_join"> <a href="myInfoForm.jsp"><button
+			<span id="login_join"> <a href="myInfo.do"><button
 						type="button" class="btn btn-primary">마이페이지</button></a> <a
 				href="logout.do"><input type="button" value="로그아웃"></a>
 			</span>
 		</u:isLogin>
 		<u:notLogin>
-			<span id="login_join"><a href="loginForm.jsp"><button
+			<span id="login_join"><a href="login.do"><button
 						type="button" class="btn btn-primary">로그인</button></a> <a
 				href="join.do"><button type="button"
 						class="btn btn-success">회원가입</button></a> </span>

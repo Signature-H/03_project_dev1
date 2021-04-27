@@ -16,7 +16,7 @@
 	<u:isLogin>
 	<span id="icon"><a href="list.do">메인으로</a></span>
 		<span id="login_join">
-				<a href="myInfoForm.jsp"><input	type="button" value="마이페이지"></a>
+				<a href="myInfo.do"><input	type="button" value="마이페이지"></a>
 				<a href="logout.do"><input type="button" value="로그아웃"></a>
 		</span>
 		</u:isLogin>

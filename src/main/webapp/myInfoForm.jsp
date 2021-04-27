@@ -39,7 +39,7 @@
 </table>
 <br>
 <input type="submit" value="정보 변경하기">&emsp;
-<a href="quitForm.jsp"><button type="button">회원탈퇴하기</button></a>
+<a href="quit.do"><button type="button">회원탈퇴하기</button></a>
 </form>
 </div>
 

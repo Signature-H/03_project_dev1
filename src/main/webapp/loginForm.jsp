@@ -32,7 +32,7 @@
 				</tr>
 				<tr>
 					<td colspan="2"><input type="submit" value="로그인">&emsp;
-						<a href="joinForm.jsp"><input type="button" value="회원가입"></a>
+						<a href="join.do"><input type="button" value="회원가입"></a>
 					</td>
 				</tr>
 			</table>

@@ -15,14 +15,14 @@
 		<span id="icon"><a href="list.do">메인으로</a></span>
 		<u:isLogin>
 		<span id="login_join">
-				<a href="myInfoForm.jsp"><input	type="button" value="마이페이지"></a>
+				<a href="myInfo.do"><input	type="button" value="마이페이지"></a>
 				<a href="logout.do"><input type="button" value="로그아웃"></a>
 		</span>
 		</u:isLogin>
 		<u:notLogin>
 		<span
-			id="login_join"><a href="loginForm.jsp"><input type="button"
-				value="로그인"></a> <a href="joinForm.jsp"><input
+			id="login_join"><a href="login.do"><input type="button"
+				value="로그인"></a> <a href="join.do"><input
 				type="button" value="회원가입"></a> 
 				</span>
 		</u:notLogin>
@@ -31,9 +31,9 @@
 <!-- 실제 body -->
 	<div id="b_contents">
 	<u:isLogin>
-		<a href="writeArticleForm.jsp"><input type="button" value="새 글 등록"></a><br>
+		<a href="writeArticle.do"><input type="button" value="새 글 등록"></a><br>
 	</u:isLogin>
-		<form action="updateArticleForm.jsp" method="post">
+		<form action="updateArticle.do">
 			<table border="1"
 				style="border-spacing: 0; padding: 0; margin: auto; width: 700px;">
 				<tr>
