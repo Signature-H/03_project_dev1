@@ -39,6 +39,15 @@ function jusoCallBack(roadAddrPart1, addrDetail, zipNo){
 	document.getElementById("address1").value = roadAddrPart1;
 	document.getElementById("address2").value = addrDetail;
 	}
+	
+function setThumnail(event){
+	var reader = new FileReader();
+	
+	reader.onload = function(event){
+		document.getElementById("userImage").setAttribute("src", event.target.result);
+	};
+	reader.readAsDataURL(event.target.files[0]);
+}
 </script>
 </head>
 <body>
@@ -123,7 +132,7 @@ function jusoCallBack(roadAddrPart1, addrDetail, zipNo){
 			<div class="input-group mb-3">
 				<div id="alignCenter"><img id="userImage" class="rg_i Q4LuWd" src="resources/img/default.png" data-atf="true" width="193" height="192" onerror="this.src='resources/img/default.png'"></div>
 				<div class="input-group mb-3" style="margin-top: 20px;">
-				<input type="file" class="form-control" id="customFile"/>
+				<input type="file" class="form-control" id="customFile" onchange="setThumnail(event);"/>
 				</div>
 				
 			</div>
