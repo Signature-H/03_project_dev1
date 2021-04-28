@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.dev1.springproject.article.ArticlePageVO;
 import com.dev1.springproject.article.ArticleService;
 import com.dev1.springproject.article.ArticleVO;
+import com.dev1.springproject.auth.AuthMemberVO;
 import com.dev1.springproject.member.MemberVO;
 
 @Controller
@@ -69,7 +70,7 @@ public class ArticleController {
 
 	@RequestMapping("/deleteArticle.do")
 	public String deleteBoard(ArticleVO vo, HttpSession session) {
-		MemberVO mvo = (MemberVO) session.getAttribute("auth");
+		AuthMemberVO mvo = (AuthMemberVO) session.getAttribute("auth");
 		ArticleVO avo = (ArticleVO) session.getAttribute("article");
 		if (mvo.getId().equals(avo.getWriter_id())) {
 			articleService.deleteArticle(vo);

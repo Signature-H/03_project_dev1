@@ -74,6 +74,7 @@ public class ArticleDAO {
 
 	// deleteArticle.do
 	public void deleteArticle(ArticleVO vo) {
+		mybatis.delete("ArticleDAO.beforeDeleteArticle", vo);
 		mybatis.delete("ArticleDAO.deleteArticle", vo);
 	}
 

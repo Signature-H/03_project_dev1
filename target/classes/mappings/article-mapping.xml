@@ -125,8 +125,10 @@
 		#{start} AND #{end}
 	</select>
 
-	<delete id="deleteArticle">
+	<delete id="beforeDeleteArticle">
 		DELETE FROM REPLY WHERE ARTICLE_NO=#{article_no}
+	</delete>
+	<delete id="deleteArticle">
 		DELETE FROM ARTICLE WHERE ARTICLE_NO=#{article_no}
 	</delete>
 
