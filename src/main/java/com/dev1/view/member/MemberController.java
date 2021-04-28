@@ -109,7 +109,7 @@ public class MemberController {
 	// findId
 	@RequestMapping(value = "/findId.do", method = RequestMethod.GET)
 	public String findIdForm(MemberVO vo) {
-		return "findIdForm.jsp";
+		return "findid_pwPopup.jsp";
 	}
 
 	@RequestMapping(value = "/findId.do", method = RequestMethod.POST)
@@ -121,7 +121,7 @@ public class MemberController {
 	// findPassword
 	@RequestMapping(value = "/findPassword.do", method = RequestMethod.GET)
 	public String findPasswordForm(MemberVO vo) {
-		return "findPasswordForm.jsp";
+		return "findid_pwPopup.jsp";
 	}
 
 	@RequestMapping(value = "/findPassword.do", method = RequestMethod.POST)
