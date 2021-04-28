@@ -47,7 +47,7 @@ public class ArticleController {
 	@RequestMapping("/readArticle.do")
 	public String readArticle(ArticleVO vo, Model model) {
 		model.addAttribute("article", articleService.readArticle(vo));
-		return "readArticleForm.jsp";
+		return "replyList.do";
 	}
 
 	@RequestMapping("/list.do")

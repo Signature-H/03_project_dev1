@@ -37,6 +37,10 @@
 		)
 	</insert>
 
-	
+	<select id="replyList" resultType="reply">
+		SELECT * FROM REPLY WHERE
+		ARTICLE_NO=#{article_no}
+		ORDER BY REPLY_NO ASC
+	</select>
 
 </mapper>

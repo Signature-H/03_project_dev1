@@ -25,6 +25,7 @@ public class ArticleDAO {
 		mybatis.update("ArticleDAO.updateArticle", vo);
 	}
 
+	// readArticle.do
 	public ArticleVO readArticle(ArticleVO vo) {
 		mybatis.update("ArticleDAO.read_cnt_seq", vo);
 		return mybatis.selectOne("ArticleDAO.readArticle", vo);

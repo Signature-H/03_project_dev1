@@ -1,5 +1,7 @@
 package com.dev1.springproject.reply.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +17,11 @@ public class ReplyServiceImpl implements ReplyService {
 	@Override
 	public void writeReply(ReplyVO vo) {
 		replyDAO.writeReply(vo);
+	}
+
+	@Override
+	public List<ReplyVO> replyList(ReplyVO vo) {
+		System.out.println("service: "+vo.getArticle_no());
+		return replyDAO.replyList(vo);
 	}
 }
