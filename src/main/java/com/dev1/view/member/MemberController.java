@@ -112,8 +112,9 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/findId.do", method = RequestMethod.POST)
-	public String findId(MemberVO vo) {
+	public String findId(MemberVO vo,HttpSession session) {
 		memberservice.findId(vo);
+		session.setAttribute("ID", vo.getId());
 		return "findIdSuccess.jsp";
 	}
 
@@ -124,8 +125,9 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/findPassword.do", method = RequestMethod.POST)
-	public String findPassword(MemberVO vo) {
+	public String findPassword(MemberVO vo, HttpSession session) {
 		memberservice.findPassword(vo);
+		session.setAttribute("PASSWORD", vo.getPassword());
 		return "findPasswordSuccess.jsp";
 	}
 }
