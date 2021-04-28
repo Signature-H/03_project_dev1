@@ -132,7 +132,7 @@ function setThumnail(event){
 			<div class="input-group mb-3">
 				<div id="alignCenter"><img id="userImage" class="rg_i Q4LuWd" src="resources/img/default.png" data-atf="true" width="193" height="192" onerror="this.src='resources/img/default.png'"></div>
 				<div class="input-group mb-3" style="margin-top: 20px;">
-				<input type="file" class="form-control" id="customFile" onchange="setThumnail(event);"/>
+				<input type="file" class="form-control" name="photo" id="customFile" onchange="setThumnail(event);"/>
 				</div>
 				
 			</div>

@@ -3,18 +3,12 @@ body {
   
 }
 
-#exTab1 .tab-content {
-  color : white;
-  background-color: #428bca;
-  padding : 5px 15px;
+img{
+	width: 70px;
+	height: auto;
+	float: left;
 }
 
-/* remove border radius for the tab */
-
-#exTab1 .nav-pills > li > a {
-  border-radius: 0;
+h3#findTitle{
+	padding-top: 3px;
 }
-
-
-
-

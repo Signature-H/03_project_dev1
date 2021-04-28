@@ -70,7 +70,7 @@
 	</div>
 <script type="text/javascript">
 function goPopup(){
-	var pop = window.open("findId.do","findid_pwPop","width=540px, height=310px,scrollbars=yes, resizable=yes");
+	var pop = window.open("findId.do","findid_pwPop","width=540px, height=340px,scrollbars=yes, resizable=yes");
 }
 </script>
 

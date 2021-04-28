@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="<c:url value="resources/css/find.css" />">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -15,11 +16,12 @@
 	integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
 	crossorigin="anonymous"></script>
 <title>아이디/비밀번호 찾기</title>
-<link rel="stylesheet" href="<c:url value="resources/css/find.css" />">
 </head>
 <body>
 	<div class="container">
-		<h3>아이디/비밀번호 찾기</h3>
+		<img alt="dev1_logo" src="resources/img/dev1_logo.svg" id="dev1_logo" align="middle">
+		<h3 id="findTitle">&nbsp;아이디/비밀번호 찾기</h3>
+		<br />
 		<nav>
 			<div class="nav nav-tabs" id="nav-tab">
 				<button class="nav-link active" id="nav-id-tab" data-bs-toggle="tab"
