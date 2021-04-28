@@ -5,7 +5,7 @@
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
 <%
 	MemberVO vo = (MemberVO) request.getSession().getAttribute("member");
-	String sBirthday = vo.getBirthday().substring(0, 10);
+String sBirthday = vo.getBirthday().substring(0, 10);
 %>
 <!DOCTYPE html>
 <html>
@@ -28,11 +28,12 @@
 
 	<!-- 상단 고정바 -->
 	<header>
-		<span id="icon"><a href="list.do">메인으로</a></span>
+		<span id="icon"><a href="list.do"><img alt="메인으로"
+				src="resources/img/dev1_logo.svg" id="dev1_mainLogo"></a></span>
 		<u:isLogin>
-			<span id="login_join"> <a href="myInfo.do"><input
-					type="button" value="마이페이지"></a> <a href="logout.do"><input
-					type="button" value="로그아웃"></a>
+			<span id="login_join"> <a href="myInfo.do"><button
+						type="button" class="btn btn-primary">마이페이지</button></a> <a
+				href="logout.do"><button class="btn btn-danger" type="button">로그아웃</button></a>
 			</span>
 		</u:isLogin>
 	</header>
@@ -84,7 +85,7 @@
 						<span class="input-group-text" id="basic-addon1">생년월일</span>
 					</div>
 					<input type="date" class="form-control" name="birthday"
-						value="<%= sBirthday %>">
+						value="<%=sBirthday%>">
 				</div>
 
 				<!-- 전화번호 입력 -->
@@ -124,7 +125,9 @@
 					<input type="text" class="form-control" name="address2"
 						id="address2" value="<%=vo.getAddress2()%>">
 				</div>
-				<br /> <input type="submit" value="정보 변경하기">
+				<br />
+				<button type="submit" class="btn btn-primary" id="alignCenter">정보
+					변경하기</button>
 			</div>
 		</form>
 	</div>
