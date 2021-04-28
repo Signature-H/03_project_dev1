@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.dev1.springproject.article.ArticlePageVO;
 import com.dev1.springproject.article.ArticleService;
 import com.dev1.springproject.article.ArticleVO;
-import com.dev1.springproject.member.MemberVO;
+import com.dev1.springproject.auth.AuthMemberVO;
 
 @Controller
 @SessionAttributes("article")
@@ -47,7 +47,7 @@ public class ArticleController {
 	@RequestMapping("/readArticle.do")
 	public String readArticle(ArticleVO vo, Model model) {
 		model.addAttribute("article", articleService.readArticle(vo));
-		return "readArticleForm.jsp";
+		return "replyList.do";
 	}
 
 	@RequestMapping("/list.do")
@@ -69,11 +69,37 @@ public class ArticleController {
 
 	@RequestMapping("/deleteArticle.do")
 	public String deleteBoard(ArticleVO vo, HttpSession session) {
-		MemberVO mvo = (MemberVO) session.getAttribute("auth");
+		AuthMemberVO mvo = (AuthMemberVO) session.getAttribute("auth");
 		ArticleVO avo = (ArticleVO) session.getAttribute("article");
 		if (mvo.getId().equals(avo.getWriter_id())) {
 			articleService.deleteArticle(vo);
 		}
 		return "list.do";
+	}
+	
+	@RequestMapping("/regNotice.do")
+	public String regNotice(ArticleVO vo, HttpSession session) {
+		AuthMemberVO mvo = (AuthMemberVO) session.getAttribute("auth");
+		ArticleVO avo = (ArticleVO) session.getAttribute("article");
+		if(mvo.getManager()!='1') {
+			return "readArticle.do?article_no=" + avo.getArticle_no();
+		} else {
+			vo.setArticle_no(avo.getArticle_no());
+			articleService.regNotice(vo);
+			return "readArticle.do?article_no=" + avo.getArticle_no();
+		}
+	}
+	
+	@RequestMapping("/unregNotice.do")
+	public String unregNotice(ArticleVO vo, HttpSession session) {
+		AuthMemberVO mvo = (AuthMemberVO) session.getAttribute("auth");
+		ArticleVO avo = (ArticleVO) session.getAttribute("article");
+		if(mvo.getManager()!='1') {
+			return "readArticle.do?article_no=" + avo.getArticle_no();
+		} else {
+			vo.setArticle_no(avo.getArticle_no());
+			articleService.unregNotice(vo);
+			return "readArticle.do?article_no=" + avo.getArticle_no();
+		}
 	}
 }

@@ -80,4 +80,16 @@ public class ArticleServiceImpl implements ArticleService {
 	public void deleteArticle(ArticleVO vo) {
 		articleDAO.deleteArticle(vo);
 	}
+
+	@Override
+	public void regNotice(ArticleVO vo) {
+		articleDAO.regNotice(vo);
+	}
+
+	@Override
+	public void unregNotice(ArticleVO vo) {
+		articleDAO.unregNotice(vo);
+	}
+	
+	
 }

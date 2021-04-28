@@ -25,6 +25,7 @@ public class ArticleDAO {
 		mybatis.update("ArticleDAO.updateArticle", vo);
 	}
 
+	// readArticle.do
 	public ArticleVO readArticle(ArticleVO vo) {
 		mybatis.update("ArticleDAO.read_cnt_seq", vo);
 		return mybatis.selectOne("ArticleDAO.readArticle", vo);
@@ -73,7 +74,18 @@ public class ArticleDAO {
 
 	// deleteArticle.do
 	public void deleteArticle(ArticleVO vo) {
+		mybatis.delete("ArticleDAO.beforeDeleteArticle", vo);
 		mybatis.delete("ArticleDAO.deleteArticle", vo);
+	}
+	
+	// regNotice.do
+	public void regNotice(ArticleVO vo)	{
+		mybatis.update("ArticleDAO.regNotice", vo);
+	}
+
+	// unregNotice.do
+	public void unregNotice(ArticleVO vo)	{
+		mybatis.update("ArticleDAO.unregNotice", vo);
 	}
 
 }

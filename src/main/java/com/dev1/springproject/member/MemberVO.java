@@ -25,7 +25,7 @@ public class MemberVO {
 	// ZIPCODE
 	private String zipcode;
 	// MANAGER
-	private String manager;
+	private char manager;
 	// PATH
 	private String path;
 
@@ -101,11 +101,11 @@ public class MemberVO {
 		this.zipcode = zipcode;
 	}
 
-	public String getManager() {
+	public char getManager() {
 		return manager;
 	}
 
-	public void setManager(String manager) {
+	public void setManager(char manager) {
 		this.manager = manager;
 	}
 

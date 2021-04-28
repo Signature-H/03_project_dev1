@@ -4,7 +4,7 @@ public class AuthMemberVO {
 
 	private String id;
 	private String name;
-	private String manager;
+	private char manager;
 	
 	public String getId() {
 		return id;
@@ -18,10 +18,10 @@ public class AuthMemberVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getManager() {
+	public char getManager() {
 		return manager;
 	}
-	public void setManager(String manager) {
+	public void setManager(char manager) {
 		this.manager = manager;
 	}
 	

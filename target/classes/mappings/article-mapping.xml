@@ -125,8 +125,21 @@
 		#{start} AND #{end}
 	</select>
 
+	<delete id="beforeDeleteArticle">
+		DELETE FROM REPLY WHERE ARTICLE_NO=#{article_no}
+	</delete>
 	<delete id="deleteArticle">
 		DELETE FROM ARTICLE WHERE ARTICLE_NO=#{article_no}
 	</delete>
+	
+	<update id="regNotice">
+		UPDATE ARTICLE SET NOTICE=1
+		WHERE ARTICLE_NO=#{article_no}
+	</update>
+
+	<update id="unregNotice">
+		UPDATE ARTICLE SET NOTICE=0
+		WHERE ARTICLE_NO=#{article_no}
+	</update>
 
 </mapper>

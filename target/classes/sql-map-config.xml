@@ -7,12 +7,14 @@
 	<typeAliases>
 		<typeAlias alias="article" type="com.dev1.springproject.article.ArticleVO" />
 		<typeAlias alias="member" type="com.dev1.springproject.member.MemberVO" />
+		<typeAlias alias="reply" type="com.dev1.springproject.reply.ReplyVO" />
 	</typeAliases>
 	
 	<!-- Sql Mapper 설정 -->
 	<mappers>
 		<mapper resource="mappings/article-mapping.xml" />
 		<mapper resource="mappings/member-mapping.xml" />
+		<mapper resource="mappings/reply-mapping.xml" />
 	</mappers>
 	
 </configuration>
