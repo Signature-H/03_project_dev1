@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dev1.springproject.article.ArticlePageVO;
 import com.dev1.springproject.article.ArticleVO;
 
 @Repository
@@ -30,43 +31,43 @@ public class ArticleDAO {
 	}
 
 	// list.do
-	public int articleCount(ArticleVO vo) {
+	public int articleCount(ArticlePageVO vo) {
 		return mybatis.selectOne("ArticleDAO.articleCount", vo);
 	}
 
-	public List<ArticleVO> articleList(ArticleVO vo) {
+	public List<ArticleVO> articleList(ArticlePageVO vo) {
 		return mybatis.selectList("ArticleDAO.articleList", vo);
 	}
 
-	public int searchCount_title(ArticleVO vo) {
+	public int searchCount_title(ArticlePageVO vo) {
 		return mybatis.selectOne("ArticleDAO.searchCount_title", vo);
 	}
 
-	public List<ArticleVO> searchList_title(ArticleVO vo) {
+	public List<ArticleVO> searchList_title(ArticlePageVO vo) {
 		return mybatis.selectList("ArticleDAO.searchList_title", vo);
 	}
 
-	public int searchCount_content(ArticleVO vo) {
+	public int searchCount_content(ArticlePageVO vo) {
 		return mybatis.selectOne("ArticleDAO.searchCount_content", vo);
 	}
 
-	public List<ArticleVO> searchList_content(ArticleVO vo) {
+	public List<ArticleVO> searchList_content(ArticlePageVO vo) {
 		return mybatis.selectList("ArticleDAO.searchList_content", vo);
 	}
 
-	public int searchCount_writer_name(ArticleVO vo) {
+	public int searchCount_writer_name(ArticlePageVO vo) {
 		return mybatis.selectOne("ArticleDAO.searchCount_writer_name", vo);
 	}
 
-	public List<ArticleVO> searchList_writer_name(ArticleVO vo) {
+	public List<ArticleVO> searchList_writer_name(ArticlePageVO vo) {
 		return mybatis.selectList("ArticleDAO.searchList_writer_name", vo);
 	}
 
-	public int searchCount_article(ArticleVO vo) {
+	public int searchCount_article(ArticlePageVO vo) {
 		return mybatis.selectOne("ArticleDAO.searchCount_article", vo);
 	}
 
-	public List<ArticleVO> searchList_article(ArticleVO vo) {
+	public List<ArticleVO> searchList_article(ArticlePageVO vo) {
 		return mybatis.selectList("ArticleDAO.searchList_title_and_content", vo);
 	}
 

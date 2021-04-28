@@ -28,15 +28,14 @@ public class MemberController {
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String login(MemberVO vo, HttpSession session) {
 		MemberVO mvo = memberservice.login(vo);
-		if (mvo != null)
-		{
+		if (mvo != null) {
 			AuthMemberVO amvo = new AuthMemberVO();
 			amvo.setId(mvo.getId());
 			amvo.setName(mvo.getName());
+			amvo.setManager(mvo.getManager());
 			session.setAttribute("auth", amvo);
 			return "list.do";
-		}
-		else
+		} else
 			return "loginForm.jsp";
 	}
 
@@ -51,9 +50,9 @@ public class MemberController {
 	@RequestMapping("/myInfo.do")
 	public String myInfo(MemberVO vo, HttpSession session) {
 		AuthMemberVO amvo = (AuthMemberVO) session.getAttribute("auth");
-		if(amvo != null)
-		{
-			session.setAttribute("member", memberservice.myInfo(amvo));
+		if (amvo != null) {
+			vo.setId(amvo.getId());
+			session.setAttribute("member", memberservice.myInfo(vo));
 			return "myInfoForm.jsp";
 		}
 		return "list.do";
@@ -113,8 +112,9 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/findId.do", method = RequestMethod.POST)
-	public String findId(MemberVO vo) {
+	public String findId(MemberVO vo,HttpSession session) {
 		memberservice.findId(vo);
+		session.setAttribute("ID", vo.getId());
 		return "findIdSuccess.jsp";
 	}
 
@@ -125,8 +125,9 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/findPassword.do", method = RequestMethod.POST)
-	public String findPassword(MemberVO vo) {
+	public String findPassword(MemberVO vo, HttpSession session) {
 		memberservice.findPassword(vo);
+		session.setAttribute("PASSWORD", vo.getPassword());
 		return "findPasswordSuccess.jsp";
 	}
 }

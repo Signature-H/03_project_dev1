@@ -21,15 +21,21 @@ public class ArticlePageVO {
 	private int start;
 	// 마지막 ROWNUM
 	private int end;
+	// 게시글 검색 조건
+	private String condition;
+	// 게시글 검색 키워드
+	private String keyword;
 
 	// 디폴트 생성자
 	public ArticlePageVO() {
 	}
 
 	// 생성자
-	public ArticlePageVO(int totalArticle, int currentPage) {
+	public ArticlePageVO(int totalArticle, int currentPage, String condition, String keyword) {
 		this.totalArticle = totalArticle;
 		this.currentPage = currentPage;
+		this.condition = condition;
+		this.keyword = keyword;
 		setTotalPage(totalArticle);
 		setEndtPage(currentPage);
 		setStartPage(endPage);
@@ -44,7 +50,7 @@ public class ArticlePageVO {
 
 	// 뷰단의 마지막 페이지 계산
 	private void setEndtPage(int currentPage) {
-		endPage = ((int)Math.ceil((double) currentPage / (double) pageCnt))*pageCnt;
+		endPage = ((int) Math.ceil((double) currentPage / (double) pageCnt)) * pageCnt;
 		if (endPage > totalPage)
 			endPage = totalPage;
 	}
@@ -120,6 +126,22 @@ public class ArticlePageVO {
 
 	public int getEnd() {
 		return end;
+	}
+
+	public String getCondition() {
+		return condition;
+	}
+
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 
 }
