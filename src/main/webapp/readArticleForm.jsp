@@ -1,3 +1,4 @@
+<%@page import="com.dev1.springproject.auth.AuthMemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -67,35 +68,45 @@
 		</form>
 	</div>
 
+	<!-- 공지사항 등록/해제 버튼 -->
+	<div>
+			<c:if test="${article.notice==0 }">
+				<a href="regNotice.do"><input type="button" value="공지 등록"></a>
+			</c:if>
+			<c:if test="${article.notice == 1}">
+				<a href="unregNotice.do"><input type="button" value="공지 해제"></a>
+			</c:if>
+	</div>
+
 	<!-- 댓글 작성 -->
 	<div>
 		<u:isLogin>
 			<form action="writeReply.do" method="post">
-				<input type="hidden" name="article_no" value="${article.article_no}"> 
-				<input type="hidden" name="reply_id" value="${auth.id}"> 
-				<input type="hidden" name="reply_name" value="${auth.name}">
+				<input type="hidden" name="article_no" value="${article.article_no}">
+				<input type="hidden" name="reply_id" value="${auth.id}"> <input
+					type="hidden" name="reply_name" value="${auth.name}">
 				<textarea cols="30" rows="5" name="reply_content"></textarea>
 				<input type="submit" value="댓글 등록">
 			</form>
 		</u:isLogin>
 	</div>
-	
+
 	<!-- 댓글 목록 -->
 	<div class="table-responsive">
-			<table class="table table-hover table-sm"
-				style="margin: auto; width: auto;">
-				<tbody>
-					<c:forEach items="${replyList}" var="reply">
-						<tr>
-							<td>${reply.reply_name}</td>
-							<td>${reply.reply_content}</td>
-							<td>${reply.reply_regDate}</td>
-							<td>${reply.reply_like_cnt}</td>
-							<td>${reply.reply_unlike_cnt}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
+		<table class="table table-hover table-sm"
+			style="margin: auto; width: auto;">
+			<tbody>
+				<c:forEach items="${replyList}" var="reply">
+					<tr>
+						<td>${reply.reply_name}</td>
+						<td>${reply.reply_content}</td>
+						<td>${reply.reply_regDate}</td>
+						<td>${reply.reply_like_cnt}</td>
+						<td>${reply.reply_unlike_cnt}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>

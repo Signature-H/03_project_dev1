@@ -22,7 +22,6 @@ public class ReplyDAO {
 	
 	// replyList.do
 	public List<ReplyVO> replyList(ReplyVO vo) {
-		System.out.println("DAO: "+vo.getArticle_no());
 		return mybatis.selectList("ReplyDAO.replyList", vo);
 	}
 

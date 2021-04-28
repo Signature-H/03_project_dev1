@@ -77,5 +77,15 @@ public class ArticleDAO {
 		mybatis.delete("ArticleDAO.beforeDeleteArticle", vo);
 		mybatis.delete("ArticleDAO.deleteArticle", vo);
 	}
+	
+	// regNotice.do
+	public void regNotice(ArticleVO vo)	{
+		mybatis.update("ArticleDAO.regNotice", vo);
+	}
+
+	// unregNotice.do
+	public void unregNotice(ArticleVO vo)	{
+		mybatis.update("ArticleDAO.unregNotice", vo);
+	}
 
 }

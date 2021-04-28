@@ -25,7 +25,6 @@ public class ReplyController {
 	@RequestMapping("/replyList.do")
 	public String replyList(ReplyVO vo, Model model) {
 		model.addAttribute("replyList", replyService.replyList(vo));
-		System.out.println("controller: "+vo.getArticle_no());
 		return "readArticleForm.jsp"; 
 	}
 

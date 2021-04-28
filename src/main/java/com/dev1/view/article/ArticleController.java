@@ -14,7 +14,6 @@ import com.dev1.springproject.article.ArticlePageVO;
 import com.dev1.springproject.article.ArticleService;
 import com.dev1.springproject.article.ArticleVO;
 import com.dev1.springproject.auth.AuthMemberVO;
-import com.dev1.springproject.member.MemberVO;
 
 @Controller
 @SessionAttributes("article")
@@ -76,5 +75,31 @@ public class ArticleController {
 			articleService.deleteArticle(vo);
 		}
 		return "list.do";
+	}
+	
+	@RequestMapping("/regNotice.do")
+	public String regNotice(ArticleVO vo, HttpSession session) {
+		AuthMemberVO mvo = (AuthMemberVO) session.getAttribute("auth");
+		ArticleVO avo = (ArticleVO) session.getAttribute("article");
+		if(mvo.getManager()!='1') {
+			return "readArticle.do?article_no=" + avo.getArticle_no();
+		} else {
+			vo.setArticle_no(avo.getArticle_no());
+			articleService.regNotice(vo);
+			return "readArticle.do?article_no=" + avo.getArticle_no();
+		}
+	}
+	
+	@RequestMapping("/unregNotice.do")
+	public String unregNotice(ArticleVO vo, HttpSession session) {
+		AuthMemberVO mvo = (AuthMemberVO) session.getAttribute("auth");
+		ArticleVO avo = (ArticleVO) session.getAttribute("article");
+		if(mvo.getManager()!='1') {
+			return "readArticle.do?article_no=" + avo.getArticle_no();
+		} else {
+			vo.setArticle_no(avo.getArticle_no());
+			articleService.unregNotice(vo);
+			return "readArticle.do?article_no=" + avo.getArticle_no();
+		}
 	}
 }

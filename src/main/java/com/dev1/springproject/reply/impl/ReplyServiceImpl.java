@@ -21,7 +21,6 @@ public class ReplyServiceImpl implements ReplyService {
 
 	@Override
 	public List<ReplyVO> replyList(ReplyVO vo) {
-		System.out.println("service: "+vo.getArticle_no());
 		return replyDAO.replyList(vo);
 	}
 }
