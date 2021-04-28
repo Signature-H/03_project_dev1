@@ -31,13 +31,14 @@
 			</div>
 		</nav>
 		<div class="tab-content" id="nav-tabContent">
+		
 			<!-- 아이디 찾기 -->
 			<div class="tab-pane fade show active" id="nav-id"
 				aria-labelledby="nav-id-tab">
 				<br />
 				<h4>이메일로 찾기</h4>
 				<!-- 이메일 입력 -->
-				<form action="findId.do">
+				<form action="findId.do" method="post">
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon1">이메일</span>
@@ -46,16 +47,38 @@
 							placeholder="example@gmail.com" name="email">
 					</div>
 					<div class="d-grid gap-2">
-						<button type="submit" class="btn btn-primary">아이디
+						<button type="submit" class="btn btn-primary" >아이디
 							찾기</button>
 					</div>
 				</form>
 			</div>
+			
 			<!-- 비밀번호 찾기 -->
 			<div class="tab-pane fade" id="nav-password"
 				aria-labelledby="nav-password-tab">
 				<br />
 				<h4>회원정보로 찾기</h4>
+				<form action="findPassword.do" method="post">
+					<!-- 아이디 입력 -->
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">아이디</span>
+						</div>
+						<input type="text" class="form-control" placeholder="ID" name="id">
+					</div>
+					<!-- 이메일 입력 -->
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">이메일</span>
+						</div>
+						<input type="text" class="form-control"
+							placeholder="example@gmail.com" name="email">
+					</div>
+					<div class="d-grid gap-2">
+						<button type="submit" class="btn btn-primary" >비밀번호
+							찾기</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>

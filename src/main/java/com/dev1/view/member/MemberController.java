@@ -108,26 +108,39 @@ public class MemberController {
 	// findId
 	@RequestMapping(value = "/findId.do", method = RequestMethod.GET)
 	public String findIdForm(MemberVO vo) {
-		return "findid_pwPopup.jsp";
+		return "findId_PwPopup.jsp";
 	}
 
 	@RequestMapping(value = "/findId.do", method = RequestMethod.POST)
 	public String findId(MemberVO vo,HttpSession session) {
-		memberservice.findId(vo);
-		session.setAttribute("ID", vo.getId());
+		MemberVO mvo = memberservice.findId(vo);
+		String id = "";
+		
+		if(mvo != null)
+		{
+			id = mvo.getId();
+		}
+		session.setAttribute("ID", id);
 		return "findIdSuccess.jsp";
 	}
 
 	// findPassword
 	@RequestMapping(value = "/findPassword.do", method = RequestMethod.GET)
 	public String findPasswordForm(MemberVO vo) {
-		return "findid_pwPopup.jsp";
+		return "findId_PwPopup.jsp";
 	}
 
 	@RequestMapping(value = "/findPassword.do", method = RequestMethod.POST)
 	public String findPassword(MemberVO vo, HttpSession session) {
-		memberservice.findPassword(vo);
-		session.setAttribute("PASSWORD", vo.getPassword());
+		MemberVO mvo = memberservice.findPassword(vo);
+		String password = "";
+		
+		if(mvo != null)
+		{
+			password = mvo.getPassword();
+		}
+		
+		session.setAttribute("PASSWORD", password);
 		return "findPasswordSuccess.jsp";
 	}
 }

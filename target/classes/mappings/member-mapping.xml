@@ -49,10 +49,10 @@
 		DELETE FROM MEMBER WHERE ID= #{id} AND
 		PASSWORD=#{password}
 	</delete>
-	<select id="findId">
+	<select id="findId" resultType="member">
 		SELECT ID FROM MEMBER WHERE EMAIL=#{email}
 	</select>
-	<select id="findPassword">
+	<select id="findPassword" resultType="member">
 		SELECT PASSWORD FROM MEMBER WHERE ID=#{id} AND EMAIL=#{email}
 	</select>
 
