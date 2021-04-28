@@ -126,6 +126,7 @@
 	</select>
 
 	<delete id="deleteArticle">
+		DELETE FROM REPLY WHERE ARTICLE_NO=#{article_no}
 		DELETE FROM ARTICLE WHERE ARTICLE_NO=#{article_no}
 	</delete>
 
