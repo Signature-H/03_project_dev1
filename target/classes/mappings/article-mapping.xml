@@ -60,55 +60,93 @@
 	</select>
 	<select id="articleList" resultType="article">
 		SELECT * FROM (
-		SELECT ROWNUM RN, ARTICLE.* FROM
+		SELECT ROWNUM
+		RN, ARTICLE.* FROM
 		ARTICLE ORDER BY ARTICLE_NO DESC
-		) WHERE RN BETWEEN #{start} AND #{end}
+		) WHERE RN BETWEEN
+		#{start} AND #{end}
+	</select>
+	<select id="noticeList" resultType="article">
+		SELECT * FROM ARTICLE WHERE
+		NOTICE='1'ORDER BY ARTICLE_NO
+		DESC
 	</select>
 
 	<select id="searchCount_title" resultType="int">
-		SELECT COUNT(*) FROM ARTICLE WHERE TITLE LIKE
+		SELECT COUNT(*) FROM
+		ARTICLE WHERE TITLE LIKE
 		'%'||#{keyword}||'%'
 	</select>
 	<select id="searchList_title" resultType="article">
 		SELECT * FROM (
-		SELECT ROWNUM RN, ARTICLE.*
+		SELECT
+		ROWNUM RN, ARTICLE.*
 		FROM ARTICLE
 		WHERE TITLE LIKE '%'||#{keyword}||'%'
 		ORDER BY ARTICLE_NO
 		DESC
 		) WHERE RN BETWEEN #{start} AND #{end}
 	</select>
+	<select id="searchNoticeList_title" resultType="article">
+		SELECT * FROM
+		ARTICLE WHERE NOTICE='1'AND TITLE LIKE '%'||#{keyword}||'%'
+		ORDER BY
+		ARTICLE_NO
+		DESC
+	</select>
 
 	<select id="searchCount_content" resultType="int">
-		SELECT COUNT(*) FROM ARTICLE WHERE CONTENT LIKE
+		SELECT COUNT(*) FROM
+		ARTICLE WHERE CONTENT LIKE
 		'%'||#{keyword}||'%'
 	</select>
 	<select id="searchList_content" resultType="article">
 		SELECT * FROM (
 		SELECT ROWNUM RN, ARTICLE.* FROM ARTICLE
-		WHERE CONTENT LIKE '%'||#{keyword}||'%'
+		WHERE CONTENT LIKE
+		'%'||#{keyword}||'%'
 		ORDER BY
 		ARTICLE_NO DESC
-		) WHERE RN BETWEEN #{start} AND #{end}
+		) WHERE RN BETWEEN #{start}
+		AND #{end}
+	</select>
+	<select id="searchNoticeList_content" resultType="article">
+		SELECT * FROM
+		ARTICLE WHERE NOTICE='1'AND CONTENT LIKE '%'||#{keyword}||'%'
+		ORDER BY
+		ARTICLE_NO
+		DESC
 	</select>
 
 	<select id="searchCount_writer_name" resultType="int">
-		SELECT COUNT(*) FROM ARTICLE WHERE WRITER_NAME LIKE
+		SELECT COUNT(*)
+		FROM ARTICLE WHERE WRITER_NAME LIKE
 		'%'||#{keyword}||'%'
 	</select>
 	<select id="searchList_writer_name" resultType="article">
 		SELECT * FROM (
 		SELECT ROWNUM RN, ARTICLE.* FROM
 		ARTICLE
-		WHERE WRITER_NAME LIKE '%'||#{keyword}||'%'
+		WHERE WRITER_NAME LIKE
+		'%'||#{keyword}||'%'
 		ORDER
 		BY ARTICLE_NO
 		DESC
-		) WHERE RN BETWEEN #{start} AND #{end}
+		) WHERE RN BETWEEN #{start}
+		AND #{end}
+	</select>
+	<select id="searchNoticeList_writer_name" resultType="article">
+		SELECT *
+		FROM
+		ARTICLE WHERE NOTICE='1'AND WRITER_NAME LIKE '%'||#{keyword}||'%'
+		ORDER BY
+		ARTICLE_NO
+		DESC
 	</select>
 
 	<select id="searchCount_article" resultType="int">
-		SELECT COUNT(*) FROM ARTICLE WHERE TITLE LIKE
+		SELECT COUNT(*) FROM
+		ARTICLE WHERE TITLE LIKE
 		'%'||#{keyword}||'%'
 		AND CONTENT LIKE
 		'%'||#{keyword}||'%'
@@ -116,13 +154,26 @@
 	<select id="searchList_article" resultType="article">
 		SELECT * FROM (
 		SELECT ROWNUM RN, ARTICLE.* FROM ARTICLE
-		WHERE TITLE LIKE '%'||#{keyword}||'%'
+		WHERE TITLE LIKE
+		'%'||#{keyword}||'%'
 		AND CONTENT
 		LIKE
 		'%'||#{keyword}||'%'
-		ORDER BY ARTICLE_NO DESC
+		ORDER BY
+		ARTICLE_NO DESC
 		) WHERE RN BETWEEN
 		#{start} AND #{end}
+	</select>
+	<select id="searchNoticeList_article" resultType="article">
+		SELECT * FROM
+		ARTICLE WHERE NOTICE='1'AND TITLE LIKE
+		'%'||#{keyword}||'%'
+		AND CONTENT
+		LIKE
+		'%'||#{keyword}||'%'
+		ORDER BY
+		ARTICLE_NO
+		DESC
 	</select>
 
 	<delete id="beforeDeleteArticle">
@@ -131,15 +182,17 @@
 	<delete id="deleteArticle">
 		DELETE FROM ARTICLE WHERE ARTICLE_NO=#{article_no}
 	</delete>
-	
+
 	<update id="regNotice">
 		UPDATE ARTICLE SET NOTICE=1
-		WHERE ARTICLE_NO=#{article_no}
+		WHERE
+		ARTICLE_NO=#{article_no}
 	</update>
 
 	<update id="unregNotice">
 		UPDATE ARTICLE SET NOTICE=0
-		WHERE ARTICLE_NO=#{article_no}
+		WHERE
+		ARTICLE_NO=#{article_no}
 	</update>
 
 </mapper>

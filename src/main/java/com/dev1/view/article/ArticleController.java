@@ -64,6 +64,7 @@ public class ArticleController {
 
 		model.addAttribute("page", pvo);
 		model.addAttribute("articleList", articleService.articleList(pvo));
+		model.addAttribute("noticeList", articleService.noticeList(pvo));
 		return "listForm.jsp";
 	}
 

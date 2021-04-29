@@ -75,6 +75,29 @@ public class ArticleServiceImpl implements ArticleService {
 		}
 		return list;
 	}
+	
+	@Override
+	public List<ArticleVO> noticeList(ArticlePageVO vo) {
+		List<ArticleVO> list;
+		switch (vo.getCondition()) {
+		case "TITLE":
+			list = articleDAO.searchNoticeList_title(vo);
+			break;
+		case "CONTENT":
+			list = articleDAO.searchNoticeList_content(vo);
+			break;
+		case "WRITER":
+			list = articleDAO.searchNoticeList_writer_name(vo);
+			break;
+		case "ARTICLE":
+			list = articleDAO.searchNoticeList_article(vo);
+			break;
+		default:
+			list = articleDAO.noticeList(vo);
+			break;
+		}
+		return list;
+	}
 
 	@Override
 	public void deleteArticle(ArticleVO vo) {
