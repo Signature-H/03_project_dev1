@@ -50,9 +50,9 @@
 		ORDER BY REPLY_NO ASC
 	</select>
 	<select id="reply_likeList" resultType="reply_like">
-		SELECT ARTICLE_NO,
+		SELECT REPLY.ARTICLE_NO,
 		REPLY.REPLY_NO, ID, REPLY_LIKE FROM REPLY, REPLY_LIKE WHERE
-		REPLY.REPLY_NO=REPLY_LIKE.REPLY_NO AND ARTICLE_NO=#{article_no} AND ID=#{id}
+		REPLY.REPLY_NO=REPLY_LIKE.REPLY_NO AND REPLY.ARTICLE_NO=#{article_no} AND ID=#{id}
 	</select>
 
 	<update id="replyLike_seq">
