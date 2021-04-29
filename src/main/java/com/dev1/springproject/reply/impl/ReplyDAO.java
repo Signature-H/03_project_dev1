@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dev1.springproject.reply.ReplyVO;
+import com.dev1.springproject.reply.Reply_likeVO;
 
 @Repository
 public class ReplyDAO {
@@ -23,6 +24,33 @@ public class ReplyDAO {
 	// replyList.do
 	public List<ReplyVO> replyList(ReplyVO vo) {
 		return mybatis.selectList("ReplyDAO.replyList", vo);
+	}
+	public List<Reply_likeVO> reply_likeList(Reply_likeVO vo) {
+		return mybatis.selectList("ReplyDAO.reply_likeList", vo);
+	}
+	
+	// replyLike.do
+	public void replyLike(ReplyVO vo) {
+		mybatis.update("ReplyDAO.replyLike_seq", vo);
+		mybatis.insert("ReplyDAO.replyLike", vo);
+	}
+	
+	// replyLikeCancle.do
+	public void replyLikeCancle(ReplyVO vo) {
+		mybatis.update("ReplyDAO.replyLikeCancle_seq", vo);
+		mybatis.insert("ReplyDAO.replyLikeCancle", vo);
+	}
+	
+	// replyHate.do
+	public void replyHate(ReplyVO vo) {
+		mybatis.update("ReplyDAO.replyHate_seq", vo);
+		mybatis.insert("ReplyDAO.replyHate", vo);
+	}
+	
+	// replyLikeCancle.do
+	public void replyHateCancle(ReplyVO vo) {
+		mybatis.update("ReplyDAO.replyHateCancle_seq", vo);
+		mybatis.insert("ReplyDAO.replyHateCancle", vo);
 	}
 
 }

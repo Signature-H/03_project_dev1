@@ -8,6 +8,7 @@
 		<typeAlias alias="article" type="com.dev1.springproject.article.ArticleVO" />
 		<typeAlias alias="member" type="com.dev1.springproject.member.MemberVO" />
 		<typeAlias alias="reply" type="com.dev1.springproject.reply.ReplyVO" />
+		<typeAlias alias="reply_like" type="com.dev1.springproject.reply.Reply_likeVO" />
 	</typeAliases>
 	
 	<!-- Sql Mapper 설정 -->

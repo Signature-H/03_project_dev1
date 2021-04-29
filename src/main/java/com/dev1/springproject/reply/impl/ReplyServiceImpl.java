@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.dev1.springproject.reply.ReplyService;
 import com.dev1.springproject.reply.ReplyVO;
+import com.dev1.springproject.reply.Reply_likeVO;
 
 @Service
 public class ReplyServiceImpl implements ReplyService {
@@ -23,4 +24,31 @@ public class ReplyServiceImpl implements ReplyService {
 	public List<ReplyVO> replyList(ReplyVO vo) {
 		return replyDAO.replyList(vo);
 	}
+	
+	@Override
+	public List<Reply_likeVO> reply_likeList(Reply_likeVO vo) {
+		return replyDAO.reply_likeList(vo);
+	}
+
+	@Override
+	public void replyLike(ReplyVO vo) {
+		replyDAO.replyLike(vo);
+	}
+
+	@Override
+	public void replyLikeCancle(ReplyVO vo) {
+		replyDAO.replyLikeCancle(vo);
+	}
+
+	@Override
+	public void replyHate(ReplyVO vo) {
+		replyDAO.replyHate(vo);
+	}
+
+	@Override
+	public void replyHateCancle(ReplyVO vo) {
+		replyDAO.replyHateCancle(vo);
+	}
+	
+	
 }
