@@ -89,40 +89,23 @@ if (amvo != null)
 										style="width: 700px; white-space: normal; word-break: break-all;">
 										${reply.reply_content}</div>
 									<div class="reply_regDate">${reply.reply_regDate}</div>
-									
+
 									<!-- 좋아요/싫어요 검사 (좋아요 : T | 싫어요 : F)-->
-											<form action="replyLike.do" id="${reply.reply_no}_T">
-											<input type="hidden" name="reply_no" value="${reply.reply_no}">
-											<input type="hidden" name="id" value="${auth.id}">
-											</form>
-											<form action="replyLikeCancle.do" id="${reply.reply_no}_TC">
-											<input type="hidden" name="reply_no" value="${reply.reply_no}">
-											<input type="hidden" name="id" value="${auth.id}">
-											</form>
-											<form action="replyHate.do" id="${reply.reply_no}_F">
-											<input type="hidden" name="reply_no" value="${reply.reply_no}">
-											<input type="hidden" name="id" value="${auth.id}">
-											</form>
-											<form action="replyHateCancle.do" id="${reply.reply_no}_FC">
-											<input type="hidden" name="reply_no" value="${reply.reply_no}">
-											<input type="hidden" name="id" value="${auth.id}">
-											</form>
-											
-											<c:choose>
-											<c:when test="${reply.reply_like eq 'T'}">
-											<button type="submit" onclick="document.getElementById('${reply.reply_no}_TC').submit()">좋아요취소</button>
-											<button type="submit" onclick="document.getElementById('${reply.reply_no}_F').submit()">싫어요</button>
-											</c:when>
-											<c:when test="${reply.reply_like eq 'F'}">
-											<button type="submit" onclick="document.getElementById('${reply.reply_no}_T').submit()">좋아요</button>
-											<button type="submit" onclick="document.getElementById('${reply.reply_no}_FC').submit()">싫어요취소</button>
-											</c:when>
-											<c:otherwise>
-											<button type="submit" onclick="document.getElementById('${reply.reply_no}_T').submit()">좋아요</button>
-											<button type="submit" onclick="document.getElementById('${reply.reply_no}_F').submit()">싫어요</button>
-											</c:otherwise>
-											</c:choose>
-									
+									<c:choose>
+										<c:when test="${reply.reply_like eq 'T'}">
+											<button type="button" class="btn-like" id="like" value="${reply}">좋아요취소</button>
+											<button type="button" class="btn-hate" id="hate">싫어요</button>
+										</c:when>
+										<c:when test="${reply.reply_like eq 'F'}">
+											<button type="button" class="btn-like" id="like">좋아요</button>
+											<button type="button" class="btn-hate" id="hate">싫어요취소</button>
+										</c:when>
+										<c:otherwise>
+											<button type="button" class="btn-like" id="like">좋아요</button>
+											<button type="button" class="btn-hate" id="hate">싫어요</button>
+										</c:otherwise>
+									</c:choose>
+
 								</div>
 							</div>
 						</c:forEach> <!-- 댓글 작성 --> <u:isLogin>
@@ -158,13 +141,11 @@ if (amvo != null)
 								<a href="writeArticle.do"><button type="button"
 										class="btn btn-outline-dark">글쓰기</button></a>
 								&ensp;
-
-<<<<<<< HEAD
 								<!-- 글 수정/삭제 -->
 								<c:if test="${article.writer_id eq auth.id}">
-								<a href="updateArticle.do">
-									<button type="submit" class="btn btn-outline-info">수정</button>
-								</a>
+									<a href="updateArticle.do">
+										<button type="submit" class="btn btn-outline-info">수정</button>
+									</a>
 									&ensp;
 									<a href="deleteArticle.do?article_no=${article.article_no}"><button
 											type="button" class="btn btn-outline-danger">삭제</button></a>
@@ -184,48 +165,11 @@ if (amvo != null)
 					</td>
 				</tr>
 			</tfoot>
-=======
-	<!-- 공지사항 등록/해제 버튼 -->
-	<div>
-			<c:if test="${article.notice==0 }">
-				<a href="regNotice.do"><input type="button" value="공지 등록"></a>
-			</c:if>
-			<c:if test="${article.notice == 1}">
-				<a href="unregNotice.do"><input type="button" value="공지 해제"></a>
-			</c:if>
-	</div>
 
-	<!-- 댓글 작성 -->
-	<div>
-		<u:isLogin>
-			<form action="writeReply.do" method="post">
-				<input type="hidden" name="article_no" value="${article.article_no}">
-				<input type="hidden" name="reply_id" value="${auth.id}"> <input
-					type="hidden" name="reply_name" value="${auth.name}">
-				<textarea cols="30" rows="5" name="reply_content"></textarea>
-				<input type="submit" value="댓글 등록">
-			</form>
-		</u:isLogin>
-	</div>
-
-	<!-- 댓글 목록 -->
-	<div class="table-responsive">
-		<table class="table table-hover table-sm"
-			style="margin: auto; width: auto;">
-			<tbody>
-				<c:forEach items="${replyList}" var="reply">
-					<tr>
-						<td>${reply.reply_name}</td>
-						<td>${reply.reply_content}</td>
-						<td>${reply.reply_regDate}</td>
-						<td>${reply.reply_like_cnt}</td>
-						<td>${reply.reply_unlike_cnt}</td>
-						<td>${reply.reply_like}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
->>>>>>> master
 		</table>
 	</div>
 </body>
+<script type="text/javascript">
+function like
+</script>
 </html>
