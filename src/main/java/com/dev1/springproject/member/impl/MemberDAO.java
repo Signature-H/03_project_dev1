@@ -26,9 +26,7 @@ public class MemberDAO {
 
 	public void join(MemberVO vo) {
 		mybatis.insert("MemberDAO.join", vo);
-
 	}
-
 	public void quit(MemberVO vo) {
 		System.out.println("==> Call quit() method to MemberDAO");
 		mybatis.delete("MemberDAO.quit", vo);

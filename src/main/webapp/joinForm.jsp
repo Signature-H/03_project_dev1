@@ -55,7 +55,7 @@ function setThumnail(event){
 		<a href="list.do"><img alt="dev1_logo"
 			src="resources/img/dev1_logo.svg" id="dev1_logo"></a>
 			
-		<form action="join.do" method="post">
+		<form action="join.do" method="post" enctype="multipart/form-data">
 		<!-- 아이디 입력 -->
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
@@ -129,10 +129,10 @@ function setThumnail(event){
 			</div>
 			
 			<!-- 프로필 사진 -->
-			<div class="input-group mb-3">
+			<div class="input-group mb-3" >
 				<div id="alignCenter"><img id="userImage" class="rg_i Q4LuWd" src="resources/img/default.png" data-atf="true" width="193" height="192" onerror="this.src='resources/img/default.png'"></div>
 				<div class="input-group mb-3" style="margin-top: 20px;">
-				<input type="file" class="form-control" name="photo" id="customFile" onchange="setThumnail(event);"/>
+				<input type="file" class="form-control"  name="uploadFile" id="customFile" onchange="setThumnail(event);"/>
 				</div>
 				
 			</div>

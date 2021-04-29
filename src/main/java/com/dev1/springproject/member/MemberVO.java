@@ -2,6 +2,8 @@ package com.dev1.springproject.member;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MemberVO {
 
 	// ID
@@ -28,6 +30,9 @@ public class MemberVO {
 	private char manager;
 	// PATH
 	private String path;
+	//UPLOADFILE
+	private MultipartFile uploadFile; 
+ 
 
 	public String getId() {
 		return id;
@@ -124,6 +129,16 @@ public class MemberVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+
 
 	@Override
 	public String toString() {
