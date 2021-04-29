@@ -148,15 +148,6 @@ if (amvo != null)
 				</tr>
 			</tfoot>
 		</table>
-
-
-
-
-		<br /> <br /> <br /> <br />
-
-		<!-- 댓글 작성 -->
-		<div></div>
-
 	</div>
 </body>
 </html>
