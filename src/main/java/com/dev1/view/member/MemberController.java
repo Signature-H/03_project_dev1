@@ -1,5 +1,8 @@
 package com.dev1.view.member;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.dev1.springproject.auth.AuthMemberVO;
 import com.dev1.springproject.member.MemberService;
@@ -82,7 +86,19 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/join.do", method = RequestMethod.POST)
-	public String join(MemberVO vo) {
+	public String join(MemberVO vo) throws IOException{
+
+		MultipartFile uploadFile = vo.getUploadFile();
+		
+		if(!uploadFile.isEmpty()) {
+			String origFileName = uploadFile.getOriginalFilename();
+			String path = "C:/images/"+vo.getId()+"."+origFileName.substring(origFileName.lastIndexOf(".") + 1);
+//			String path= getClass().getResource("/file/"+fileName).getPath();
+			vo.setPath(path);
+			uploadFile.transferTo(new File(path));
+		}else {
+			vo.setPath("C:/images/default.jpeg");
+		}
 		memberservice.join(vo);
 		return "list.do";
 	}
