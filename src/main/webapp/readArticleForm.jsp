@@ -1,3 +1,5 @@
+<%@page import="com.dev1.springproject.reply.Reply_likeVO"%>
+<%@page import="java.util.List"%>
 <%@page import="com.dev1.springproject.article.ArticleVO"%>
 <%@page import="com.dev1.springproject.auth.AuthMemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -87,6 +89,40 @@ if (amvo != null)
 										style="width: 700px; white-space: normal; word-break: break-all;">
 										${reply.reply_content}</div>
 									<div class="reply_regDate">${reply.reply_regDate}</div>
+									
+									<!-- 좋아요/싫어요 검사 (좋아요 : T | 싫어요 : F)-->
+											<form action="replyLike.do" id="${reply.reply_no}_T">
+											<input type="hidden" name="reply_no" value="${reply.reply_no}">
+											<input type="hidden" name="id" value="${auth.id}">
+											</form>
+											<form action="replyLikeCancle.do" id="${reply.reply_no}_TC">
+											<input type="hidden" name="reply_no" value="${reply.reply_no}">
+											<input type="hidden" name="id" value="${auth.id}">
+											</form>
+											<form action="replyHate.do" id="${reply.reply_no}_F">
+											<input type="hidden" name="reply_no" value="${reply.reply_no}">
+											<input type="hidden" name="id" value="${auth.id}">
+											</form>
+											<form action="replyHateCancle.do" id="${reply.reply_no}_FC">
+											<input type="hidden" name="reply_no" value="${reply.reply_no}">
+											<input type="hidden" name="id" value="${auth.id}">
+											</form>
+											
+											<c:choose>
+											<c:when test="${reply.reply_like eq 'T'}">
+											<button type="submit" onclick="document.getElementById('${reply.reply_no}_TC').submit()">좋아요취소</button>
+											<button type="submit" onclick="document.getElementById('${reply.reply_no}_F').submit()">싫어요</button>
+											</c:when>
+											<c:when test="${reply.reply_like eq 'F'}">
+											<button type="submit" onclick="document.getElementById('${reply.reply_no}_T').submit()">좋아요</button>
+											<button type="submit" onclick="document.getElementById('${reply.reply_no}_FC').submit()">싫어요취소</button>
+											</c:when>
+											<c:otherwise>
+											<button type="submit" onclick="document.getElementById('${reply.reply_no}_T').submit()">좋아요</button>
+											<button type="submit" onclick="document.getElementById('${reply.reply_no}_F').submit()">싫어요</button>
+											</c:otherwise>
+											</c:choose>
+									
 								</div>
 							</div>
 						</c:forEach> <!-- 댓글 작성 --> <u:isLogin>
