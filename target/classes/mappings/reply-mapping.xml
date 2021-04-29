@@ -64,6 +64,7 @@
 		INSERT INTO REPLY_LIKE
 		VALUES(
 		#{reply_no},
+		#{article_no},
 		#{id},
 		'T'
 		)
@@ -88,6 +89,7 @@
 		INSERT INTO REPLY_LIKE
 		VALUES(
 		#{reply_no},
+		#{article_no},
 		#{id},
 		'F'
 		)

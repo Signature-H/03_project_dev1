@@ -176,6 +176,9 @@
 		DESC
 	</select>
 
+	<delete id="beforeBeforeDeleteArticle">
+		DELETE FROM REPLY_LIKE WHERE ARTICLE_NO=#{article_no}
+	</delete>
 	<delete id="beforeDeleteArticle">
 		DELETE FROM REPLY WHERE ARTICLE_NO=#{article_no}
 	</delete>
