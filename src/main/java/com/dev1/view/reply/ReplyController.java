@@ -1,5 +1,7 @@
 package com.dev1.view.reply;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,36 +37,55 @@ public class ReplyController {
 		} catch (NullPointerException e) {
 			lvo.setId("");
 		}
-		model.addAttribute("replyList", replyService.replyList(vo));
-		model.addAttribute("reply_likeList", replyService.reply_likeList(lvo));
+
+		List<ReplyVO> replyList =replyService.replyList(vo); 
+		for (ReplyVO rvo : replyList) {
+			for (Reply_likeVO rlvo : replyService.reply_likeList(lvo)) {
+				if (rvo.getReply_no() == rlvo.getReply_no()) {
+					rvo.setReply_like(rlvo.getReply_like());
+					System.out.println(rlvo.getReply_like());
+				}
+			}
+		}
+
+		model.addAttribute("replyList", replyList);
 		return "readArticleForm.jsp";
 	}
 
 	@RequestMapping("/replyLike.do")
 	public String replyLike(ReplyVO vo, HttpSession session) {
+		switch(vo.getReply_like()) {
+		case "T":
+			replyService.replyLikeCancle(vo);
+			break;
+		case "F":
+			replyService.replyHateCancle(vo);
+			replyService.replyLike(vo);
+			break;
+		default:
+			replyService.replyLike(vo);
+			break;
+		}
 		ArticleVO avo = (ArticleVO) session.getAttribute("article");
-		replyService.replyLike(vo);
-		return "readArticle.do?article_no=" + avo.getArticle_no();
-	}
-
-	@RequestMapping("/replyLikeCancle.do")
-	public String replyLikeCancle(ReplyVO vo, HttpSession session) {
-		ArticleVO avo = (ArticleVO) session.getAttribute("article");
-		replyService.replyLikeCancle(vo);
 		return "readArticle.do?article_no=" + avo.getArticle_no();
 	}
 
 	@RequestMapping("/replyHate.do")
 	public String replyHate(ReplyVO vo, HttpSession session) {
+		switch(vo.getReply_like()) {
+		case "T":
+			replyService.replyLikeCancle(vo);
+			replyService.replyHate(vo);
+			break;
+		case "F":
+			replyService.replyHateCancle(vo);
+			break;
+		default:
+			replyService.replyHate(vo);
+			break;
+		}
 		ArticleVO avo = (ArticleVO) session.getAttribute("article");
-		replyService.replyHate(vo);
 		return "readArticle.do?article_no=" + avo.getArticle_no();
 	}
 
-	@RequestMapping("/replyHateCancle.do")
-	public String replyHateCancle(ReplyVO vo, HttpSession session) {
-		ArticleVO avo = (ArticleVO) session.getAttribute("article");
-		replyService.replyHateCancle(vo);
-		return "readArticle.do?article_no=" + avo.getArticle_no();
-	}
 }

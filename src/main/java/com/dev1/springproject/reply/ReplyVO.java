@@ -11,6 +11,7 @@ public class ReplyVO {
 	private Date reply_regDate;
 	private int reply_like_cnt;
 	private int reply_unlike_cnt;
+	private String reply_like;
 	
 	public int getReply_no() {
 		return reply_no;
@@ -60,10 +61,11 @@ public class ReplyVO {
 	public void setReply_unlike_cnt(int reply_unlike_cnt) {
 		this.reply_unlike_cnt = reply_unlike_cnt;
 	}
-	@Override
-	public String toString() {
-		return "ReplyVO [reply_no=" + reply_no + ", article_no=" + article_no + ", reply_id=" + reply_id
-				+ ", reply_name=" + reply_name + ", reply_content=" + reply_content + ", reply_regDate=" + reply_regDate
-				+ ", reply_like_cnt=" + reply_like_cnt + ", reply_unlike_cnt=" + reply_unlike_cnt + "]";
+	public String getReply_like() {
+		return reply_like;
 	}
+	public void setReply_like(String reply_like) {
+		this.reply_like = reply_like;
+	}
+	
 }

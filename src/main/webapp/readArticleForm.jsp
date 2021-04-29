@@ -103,6 +103,7 @@
 						<td>${reply.reply_regDate}</td>
 						<td>${reply.reply_like_cnt}</td>
 						<td>${reply.reply_unlike_cnt}</td>
+						<td>${reply.reply_like}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

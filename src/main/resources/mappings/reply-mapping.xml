@@ -80,7 +80,7 @@
 	</insert>
 
 	<update id="replyHate_seq">
-		UPDATE REPLY SET REPLY_LIKE_CNT=REPLY_LIKE_CNT+1
+		UPDATE REPLY SET REPLY_UNLIKE_CNT=REPLY_LIKE_CNT+1
 		WHERE
 		REPLY_NO=#{reply_no}
 	</update>
@@ -94,7 +94,7 @@
 	</insert>
 
 	<update id="replyHateCancle_seq">
-		UPDATE REPLY SET REPLY_LIKE_CNT=REPLY_LIKE_CNT-1
+		UPDATE REPLY SET REPLY_UNLIKE_CNT=REPLY_LIKE_CNT-1
 		WHERE
 		REPLY_NO=#{reply_no}
 	</update>
