@@ -32,23 +32,23 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public void replyLike(Map<String, Object> data) {
-		replyDAO.replyLike(data);
+	public void replyLike(Reply_likeVO vo) {
+		replyDAO.replyLike(vo);
 	}
 
 	@Override
-	public void replyLikeCancle(Map<String, Object> data) {
-		replyDAO.replyLikeCancle(data);
+	public void replyLikeCancle(Reply_likeVO vo) {
+		replyDAO.replyLikeCancle(vo);
 	}
 
 	@Override
-	public void replyHate(Map<String, Object> data) {
-		replyDAO.replyHate(data);
+	public void replyHate(Reply_likeVO vo) {
+		replyDAO.replyHate(vo);
 	}
 
 	@Override
-	public void replyHateCancle(Map<String, Object> data) {
-		replyDAO.replyHateCancle(data);
+	public void replyHateCancle(Reply_likeVO vo) {
+		replyDAO.replyHateCancle(vo);
 	}
 	
 	

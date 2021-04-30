@@ -31,27 +31,27 @@ public class ReplyDAO {
 	}
 	
 	// replyLike.do
-	public void replyLike(Map<String, Object> data) {
-		mybatis.update("ReplyDAO.replyLike_seq", data);
-		mybatis.insert("ReplyDAO.replyLike", data);
+	public void replyLike(Reply_likeVO vo) {
+		mybatis.update("ReplyDAO.replyLike_seq", vo);
+		mybatis.insert("ReplyDAO.replyLike", vo);
 	}
 	
 	// replyLikeCancle.do
-	public void replyLikeCancle(Map<String, Object> data) {
-		mybatis.update("ReplyDAO.replyLikeCancle_seq", data);
-		mybatis.insert("ReplyDAO.replyLikeCancle", data);
+	public void replyLikeCancle(Reply_likeVO vo) {
+		mybatis.update("ReplyDAO.replyLikeCancle_seq", vo);
+		mybatis.insert("ReplyDAO.replyLikeCancle", vo);
 	}
 	
 	// replyHate.do
-	public void replyHate(Map<String, Object> data) {
-		mybatis.update("ReplyDAO.replyHate_seq", data);
-		mybatis.insert("ReplyDAO.replyHate", data);
+	public void replyHate(Reply_likeVO vo) {
+		mybatis.update("ReplyDAO.replyHate_seq", vo);
+		mybatis.insert("ReplyDAO.replyHate", vo);
 	}
 	
 	// replyLikeCancle.do
-	public void replyHateCancle(Map<String, Object> data) {
-		mybatis.update("ReplyDAO.replyHateCancle_seq", data);
-		mybatis.insert("ReplyDAO.replyHateCancle", data);
+	public void replyHateCancle(Reply_likeVO vo) {
+		mybatis.update("ReplyDAO.replyHateCancle_seq", vo);
+		mybatis.insert("ReplyDAO.replyHateCancle", vo);
 	}
 
 }

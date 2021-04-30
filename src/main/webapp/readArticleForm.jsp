@@ -180,28 +180,24 @@ $(function(){
 		
 		/* alert(reply_no); */
 		
+		var _replyInfo = {"reply_no" : reply_no, "article_no" : article_no, "id" : auth_id, "reply_like" : reply_like};
+		
 		$.ajax({
 			url:"replyLike.do",
-			type:"POST",
-			dataType:"json",
-			data:{
-				"reply_no" : reply_no,
-				"article_no" : article_no,
-				"id" : auth_id,
-				"reply_like" : reply_like
-			}.done(function(data){
-				alert("연결후 결과")
-				obj = JSON.parse(data);
-				
-				if(obj.result == "ok"){
-				var checkInfo = "reply_like : " + reply_like;
-				alert(checkInfo);
-					
-				}else{
-					alert("오류");
-				}
-			})
+			type:"post",
+			async:false,
+			data : _replyInfo,
+			success:function (data){
+				alert("성공");
+			},
+			error:function(data){
+				alert("에러");
+			},
+			complete:function(data){
+				console.log("완료!");
+			}
 		});
+		
 	});
 	
 	/* $(".btn_like").on("click", (e) => {

@@ -55,12 +55,12 @@
 		REPLY.REPLY_NO=REPLY_LIKE.REPLY_NO AND REPLY.ARTICLE_NO=#{article_no} AND ID=#{id}
 	</select>
 
-	<update id="replyLike_seq" parameterType="map">
+	<update id="replyLike_seq">
 		UPDATE REPLY SET REPLY_LIKE_CNT=REPLY_LIKE_CNT+1
 		WHERE
 		REPLY_NO=#{reply_no}
 	</update>
-	<insert id="replyLike" parameterType="map">
+	<insert id="replyLike">
 		INSERT INTO REPLY_LIKE
 		VALUES(
 		#{reply_no},
@@ -70,22 +70,22 @@
 		)
 	</insert>
 
-	<update id="replyLikeCancle_seq" parameterType="map">
+	<update id="replyLikeCancle_seq">
 		UPDATE REPLY SET REPLY_LIKE_CNT=REPLY_LIKE_CNT-1
 		WHERE
 		REPLY_NO=#{reply_no}
 	</update>
-	<insert id="replyLikeCancle" parameterType="map">
+	<insert id="replyLikeCancle">
 		DELETE FROM REPLY_LIKE WHERE REPLY_NO=#{reply_no} AND
 		ID=#{id}
 	</insert>
 
-	<update id="replyHate_seq" parameterType="map">
+	<update id="replyHate_seq">
 		UPDATE REPLY SET REPLY_UNLIKE_CNT=REPLY_LIKE_CNT+1
 		WHERE
 		REPLY_NO=#{reply_no}
 	</update>
-	<insert id="replyHate" parameterType="map">
+	<insert id="replyHate">
 		INSERT INTO REPLY_LIKE
 		VALUES(
 		#{reply_no},
@@ -95,12 +95,12 @@
 		)
 	</insert>
 
-	<update id="replyHateCancle_seq" parameterType="map">
+	<update id="replyHateCancle_seq">
 		UPDATE REPLY SET REPLY_UNLIKE_CNT=REPLY_LIKE_CNT-1
 		WHERE
 		REPLY_NO=#{reply_no}
 	</update>
-	<insert id="replyHateCancle" parameterType="map">
+	<insert id="replyHateCancle">
 		DELETE FROM REPLY_LIKE WHERE REPLY_NO=#{reply_no} AND
 		ID=#{id}
 	</insert>

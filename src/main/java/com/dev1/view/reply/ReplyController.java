@@ -4,12 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -56,26 +58,45 @@ public class ReplyController {
 	}
 
 	@RequestMapping("/replyLike.do")
-	public String replyLike(Map<String, Object> data, HttpSession session) {
-		System.out.println("함수는 들어오니?");
-		String reply_like = (String)data.get("reply_like");
+	public String replyLike(HttpServletRequest request) {
+		System.out.println("Call replyLike() method");
+		//Map<String, Object> reply_likeMap = request.getParameter("replyInfo");
+		
+		 System.out.println(request.getParameter("reply_no"));
+		 System.out.println(request.getParameter("article_no"));
+		 System.out.println(request.getParameter("id"));
+		 System.out.println(request.getParameter("reply_like"));
+		 
+		Reply_likeVO rvo = new Reply_likeVO();
+		rvo.setReply_no(Integer.parseInt(request.getParameter("reply_no")));
+		rvo.setArticle_no(Integer.parseInt(request.getParameter("article_no")));
+		rvo.setId(request.getParameter("article_no"));
+		rvo.setReply_like(request.getParameter("reply_like"));
+		
+
+		System.out.println("rov.getReply_no : " + rvo.getReply_no());
+		System.out.println("rov.getArticle_no : " + rvo.getArticle_no());
+		System.out.println("rov.getId : " + rvo.getId());
+		System.out.println("rov.getReply_like : " + rvo.getReply_like());
+		
 		String result_like = "";
-		switch(reply_like) {
+		switch(rvo.getReply_like()) {
 		case "T":
-			replyService.replyLikeCancle(data);
+			System.out.println("case T");
+			replyService.replyLikeCancle(rvo);
 			break;
 		case "F":
-			replyService.replyHateCancle(data);
-			replyService.replyLike(data);
+			System.out.println("case F");
+			replyService.replyHateCancle(rvo);
+			replyService.replyLike(rvo);
 			break;
 		default:
-			replyService.replyLike(data);
-			result_like = "T";
+			System.out.println("case Default");
+			replyService.replyLike(rvo);
 			break;
 		}
 		
 		Map<String, Object> result_map = new HashMap<String, Object>();
-		result_map.put("result", "ok");
 		result_map.put("result_like", result_like);
 		
 		//ArticleVO avo = (ArticleVO) session.getAttribute("article");
@@ -85,19 +106,12 @@ public class ReplyController {
 	@RequestMapping("/replyHate.do")
 	public String replyHate(Map<String, Object> data, HttpSession session) {
 		String reply_like = (String)data.get("reply_like");
-		switch(reply_like) {
-		case "T":
-			replyService.replyLikeCancle(data);
-			replyService.replyHate(data);
-			break;
-		case "F":
-			replyService.replyHateCancle(data);
-			break;
-		default:
-			replyService.replyHate(data);
-			break;
-		}
-		
+		/*
+		 * switch(reply_like) { case "T": replyService.replyLikeCancle(data);
+		 * replyService.replyHate(data); break; case "F":
+		 * replyService.replyHateCancle(data); break; default:
+		 * replyService.replyHate(data); break; }
+		 */
 		
 		
 		ArticleVO avo = (ArticleVO) session.getAttribute("article");
