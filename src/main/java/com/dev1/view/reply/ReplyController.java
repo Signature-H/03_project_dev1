@@ -1,9 +1,12 @@
 package com.dev1.view.reply;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,37 +56,50 @@ public class ReplyController {
 	}
 
 	@RequestMapping("/replyLike.do")
-	public String replyLike(ReplyVO vo, HttpSession session) {
-		switch(vo.getReply_like()) {
+	public String replyLike(Map<String, Object> data, HttpSession session) {
+		System.out.println("함수는 들어오니?");
+		String reply_like = (String)data.get("reply_like");
+		String result_like = "";
+		switch(reply_like) {
 		case "T":
-			replyService.replyLikeCancle(vo);
+			replyService.replyLikeCancle(data);
 			break;
 		case "F":
-			replyService.replyHateCancle(vo);
-			replyService.replyLike(vo);
+			replyService.replyHateCancle(data);
+			replyService.replyLike(data);
 			break;
 		default:
-			replyService.replyLike(vo);
+			replyService.replyLike(data);
+			result_like = "T";
 			break;
 		}
-		ArticleVO avo = (ArticleVO) session.getAttribute("article");
-		return "readArticle.do?article_no=" + avo.getArticle_no();
+		
+		Map<String, Object> result_map = new HashMap<String, Object>();
+		result_map.put("result", "ok");
+		result_map.put("result_like", result_like);
+		
+		//ArticleVO avo = (ArticleVO) session.getAttribute("article");
+		return JSONObject.toJSONString(result_map);
 	}
 
 	@RequestMapping("/replyHate.do")
-	public String replyHate(ReplyVO vo, HttpSession session) {
-		switch(vo.getReply_like()) {
+	public String replyHate(Map<String, Object> data, HttpSession session) {
+		String reply_like = (String)data.get("reply_like");
+		switch(reply_like) {
 		case "T":
-			replyService.replyLikeCancle(vo);
-			replyService.replyHate(vo);
+			replyService.replyLikeCancle(data);
+			replyService.replyHate(data);
 			break;
 		case "F":
-			replyService.replyHateCancle(vo);
+			replyService.replyHateCancle(data);
 			break;
 		default:
-			replyService.replyHate(vo);
+			replyService.replyHate(data);
 			break;
 		}
+		
+		
+		
 		ArticleVO avo = (ArticleVO) session.getAttribute("article");
 		return "readArticle.do?article_no=" + avo.getArticle_no();
 	}

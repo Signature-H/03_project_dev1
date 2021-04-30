@@ -1,6 +1,7 @@
 package com.dev1.springproject.reply.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,23 +32,23 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public void replyLike(ReplyVO vo) {
-		replyDAO.replyLike(vo);
+	public void replyLike(Map<String, Object> data) {
+		replyDAO.replyLike(data);
 	}
 
 	@Override
-	public void replyLikeCancle(ReplyVO vo) {
-		replyDAO.replyLikeCancle(vo);
+	public void replyLikeCancle(Map<String, Object> data) {
+		replyDAO.replyLikeCancle(data);
 	}
 
 	@Override
-	public void replyHate(ReplyVO vo) {
-		replyDAO.replyHate(vo);
+	public void replyHate(Map<String, Object> data) {
+		replyDAO.replyHate(data);
 	}
 
 	@Override
-	public void replyHateCancle(ReplyVO vo) {
-		replyDAO.replyHateCancle(vo);
+	public void replyHateCancle(Map<String, Object> data) {
+		replyDAO.replyHateCancle(data);
 	}
 	
 	

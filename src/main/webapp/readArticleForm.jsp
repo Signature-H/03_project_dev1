@@ -5,8 +5,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
 <%
+	String equalsT="T";
+	String equalsF="F";
+
 	ArticleVO avo = (ArticleVO) request.getSession().getAttribute("article");
 boolean b_notice = avo.getNotice() == "1" ? true : false;
 String btn_notice_name = b_notice ? "공지 해제" : "공지 등록";
@@ -30,6 +34,10 @@ if (amvo != null)
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
 	crossorigin="anonymous"></script>
+	<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
 <title>게시글 보기</title>
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/normalbody.css" />">
@@ -91,21 +99,10 @@ if (amvo != null)
 									<div class="reply_regDate">${reply.reply_regDate}</div>
 
 									<!-- 좋아요/싫어요 검사 (좋아요 : T | 싫어요 : F)-->
-									<c:choose>
-										<c:when test="${reply.reply_like eq 'T'}">
-											<button type="button" class="btn-like" id="like" value="${reply}">좋아요취소</button>
-											<button type="button" class="btn-hate" id="hate">싫어요</button>
-										</c:when>
-										<c:when test="${reply.reply_like eq 'F'}">
-											<button type="button" class="btn-like" id="like">좋아요</button>
-											<button type="button" class="btn-hate" id="hate">싫어요취소</button>
-										</c:when>
-										<c:otherwise>
-											<button type="button" class="btn-like" id="like">좋아요</button>
-											<button type="button" class="btn-hate" id="hate">싫어요</button>
-										</c:otherwise>
-									</c:choose>
-
+									<c:set var="replyInfo" value="${reply.reply_no},${article.article_no},${auth.id},${reply.reply_like}" />
+									<button type="button" class="btn_like" id="btn_like" value="${replyInfo }">좋아요</button>
+									<button type="button" class="btn_hate" id="btn_like" value="${replyInfo }">좋아요</button>
+									
 								</div>
 							</div>
 						</c:forEach> <!-- 댓글 작성 --> <u:isLogin>
@@ -169,7 +166,51 @@ if (amvo != null)
 		</table>
 	</div>
 </body>
-<script type="text/javascript">
-function like
+<script>
+$(function(){
+	$(".btn_like").click(function(){
+		var reply = $(this).attr('value');
+		var infoArray = reply.split(",");
+		var reply_no = infoArray[0];
+		var article_no = infoArray[1];
+		var auth_id = infoArray[2];
+		var reply_like = infoArray[3];
+		
+		/* var checkInfo = "reply_no : " + reply_no + " | article_no : " + article_no + " | auth_id : " + auth_id + " | reply_like : " + reply_like; */
+		
+		/* alert(reply_no); */
+		
+		$.ajax({
+			url:"replyLike.do",
+			type:"POST",
+			dataType:"json",
+			data:{
+				"reply_no" : reply_no,
+				"article_no" : article_no,
+				"id" : auth_id,
+				"reply_like" : reply_like
+			}.done(function(data){
+				alert("연결후 결과")
+				obj = JSON.parse(data);
+				
+				if(obj.result == "ok"){
+				var checkInfo = "reply_like : " + reply_like;
+				alert(checkInfo);
+					
+				}else{
+					alert("오류");
+				}
+			})
+		});
+	});
+	
+	/* $(".btn_like").on("click", (e) => {
+		alert(e.target.value);
+	}); */
+});
+
+
+
+
 </script>
 </html>
