@@ -14,6 +14,13 @@
 		<result property="reply_unlike_cnt" column="REPLY_UNLIKE_CNT" />
 	</resultMap>
 
+	<resultMap id="Reply_likeVO" type="reply_like">
+		<id property="reply_no" column="REPLY_NO" />
+		<result property="article_no" column="ARTICLE_NO" />
+		<result property="id" column="ID" />
+		<result property="reply_like" column="REPLY_LIKE" />
+	</resultMap>
+
 	<update id="reply_cnt_seq">
 		UPDATE ARTICLE SET REPLY_CNT=REPLY_CNT+1 WHERE
 		ARTICLE_NO=#{article_no}
@@ -42,5 +49,60 @@
 		ARTICLE_NO=#{article_no}
 		ORDER BY REPLY_NO ASC
 	</select>
+	<select id="reply_likeList" resultType="reply_like">
+		SELECT REPLY.ARTICLE_NO,
+		REPLY.REPLY_NO, ID, REPLY_LIKE FROM REPLY, REPLY_LIKE WHERE
+		REPLY.REPLY_NO=REPLY_LIKE.REPLY_NO AND REPLY.ARTICLE_NO=#{article_no} AND ID=#{id}
+	</select>
+
+	<update id="replyLike_seq" parameterType="map">
+		UPDATE REPLY SET REPLY_LIKE_CNT=REPLY_LIKE_CNT+1
+		WHERE
+		REPLY_NO=#{reply_no}
+	</update>
+	<insert id="replyLike" parameterType="map">
+		INSERT INTO REPLY_LIKE
+		VALUES(
+		#{reply_no},
+		#{article_no},
+		#{id},
+		'T'
+		)
+	</insert>
+
+	<update id="replyLikeCancle_seq" parameterType="map">
+		UPDATE REPLY SET REPLY_LIKE_CNT=REPLY_LIKE_CNT-1
+		WHERE
+		REPLY_NO=#{reply_no}
+	</update>
+	<insert id="replyLikeCancle" parameterType="map">
+		DELETE FROM REPLY_LIKE WHERE REPLY_NO=#{reply_no} AND
+		ID=#{id}
+	</insert>
+
+	<update id="replyHate_seq" parameterType="map">
+		UPDATE REPLY SET REPLY_UNLIKE_CNT=REPLY_LIKE_CNT+1
+		WHERE
+		REPLY_NO=#{reply_no}
+	</update>
+	<insert id="replyHate" parameterType="map">
+		INSERT INTO REPLY_LIKE
+		VALUES(
+		#{reply_no},
+		#{article_no},
+		#{id},
+		'F'
+		)
+	</insert>
+
+	<update id="replyHateCancle_seq" parameterType="map">
+		UPDATE REPLY SET REPLY_UNLIKE_CNT=REPLY_LIKE_CNT-1
+		WHERE
+		REPLY_NO=#{reply_no}
+	</update>
+	<insert id="replyHateCancle" parameterType="map">
+		DELETE FROM REPLY_LIKE WHERE REPLY_NO=#{reply_no} AND
+		ID=#{id}
+	</insert>
 
 </mapper>

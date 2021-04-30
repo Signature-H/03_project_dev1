@@ -1,0 +1,44 @@
+.profile_area{
+	float: left;
+	font-size:12px;
+	line-height: 13px;
+	display: block;
+}
+
+.reply_area{
+	font-size: 15px;
+	text-align: right;
+	padding-right: 5px;
+}
+
+.bottom_left_btn{
+	float: left;
+	padding-top: 5px;
+}
+
+.bottom_right_btn{
+	float: right;
+	padding-top: 5px;
+}
+
+tr.tr_body{
+	border: 1px solid;
+	
+}
+
+.contents{
+	font-size: 15px;
+}
+
+.reply{
+	font-size: 13px;
+}
+
+.reply_regDate{
+	font-size: 12px;
+	color: #979797
+}
+
+a:link{color: black; text-decoration: none;}
+a:visited{color: black; text-decoration: none;}
+a:hover{color: black; text-decoration: none;}

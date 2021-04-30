@@ -64,6 +64,7 @@ public class ArticleController {
 
 		model.addAttribute("page", pvo);
 		model.addAttribute("articleList", articleService.articleList(pvo));
+		model.addAttribute("noticeList", articleService.noticeList(pvo));
 		return "listForm.jsp";
 	}
 
@@ -71,17 +72,21 @@ public class ArticleController {
 	public String deleteBoard(ArticleVO vo, HttpSession session) {
 		AuthMemberVO mvo = (AuthMemberVO) session.getAttribute("auth");
 		ArticleVO avo = (ArticleVO) session.getAttribute("article");
-		if (mvo.getId().equals(avo.getWriter_id())) {
+		if (mvo.getManager() != '1') {
+			if (mvo.getId().equals(avo.getWriter_id())) {
+				articleService.deleteArticle(vo);
+			}
+		} else {
 			articleService.deleteArticle(vo);
 		}
 		return "list.do";
 	}
-	
+
 	@RequestMapping("/regNotice.do")
 	public String regNotice(ArticleVO vo, HttpSession session) {
 		AuthMemberVO mvo = (AuthMemberVO) session.getAttribute("auth");
 		ArticleVO avo = (ArticleVO) session.getAttribute("article");
-		if(mvo.getManager()!='1') {
+		if (mvo.getManager() != '1') {
 			return "readArticle.do?article_no=" + avo.getArticle_no();
 		} else {
 			vo.setArticle_no(avo.getArticle_no());
@@ -89,12 +94,12 @@ public class ArticleController {
 			return "readArticle.do?article_no=" + avo.getArticle_no();
 		}
 	}
-	
+
 	@RequestMapping("/unregNotice.do")
 	public String unregNotice(ArticleVO vo, HttpSession session) {
 		AuthMemberVO mvo = (AuthMemberVO) session.getAttribute("auth");
 		ArticleVO avo = (ArticleVO) session.getAttribute("article");
-		if(mvo.getManager()!='1') {
+		if (mvo.getManager() != '1') {
 			return "readArticle.do?article_no=" + avo.getArticle_no();
 		} else {
 			vo.setArticle_no(avo.getArticle_no());

@@ -114,7 +114,10 @@
 						id="address2" value="<%=vo.getAddress2()%>" readonly="readonly">
 				</div>
 				<br />
-				<button type="submit" class="btn btn-primary" id="alignCenter">정보 변경하기</button>
+				<div id="alignCenter">
+				<button type="submit" class="btn btn-primary">정보 변경하기</button>&emsp;
+				<a href="quit.do"><button type="button" class="btn btn-danger">탈퇴하기</button></a>
+				</div>
 			</div>
 		</form>
 	</div>

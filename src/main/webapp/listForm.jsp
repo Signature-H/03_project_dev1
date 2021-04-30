@@ -59,6 +59,16 @@
 					</tr>
 				</thead>
 				<tbody>
+					<c:forEach items="${noticeList}" var="article">
+						<tr>
+							<td><b>공지</b></td>
+							<td align="left"><a
+								href="readArticle.do?article_no=${article.article_no}">${article.title}</a></td>
+							<td>${article.writer_name}</td>
+							<td>${article.article_regDate}</td>
+							<td>${article.read_cnt}</td>
+						</tr>
+					</c:forEach>
 					<c:forEach items="${articleList}" var="article">
 						<tr>
 							<td>${article.article_no}</td>

@@ -40,12 +40,20 @@ public class ArticleDAO {
 		return mybatis.selectList("ArticleDAO.articleList", vo);
 	}
 
+	public List<ArticleVO> noticeList(ArticlePageVO vo) {
+		return mybatis.selectList("ArticleDAO.noticeList", vo);
+	}
+
 	public int searchCount_title(ArticlePageVO vo) {
 		return mybatis.selectOne("ArticleDAO.searchCount_title", vo);
 	}
 
 	public List<ArticleVO> searchList_title(ArticlePageVO vo) {
 		return mybatis.selectList("ArticleDAO.searchList_title", vo);
+	}
+
+	public List<ArticleVO> searchNoticeList_title(ArticlePageVO vo) {
+		return mybatis.selectList("ArticleDAO.searchNoticeList_title", vo);
 	}
 
 	public int searchCount_content(ArticlePageVO vo) {
@@ -56,12 +64,20 @@ public class ArticleDAO {
 		return mybatis.selectList("ArticleDAO.searchList_content", vo);
 	}
 
+	public List<ArticleVO> searchNoticeList_content(ArticlePageVO vo) {
+		return mybatis.selectList("ArticleDAO.searchNoticeList_content", vo);
+	}
+
 	public int searchCount_writer_name(ArticlePageVO vo) {
 		return mybatis.selectOne("ArticleDAO.searchCount_writer_name", vo);
 	}
 
 	public List<ArticleVO> searchList_writer_name(ArticlePageVO vo) {
 		return mybatis.selectList("ArticleDAO.searchList_writer_name", vo);
+	}
+
+	public List<ArticleVO> searchNoticeList_writer_name(ArticlePageVO vo) {
+		return mybatis.selectList("ArticleDAO.searchNoticeList_writer_name", vo);
 	}
 
 	public int searchCount_article(ArticlePageVO vo) {
@@ -72,19 +88,24 @@ public class ArticleDAO {
 		return mybatis.selectList("ArticleDAO.searchList_title_and_content", vo);
 	}
 
+	public List<ArticleVO> searchNoticeList_article(ArticlePageVO vo) {
+		return mybatis.selectList("ArticleDAO.searchNoticeList_article", vo);
+	}
+
 	// deleteArticle.do
 	public void deleteArticle(ArticleVO vo) {
+		mybatis.delete("ArticleDAO.beforeBeforeDeleteArticle", vo);
 		mybatis.delete("ArticleDAO.beforeDeleteArticle", vo);
 		mybatis.delete("ArticleDAO.deleteArticle", vo);
 	}
-	
+
 	// regNotice.do
-	public void regNotice(ArticleVO vo)	{
+	public void regNotice(ArticleVO vo) {
 		mybatis.update("ArticleDAO.regNotice", vo);
 	}
 
 	// unregNotice.do
-	public void unregNotice(ArticleVO vo)	{
+	public void unregNotice(ArticleVO vo) {
 		mybatis.update("ArticleDAO.unregNotice", vo);
 	}
 
