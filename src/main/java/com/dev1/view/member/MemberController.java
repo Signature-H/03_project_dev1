@@ -86,20 +86,45 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/join.do", method = RequestMethod.POST)
-	public String join(MemberVO vo) throws IOException{
+	public String join(MemberVO vo) throws IOException {
 
 		MultipartFile uploadFile = vo.getUploadFile();
-		
-		if(!uploadFile.isEmpty()) {
+
+		if (!uploadFile.isEmpty()) {
 			String origFileName = uploadFile.getOriginalFilename();
-			String path = "C:/images/"+vo.getId()+"."+origFileName.substring(origFileName.lastIndexOf(".") + 1);
+			String path = "C:/images/" + vo.getId() + "." + origFileName.substring(origFileName.lastIndexOf(".") + 1);
 //			String path= getClass().getResource("/file/"+fileName).getPath();
 			vo.setPath(path);
 			uploadFile.transferTo(new File(path));
-		}else {
+		} else {
 			vo.setPath("C:/images/default.jpeg");
 		}
 		memberservice.join(vo);
+		return "list.do";
+	}
+
+	// joinManager
+	@RequestMapping(value = "/joinManager.do", method = RequestMethod.GET)
+	public String joinManagerForm(MemberVO vo) {
+		return "joinManagerForm.jsp";
+	}
+
+	@RequestMapping(value = "/joinManager.do", method = RequestMethod.POST)
+	public String joinManager(MemberVO vo) throws IOException {
+
+		MultipartFile uploadFile = vo.getUploadFile();
+
+		if (!uploadFile.isEmpty()) {
+			String origFileName = uploadFile.getOriginalFilename();
+			String path = "C:/images/" + vo.getId() + "." + origFileName.substring(origFileName.lastIndexOf(".") + 1);
+//				String path= getClass().getResource("/file/"+fileName).getPath();
+			vo.setPath(path);
+			uploadFile.transferTo(new File(path));
+		} else {
+			vo.setPath("C:/images/default.jpeg");
+		}
+				
+		memberservice.joinManager(vo);
 		return "list.do";
 	}
 
@@ -128,12 +153,11 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/findId.do", method = RequestMethod.POST)
-	public String findId(MemberVO vo,HttpSession session) {
+	public String findId(MemberVO vo, HttpSession session) {
 		MemberVO mvo = memberservice.findId(vo);
 		String id = "";
-		
-		if(mvo != null)
-		{
+
+		if (mvo != null) {
 			id = mvo.getId();
 		}
 		session.setAttribute("ID", id);
@@ -150,12 +174,11 @@ public class MemberController {
 	public String findPassword(MemberVO vo, HttpSession session) {
 		MemberVO mvo = memberservice.findPassword(vo);
 		String password = "";
-		
-		if(mvo != null)
-		{
+
+		if (mvo != null) {
 			password = mvo.getPassword();
 		}
-		
+
 		session.setAttribute("PASSWORD", password);
 		return "findPasswordSuccess.jsp";
 	}

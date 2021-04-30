@@ -44,6 +44,11 @@
 		MEMBER(ID,PASSWORD,EMAIL,NAME,BIRTHDAY,PHONENUMBER,ADDRESS1,ADDRESS2,ZIPCODE,REGDATE,PATH)
 		VALUES(#{id},#{password},#{email},#{name},#{birthday},#{phoneNumber},#{address1},#{address2},#{zipcode},SYSDATE,#{path})
 	</insert>
+	<insert id="joinManager">
+	INSERT INTO
+		MEMBER(ID,PASSWORD,EMAIL,NAME,BIRTHDAY,PHONENUMBER,ADDRESS1,ADDRESS2,ZIPCODE,MANAGER,REGDATE,PATH)
+		VALUES(#{id},#{password},#{email},#{name},#{birthday},#{phoneNumber},#{address1},#{address2},#{zipcode},'1',SYSDATE,#{path})
+	</insert>
 
 	<delete id="quit">
 		DELETE FROM MEMBER WHERE ID= #{id} AND
