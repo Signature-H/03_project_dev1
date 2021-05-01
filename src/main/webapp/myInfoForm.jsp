@@ -120,10 +120,7 @@
 							src="<%=vo.getPath()%>" data-atf="true" width="193"
 							height="192" onerror="this.src='resources/img/default.png'">
 					</div>
-					<div class="input-group mb-3" style="margin-top: 20px;">
-						<input type="file" class="form-control" name="uploadFile"
-							id="customFile" onchange="setThumnail(event);" />
-					</div>
+					
 				<br />
 				<div id="alignCenter">
 				<button type="submit" class="btn btn-primary">정보 변경하기</button>&emsp;

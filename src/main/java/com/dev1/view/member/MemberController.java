@@ -74,6 +74,10 @@ public class MemberController {
 		if (vo.getPassword() == null || vo.getPassword().isEmpty()) {
 			return "changeMyInfoForm.jsp";
 		}else {
+			if(vo.getPath() != null) {
+				File file = new File(vo.getPath());
+				file.delete();
+			}
 			MultipartFile uploadFile = vo.getUploadFile();
 		if (!uploadFile.isEmpty()) {
 			String origFileName = uploadFile.getOriginalFilename();
@@ -87,7 +91,6 @@ public class MemberController {
 		memberservice.changeMyInfo(vo);
 		return "myInfoForm.jsp";}
 	}
-
 	// joinMember
 	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
 	public String joinForm(MemberVO vo) {
@@ -153,6 +156,11 @@ public class MemberController {
 		if (mvo != null) {
 			logout(session);
 			memberservice.quit(mvo);
+			// 파일이 존재한다면 삭제
+			if(vo.getPath() != null) {
+				File file = new File(vo.getPath());
+				file.delete();
+			}
 			return "list.do";
 		} else {
 			return "quitForm.jsp";
