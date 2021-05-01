@@ -34,8 +34,13 @@ public class ArticleController {
 	}
 
 	@RequestMapping(value = "/updateArticle.do", method = RequestMethod.GET)
-	public String updateArticleForm(ArticleVO vo, Model model) {
-		return "updateArticleForm.jsp";
+	public String updateArticleForm(ArticleVO vo, HttpSession session) {
+		AuthMemberVO mvo = (AuthMemberVO) session.getAttribute("auth");
+		ArticleVO avo = (ArticleVO) session.getAttribute("article");
+		if (mvo.getId().equals(avo.getWriter_id())) {
+			return "updateArticleForm.jsp";
+		}
+		return "list.do";
 	}
 
 	@RequestMapping(value = "/updateArticle.do", method = RequestMethod.POST)

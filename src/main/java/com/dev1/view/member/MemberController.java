@@ -151,12 +151,12 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/quit.do", method = RequestMethod.POST)
-	public String quit(@ModelAttribute("member") MemberVO vo, HttpSession session) {
+	public String quit(MemberVO vo, HttpSession session) {
 		MemberVO mvo = memberservice.login(vo);
 		if (mvo != null) {
 			logout(session);
 			memberservice.quit(mvo);
-			// ÆÄÀÏÀÌ Á¸ÀçÇÑ´Ù¸é »èÁ¦
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 			if(vo.getPath() != null) {
 				File file = new File(vo.getPath());
 				file.delete();
