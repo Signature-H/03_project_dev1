@@ -78,8 +78,18 @@ public class MemberController {
 		MultipartFile uploadFile = vo.getUploadFile();
 		if (!uploadFile.isEmpty()) {
 			String origFileName = uploadFile.getOriginalFilename();
-			String path = "C:/images/" + vo.getId() + "." + origFileName.substring(origFileName.lastIndexOf(".") + 1);
+			String savefolder="C:/images/";
+			String path = savefolder + vo.getId() + "." + origFileName.substring(origFileName.lastIndexOf(".") + 1);
 //			String path= getClass().getResource("/file/"+fileName).getPath();
+	     
+			if (!new File(savefolder).exists()) {
+	            try{
+	                new File(savefolder).mkdir();
+	            }
+	            catch(Exception e){
+	                e.getStackTrace();
+	            }
+	        }		
 			vo.setPath(path);
 			uploadFile.transferTo(new File(path));
 		} else {
@@ -102,8 +112,18 @@ public class MemberController {
 
 		if (!uploadFile.isEmpty()) {
 			String origFileName = uploadFile.getOriginalFilename();
-			String path = "C:/images/" + vo.getId() + "." + origFileName.substring(origFileName.lastIndexOf(".") + 1);
+			String savefolder="C:/images/";
+			String path = savefolder + vo.getId() + "." + origFileName.substring(origFileName.lastIndexOf(".") + 1);
 //			String path= getClass().getResource("/file/"+fileName).getPath();
+	     
+			if (!new File(savefolder).exists()) {
+	            try{
+	                new File(savefolder).mkdir();
+	            }
+	            catch(Exception e){
+	                e.getStackTrace();
+	            }
+	        }		
 			vo.setPath(path);
 			uploadFile.transferTo(new File(path));
 		} else {
@@ -126,9 +146,18 @@ public class MemberController {
 		if (vo.getManagerCode().equals("1234")) {
 			if (!uploadFile.isEmpty()) {
 				String origFileName = uploadFile.getOriginalFilename();
-				String path = "C:/images/" + vo.getId() + "."
-						+ origFileName.substring(origFileName.lastIndexOf(".") + 1);
+				String savefolder="C:/images/";
+				String path = savefolder + vo.getId() + "." + origFileName.substring(origFileName.lastIndexOf(".") + 1);
 //				String path= getClass().getResource("/file/"+fileName).getPath();
+		     
+				if (!new File(savefolder).exists()) {
+		            try{
+		                new File(savefolder).mkdir();
+		            }
+		            catch(Exception e){
+		                e.getStackTrace();
+		            }
+		        }		
 				vo.setPath(path);
 				uploadFile.transferTo(new File(path));
 			} else {
