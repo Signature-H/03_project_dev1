@@ -8,9 +8,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
 <%
-	String equalsT="T";
-	String equalsF="F";
-
 	ArticleVO avo = (ArticleVO) request.getSession().getAttribute("article");
 boolean b_notice = avo.getNotice() == "1" ? true : false;
 String btn_notice_name = b_notice ? "공지 해제" : "공지 등록";
@@ -80,13 +77,15 @@ if (amvo != null)
 							<div class="article_info">${article.article_regDate}</div>
 						</div>
 						<div class="reply_area">
-							<a href="#">댓글 ${article.reply_cnt}</a>
+							<a href="#replyListPos">댓글 ${article.reply_cnt}</a>
 						</div> <!-- 게시글 중단부(글내용) -->
 						<hr>
 						<div class="contents">
 							<p>${article.content}</p>
 						</div>
-						<hr> <!-- 게시글 하단부(댓글) --> <c:forEach items="${replyList}"
+						<hr> <!-- 게시글 하단부(댓글) -->
+						<div id="replyListPos"></div>
+						<c:forEach items="${replyList}"
 							var="reply">
 							<div class="reply" style="border-bottom: 1px solid #CCC;">
 								<div class="reply_writer_area">
@@ -100,8 +99,20 @@ if (amvo != null)
 
 									<!-- 좋아요/싫어요 검사 (좋아요 : T | 싫어요 : F)-->
 									<c:set var="replyInfo" value="${reply.reply_no},${article.article_no},${auth.id},${reply.reply_like}" />
-									<button type="button" class="btn_like" id="btn_like" value="${replyInfo }">좋아요</button>
-									<button type="button" class="btn_hate" id="btn_like" value="${replyInfo }">좋아요</button>
+									<c:choose>
+									<c:when test="${empty reply.reply_like || reply.reply_like == null}">
+										<button type="button" class="btn_like" id="like_hate_btn" value="${replyInfo }">좋아요</button>
+										<button type="button" class="btn_hate" id="like_hate_btn" value="${replyInfo }">싫어요</button>
+									</c:when>
+									<c:when test="${reply.reply_like eq 'T'}">
+										<button type="button" class="btn_like" id="like_hate_btn" value="${replyInfo }">좋아요취소</button>
+										<button type="button" class="btn_hate" id="like_hate_btn" value="${replyInfo }">싫어요</button>
+									</c:when>
+									<c:otherwise>
+										<button type="button" class="btn_like" id="like_hate_btn" value="${replyInfo }">좋아요</button>
+										<button type="button" class="btn_hate" id="like_hate_btn" value="${replyInfo }">싫어요취소</button>
+									</c:otherwise>
+									</c:choose>
 									
 								</div>
 							</div>
@@ -176,33 +187,63 @@ $(function(){
 		var auth_id = infoArray[2];
 		var reply_like = infoArray[3];
 		
-		/* var checkInfo = "reply_no : " + reply_no + " | article_no : " + article_no + " | auth_id : " + auth_id + " | reply_like : " + reply_like; */
-		
-		/* alert(reply_no); */
-		
 		var _replyInfo = {"reply_no" : reply_no, "article_no" : article_no, "id" : auth_id, "reply_like" : reply_like};
 		
 		$.ajax({
-			url:"replyLike.do",
 			type:"post",
 			async:false,
 			data : _replyInfo,
+			dataType : "text",
+			url:"replyLike.do",
 			success:function (data){
-				alert("성공");
+				if(data == "N"){
+					alert("로그인을 해주세요.");
+				}else{
+					window.location.reload();
+				}
 			},
-			error:function(data){
-				alert("에러");
+			error:function(request, status, error){
+				alert("code : " + request.status + "\n" + "message : " + request.responseText + "\n"+"error : " + error);
 			},
 			complete:function(data){
-				console.log("완료!");
+				console.log("완료! : " + data);
 			}
 		});
 		
 	});
 	
-	/* $(".btn_like").on("click", (e) => {
-		alert(e.target.value);
-	}); */
+	$(".btn_hate").click(function(){
+		var reply = $(this).attr('value');
+		var infoArray = reply.split(",");
+		var reply_no = infoArray[0];
+		var article_no = infoArray[1];
+		var auth_id = infoArray[2];
+		var reply_like = infoArray[3];
+		
+		var _replyInfo = {"reply_no" : reply_no, "article_no" : article_no, "id" : auth_id, "reply_like" : reply_like};
+		
+		$.ajax({
+			type:"post",
+			async:false,
+			data : _replyInfo,
+			dataType : "text",
+			url:"replyHate.do",
+			success:function (data){
+				if(data == "N"){
+					alert("로그인을 해주세요.");
+				}else{
+					window.location.reload();
+				}
+			},
+			error:function(request, status, error){
+				alert("code : " + request.status + "\n" + "message : " + request.responseText + "\n"+"error : " + error);
+			},
+			complete:function(data){
+				console.log("완료! : " + data);
+			}
+		});
+		
+	});
 });
 
 
