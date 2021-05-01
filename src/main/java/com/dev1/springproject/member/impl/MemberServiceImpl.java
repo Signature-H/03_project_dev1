@@ -47,4 +47,9 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.findPassword(vo);
 	}
 
+	@Override
+	public void joinManager(MemberVO vo) {
+		memberDAO.joinManager(vo);
+	}
+
 }
