@@ -87,7 +87,8 @@ if (amvo != null)
 						<div id="replyListPos"></div>
 						<c:forEach items="${replyList}"
 							var="reply">
-							<div class="reply" style="border-bottom: 1px solid #CCC;">
+							<!-- style="border-bottom: 1px solid #CCC;" -->
+							<div class="reply">
 								<div class="reply_writer_area">
 									<div class="reply_name">
 										<strong>${reply.reply_name}</strong>
@@ -101,20 +102,33 @@ if (amvo != null)
 									<c:set var="replyInfo" value="${reply.reply_no},${article.article_no},${auth.id},${reply.reply_like}" />
 									<c:choose>
 									<c:when test="${empty reply.reply_like || reply.reply_like == null}">
-										<button type="button" class="btn_like" id="like_hate_btn" value="${replyInfo }">좋아요</button>
-										<button type="button" class="btn_hate" id="like_hate_btn" value="${replyInfo }">싫어요</button>
+										<button type="button" class="btn_hate" id="like_hate_btn" value="${replyInfo }">
+										<img alt="싫어요" src="resources/img/hate_btn_normal.png" id="like_hate_img">&nbsp;${reply.reply_unlike_cnt }
+										</button>
+										<button type="button" class="btn_like" id="like_hate_btn" value="${replyInfo }">
+										<img alt="좋아요" src="resources/img/like_btn_normal.png" id="like_hate_img">&nbsp;${reply.reply_like_cnt }
+										</button>
 									</c:when>
 									<c:when test="${reply.reply_like eq 'T'}">
-										<button type="button" class="btn_like" id="like_hate_btn" value="${replyInfo }">좋아요취소</button>
-										<button type="button" class="btn_hate" id="like_hate_btn" value="${replyInfo }">싫어요</button>
+										<button type="button" class="btn_hate" id="like_hate_btn" value="${replyInfo }">
+										<img alt="싫어요" src="resources/img/hate_btn_normal.png" id="like_hate_img">&nbsp;${reply.reply_unlike_cnt }
+										</button>
+										<button type="button" class="btn_like" id="like_hate_btn" value="${replyInfo }">
+										<img alt="좋아요" src="resources/img/like_btn_light.png" id="like_hate_img">&nbsp;${reply.reply_like_cnt }
+										</button>
 									</c:when>
 									<c:otherwise>
-										<button type="button" class="btn_like" id="like_hate_btn" value="${replyInfo }">좋아요</button>
-										<button type="button" class="btn_hate" id="like_hate_btn" value="${replyInfo }">싫어요취소</button>
+										<button type="button" class="btn_hate" id="like_hate_btn" value="${replyInfo }">
+										<img alt="싫어요" src="resources/img/hate_btn_light.png" id="like_hate_img">&nbsp;${reply.reply_unlike_cnt }
+										</button>
+										<button type="button" class="btn_like" id="like_hate_btn" value="${replyInfo }">
+										<img alt="좋아요" src="resources/img/like_btn_normal.png" id="like_hate_img">&nbsp;${reply.reply_like_cnt }
+										</button>
 									</c:otherwise>
 									</c:choose>
 									
 								</div>
+								<div class="underline"></div>
 							</div>
 						</c:forEach> <!-- 댓글 작성 --> <u:isLogin>
 							<form action="writeReply.do" method="post">

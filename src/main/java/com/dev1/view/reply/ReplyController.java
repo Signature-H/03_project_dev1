@@ -1,8 +1,6 @@
 package com.dev1.view.reply;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -30,13 +27,11 @@ public class ReplyController {
 	@RequestMapping("/writeReply.do")
 	public String writeReply(ReplyVO vo) {
 		replyService.writeReply(vo);
-		return "readArticle.do";
+		return "redirect:readArticle.do?article_no=" + vo.getArticle_no();
 	}
 
 	@RequestMapping("/replyList.do")
 	public String replyList(ReplyVO vo, Reply_likeVO lvo, Model model, HttpSession session) {
-		System.out.println("Call replyList() method");
-		
 		try {
 			AuthMemberVO mvo = (AuthMemberVO) session.getAttribute("auth");
 			lvo.setId(mvo.getId());
@@ -49,7 +44,6 @@ public class ReplyController {
 			for (Reply_likeVO rlvo : replyService.reply_likeList(lvo)) {
 				if (rvo.getReply_no() == rlvo.getReply_no()) {
 					rvo.setReply_like(rlvo.getReply_like());
-					System.out.println(rlvo.getReply_like());
 				}
 			}
 		}
@@ -61,14 +55,11 @@ public class ReplyController {
 	@RequestMapping("/replyLike.do")
 	@ResponseBody
 	public String replyLike(HttpServletRequest request) throws Exception {
-		System.out.println("Call replyLike() method");
-		
 		AuthMemberVO amvo = (AuthMemberVO)request.getSession().getAttribute("auth");
 		if(amvo == null)
 		{
 			return "N";
 		}
-		
 		
 		Reply_likeVO rvo = new Reply_likeVO();
 		rvo.setReply_no(Integer.parseInt(request.getParameter("reply_no")));
@@ -101,8 +92,6 @@ public class ReplyController {
 	@RequestMapping("/replyHate.do")
 	@ResponseBody
 	public String replyHate(HttpServletRequest request) {
-		System.out.println("Call replyHate() method");
-		
 		AuthMemberVO amvo = (AuthMemberVO)request.getSession().getAttribute("auth");
 		if(amvo == null)
 		{
@@ -130,8 +119,6 @@ public class ReplyController {
 			result_like = "F";
 			break; 
 		}
-		
-		
 		
 		return result_like;
 	}

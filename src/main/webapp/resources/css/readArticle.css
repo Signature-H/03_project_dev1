@@ -23,7 +23,6 @@
 
 tr.tr_body{
 	border: 1px solid;
-	
 }
 
 .contents{
@@ -32,11 +31,30 @@ tr.tr_body{
 
 .reply{
 	font-size: 13px;
+	
 }
 
 .reply_regDate{
 	font-size: 12px;
-	color: #979797
+	color: #979797;
+	display: inline;
+}
+
+#like_hate_btn{
+	border: none;
+	outline: none;
+	background-color: #fff;
+	display: inline-block;
+	float: right;
+}
+
+.underline {
+	border-bottom: 1px solid #CCC;
+	height: 10px;
+}
+#like_hate_img{
+	width: 25px;
+	height: auto;
 }
 
 a:link{color: black; text-decoration: none;}
