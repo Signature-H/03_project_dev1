@@ -23,6 +23,13 @@
 <title>마이페이지</title>
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/normalbody.css"/>">
+<style type="text/css">
+#alignCenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
 </head>
 <body>
 	<!-- 상단 고정바 -->
@@ -113,6 +120,7 @@
 					<input type="text" class="form-control" name="address2"
 						id="address2" value="<%=vo.getAddress2()%>" readonly="readonly">
 				</div>
+				
 				<!-- 프로필 사진 -->
 				<div class="input-group mb-3">
 					<div id="alignCenter">
@@ -122,7 +130,9 @@
 					</div>
 					
 				<br />
-				<div id="alignCenter">
+				<div class="input-group mb-3"></div>
+				
+				<div id="alignCenter" style="display: block;">
 				<button type="submit" class="btn btn-primary">정보 변경하기</button>&emsp;
 				<a href="quit.do"><button type="button" class="btn btn-danger">탈퇴하기</button></a>
 				</div>
