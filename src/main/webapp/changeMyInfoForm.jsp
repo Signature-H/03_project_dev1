@@ -21,6 +21,16 @@ String sBirthday = vo.getBirthday().substring(0, 10);
 	integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
 	crossorigin="anonymous"></script>
 <title>정보 변경하기</title>
+<script >
+function setThumnail(event){
+	var reader = new FileReader();
+	
+	reader.onload = function(event){
+		document.getElementById("userImage").setAttribute("src", event.target.result);
+	};
+	reader.readAsDataURL(event.target.files[0]);
+}
+</script>
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/normalbody.css"/>">
 </head>
@@ -40,7 +50,7 @@ String sBirthday = vo.getBirthday().substring(0, 10);
 
 	<!-- 실제 body -->
 	<div id="b_contents">
-		<form action="changeMyInfo.do" method="post">
+		<form action="changeMyInfo.do" method="post" enctype="multipart/form-data">
 			<div class="container col-md-6">
 				<!-- 아이디 입력 -->
 				<div class="input-group mb-3">
@@ -125,10 +135,22 @@ String sBirthday = vo.getBirthday().substring(0, 10);
 					<input type="text" class="form-control" name="address2"
 						id="address2" value="<%=vo.getAddress2()%>">
 				</div>
-				<br />
-				<button type="submit" class="btn btn-primary" id="alignCenter">정보
-					변경하기</button>
-			</div>
+
+				<!-- 프로필 사진 -->
+				<div class="input-group mb-3">
+					<div id="alignCenter">
+						<img id="userImage" class="rg_i Q4LuWd"
+							src="<%=vo.getPath()%>" data-atf="true" width="193"
+							height="192" onerror="this.src='resources/img/default.png'">
+					</div>
+					<div class="input-group mb-3" style="margin-top: 20px;">
+						<input type="file" class="form-control" name="uploadFile"
+							id="customFile" onchange="setThumnail(event);" />
+					</div>
+					<br />
+					<button type="submit" class="btn btn-primary" id="alignCenter">정보
+						변경하기</button>
+				</div>
 		</form>
 	</div>
 

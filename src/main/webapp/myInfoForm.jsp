@@ -113,6 +113,14 @@
 					<input type="text" class="form-control" name="address2"
 						id="address2" value="<%=vo.getAddress2()%>" readonly="readonly">
 				</div>
+				<!-- 프로필 사진 -->
+				<div class="input-group mb-3">
+					<div id="alignCenter">
+						<img id="userImage" class="rg_i Q4LuWd"
+							src="<%=vo.getPath()%>" data-atf="true" width="193"
+							height="192" onerror="this.src='resources/img/default.png'">
+					</div>
+					
 				<br />
 				<div id="alignCenter">
 				<button type="submit" class="btn btn-primary">정보 변경하기</button>&emsp;

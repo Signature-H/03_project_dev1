@@ -30,9 +30,11 @@ public class MemberVO {
 	private char manager;
 	// PATH
 	private String path;
-	//UPLOADFILE
+	
 	private MultipartFile uploadFile; 
- 
+	
+	private String managerCode; 
+
 
 	public String getId() {
 		return id;
@@ -138,8 +140,14 @@ public class MemberVO {
 	public void setUploadFile(MultipartFile uploadFile) {
 		this.uploadFile = uploadFile;
 	}
-
-
+	
+	public String getManagerCode() {
+		return managerCode;
+	}
+	
+	public void setManagerCode(String managerCode) {
+		this.managerCode = managerCode;
+	}
 	@Override
 	public String toString() {
 		return "MemberVO[id : " + id + " | password : " + password + " | name : " + name + " | regDate : " + regDate +
