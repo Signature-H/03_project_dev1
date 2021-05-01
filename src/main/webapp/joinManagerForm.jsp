@@ -56,6 +56,13 @@ function setThumnail(event){
 			src="resources/img/dev1_logo.svg" id="dev1_logo"></a>
 			
 		<form action="joinManager.do" method="post" enctype="multipart/form-data">
+		<!-- 관리자 식별 코드  -->
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">관리자 식별 코드</span>
+				</div>
+				<input type="password" class="form-control" placeholder="MANAGERCODE" name="managerCode">
+			</div>
 		<!-- 아이디 입력 -->
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">

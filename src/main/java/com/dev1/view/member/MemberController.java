@@ -69,14 +69,23 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/changeMyInfo.do", method = RequestMethod.POST)
-	public String changeMyInfo(@ModelAttribute("member") MemberVO vo) {
+	public String changeMyInfo(@ModelAttribute("member") MemberVO vo) throws IOException {
 
 		if (vo.getPassword() == null || vo.getPassword().isEmpty()) {
 			return "changeMyInfoForm.jsp";
+		}else {
+			MultipartFile uploadFile = vo.getUploadFile();
+		if (!uploadFile.isEmpty()) {
+			String origFileName = uploadFile.getOriginalFilename();
+			String path = "C:/images/" + vo.getId() + "." + origFileName.substring(origFileName.lastIndexOf(".") + 1);
+//			String path= getClass().getResource("/file/"+fileName).getPath();
+			vo.setPath(path);
+			uploadFile.transferTo(new File(path));
+		} else {
+			vo.setPath("C:/images/default.jpeg");
 		}
-
 		memberservice.changeMyInfo(vo);
-		return "myInfoForm.jsp";
+		return "myInfoForm.jsp";}
 	}
 
 	// joinMember
@@ -113,19 +122,23 @@ public class MemberController {
 	public String joinManager(MemberVO vo) throws IOException {
 
 		MultipartFile uploadFile = vo.getUploadFile();
-
-		if (!uploadFile.isEmpty()) {
-			String origFileName = uploadFile.getOriginalFilename();
-			String path = "C:/images/" + vo.getId() + "." + origFileName.substring(origFileName.lastIndexOf(".") + 1);
+		if (vo.getManagerCode().equals("1234")) {
+			if (!uploadFile.isEmpty()) {
+				String origFileName = uploadFile.getOriginalFilename();
+				String path = "C:/images/" + vo.getId() + "."
+						+ origFileName.substring(origFileName.lastIndexOf(".") + 1);
 //				String path= getClass().getResource("/file/"+fileName).getPath();
-			vo.setPath(path);
-			uploadFile.transferTo(new File(path));
+				vo.setPath(path);
+				uploadFile.transferTo(new File(path));
+			} else {
+				vo.setPath("C:/images/default.jpeg");
+			}
+
+			memberservice.joinManager(vo);
+			return "list.do";
 		} else {
-			vo.setPath("C:/images/default.jpeg");
+			return "joinManager.do";
 		}
-				
-		memberservice.joinManager(vo);
-		return "list.do";
 	}
 
 	// quitMember
