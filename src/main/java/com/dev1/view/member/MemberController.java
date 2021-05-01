@@ -65,20 +65,17 @@ public class MemberController {
 	// changeMyInfo
 	@RequestMapping(value = "/changeMyInfo.do", method = RequestMethod.GET)
 	public String changeMyInfoForm(MemberVO vo) {
-		return "changeMyInfoForm.jsp";
+		return "redirect:changeMyInfoForm.jsp";
 	}
 
 	@RequestMapping(value = "/changeMyInfo.do", method = RequestMethod.POST)
 	public String changeMyInfo(@ModelAttribute("member") MemberVO vo) throws IOException {
 
-		if (vo.getPassword() == null || vo.getPassword().isEmpty()) {
-			return "changeMyInfoForm.jsp";
-		}else {
-			if(vo.getPath() != null) {
-				File file = new File(vo.getPath());
-				file.delete();
-			}
-			MultipartFile uploadFile = vo.getUploadFile();
+		if (vo.getPath() != null) {
+			File file = new File(vo.getPath());
+			file.delete();
+		}
+		MultipartFile uploadFile = vo.getUploadFile();
 		if (!uploadFile.isEmpty()) {
 			String origFileName = uploadFile.getOriginalFilename();
 			String path = "C:/images/" + vo.getId() + "." + origFileName.substring(origFileName.lastIndexOf(".") + 1);
@@ -89,8 +86,9 @@ public class MemberController {
 			vo.setPath("C:/images/default.jpeg");
 		}
 		memberservice.changeMyInfo(vo);
-		return "myInfoForm.jsp";}
+		return "myInfoForm.jsp";
 	}
+
 	// joinMember
 	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
 	public String joinForm(MemberVO vo) {
@@ -157,7 +155,7 @@ public class MemberController {
 			logout(session);
 			memberservice.quit(mvo);
 			// ������ �����Ѵٸ� ����
-			if(vo.getPath() != null) {
+			if (vo.getPath() != null) {
 				File file = new File(vo.getPath());
 				file.delete();
 			}
