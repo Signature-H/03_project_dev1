@@ -9,7 +9,7 @@
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
 <%
 	ArticleVO avo = (ArticleVO) request.getSession().getAttribute("article");
-boolean b_notice = avo.getNotice() == "1" ? true : false;
+boolean b_notice = avo.getNotice() == '1' ? true : false;
 String btn_notice_name = b_notice ? "공지 해제" : "공지 등록";
 String notice_url = b_notice ? "unregNotice.do" : "regNotice.do";
 

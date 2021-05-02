@@ -167,7 +167,7 @@ public class MemberController {
 			memberservice.joinManager(vo);
 			return "list.do";
 		} else {
-			return "joinManager.do";
+			return "joinManagerForm.jsp";
 		}
 	}
 

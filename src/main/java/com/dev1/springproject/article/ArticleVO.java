@@ -27,7 +27,7 @@ public class ArticleVO {
 	// UNLIKE_CNT
 	private int unlike_cnt;
 	// NOTICE
-	private String notice;
+	private char notice;
 
 	public int getArticle_no() {
 		return article_no;
@@ -117,11 +117,11 @@ public class ArticleVO {
 		this.unlike_cnt = unlike_cnt;
 	}
 
-	public String getNotice() {
+	public char getNotice() {
 		return notice;
 	}
 
-	public void setNotice(String notice) {
+	public void setNotice(char notice) {
 		this.notice = notice;
 	}
 
