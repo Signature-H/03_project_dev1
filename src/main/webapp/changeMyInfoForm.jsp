@@ -21,19 +21,20 @@ String sBirthday = vo.getBirthday().substring(0, 10);
 	integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
 	crossorigin="anonymous"></script>
 <title>정보 변경하기</title>
-<script >
-function setThumnail(event){
-	var reader = new FileReader();
-	
-	reader.onload = function(event){
-		document.getElementById("userImage").setAttribute("src", event.target.result);
-	};
-	reader.readAsDataURL(event.target.files[0]);
-}
+<script>
+	function setThumnail(event) {
+		var reader = new FileReader();
+
+		reader.onload = function(event) {
+			document.getElementById("userImage").setAttribute("src",
+					event.target.result);
+		};
+		reader.readAsDataURL(event.target.files[0]);
+	}
 </script>
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/normalbody.css"/>">
-	<style type="text/css">
+<style type="text/css">
 #alignCenter {
 	display: block;
 	margin-left: auto;
@@ -54,11 +55,13 @@ function setThumnail(event){
 			</span>
 		</u:isLogin>
 	</header>
-	
-	<input type="hidden" id="h_password" value="<%= vo.getPassword() %>" >
+
+	<input type="hidden" id="h_password" value="<%=vo.getPassword()%>">
+	<input type="hidden" id="h_manager" value="<%=vo.getManager()%>">
 	<!-- 실제 body -->
 	<div id="b_contents">
-		<form action="changeMyInfo.do" method="post" enctype="multipart/form-data" id="changeInfo">
+		<form action="changeMyInfo.do" method="post"
+			enctype="multipart/form-data" id="changeInfo">
 			<div class="container col-md-6">
 				<!-- 아이디 입력 -->
 				<div class="input-group mb-3">
@@ -77,6 +80,11 @@ function setThumnail(event){
 					<input type="password" class="form-control" placeholder="PASSWORD"
 						name="password" value="" id="password">
 				</div>
+					<div class="mb-3">
+					<div id="inputInfo" class="form-text" style="text-align: left;">비밀번호
+						변경시 특수문자/대소문자/숫자를 포함하여 6~15자여야 합니다.</div>
+					</div>
+
 
 				<!-- 이름 입력 -->
 				<div class="input-group mb-3">
@@ -114,6 +122,11 @@ function setThumnail(event){
 					<input type="text" class="form-control" name="phoneNumber"
 						value="<%=vo.getPhoneNumber()%>" id="phoneNumber">
 				</div>
+				<div class="mb-3">
+					<div id="inputInfo" class="form-text"
+						style="text-align: left;">전화번호 변경시 -를
+						제외하고 숫자만 입력해주세요.</div>
+				</div>
 
 				<!-- 우편번호 입력 -->
 				<div class="input-group mb-3">
@@ -147,94 +160,99 @@ function setThumnail(event){
 				<!-- 프로필 사진 -->
 				<div class="input-group mb-3">
 					<div id="alignCenter">
-						<img id="userImage" class="rg_i Q4LuWd"
-							src="<%=vo.getPath()%>" data-atf="true" width="193"
-							height="192" onerror="this.src='resources/img/default.png'">
+						<img id="userImage" class="rg_i Q4LuWd" src="<%=vo.getPath()%>"
+							data-atf="true" width="193" height="192"
+							onerror="this.src='resources/img/default.png'">
 					</div>
 					<div class="input-group mb-3" style="margin-top: 20px;">
 						<input type="file" class="form-control" name="uploadFile"
 							id="customFile" onchange="setThumnail(event);" />
 					</div>
 					<br />
-					<button type="button" class="btn btn-primary" id="alignCenter" onclick="validate();">정보
-						변경하기</button>
+					<button type="button" class="btn btn-primary" id="alignCenter"
+						onclick="validate();">정보 변경하기</button>
 				</div>
 		</form>
 	</div>
 
-<script type="text/javascript">
-function validate(){
-	// 정규식
-	var re_pw = /^.*(?=^.{6,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^+=]).*$/; //비번 검사(특수문자/문자/숫자 포함 6~15자리)
-	var re_email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,4}$/i; //이메일 검사
-	var re_phone = /^01(?:0|1|6-9)(?:\d{3}|\d{4})\d{4}$/;//폰번호 검사
-	
-	//검사할 값
-	var h_password = document.getElementById("h_password");
-	var password = document.getElementById("password");
-	var email = document.getElementById("email");
-	var birthday = document.getElementById("birthday");
-	var phoneNumber = document.getElementById("phoneNumber");
-	var zipcode = document.getElementById("zipcode");
-	
-	//비밀번호 검사
-	if(password.value == ""){
-		password.value = h_password.value;
-	}
-	
-	if(!check(re_pw, password, "비밀번호는 특수문자/대소문자/숫자를 포함하여 6~15자여야 합니다.")){
-		return false;
-	}
-	
-	//이메일 검사
-	if(email.value == ""){
-		alert("이메일을 입력해주세요.");
-		email.focus();
-		return false;
-	}
-	
-	if(!check(re_email, email, "이메일 양식에 맞지 않습니다.")){
-		return false;
-	}
-	
-	//생년월일 검사
-	if(birthday.value == ""){
-		alert("생년월일을 입력해주세요.");
-		birthday.focus();
-		return false;
-	}
-	
-	//전화번호 검사
-	if(phoneNumber.value == ""){
-		alert("전화번호를 입력해주세요.");
-		phoneNumber.focus();
-		return false;
-	}
-	
-	if(!check(re_phone, phoneNumber, "전화번호 양식에 맞지 않습니다.")){
-		return false;
-	}
-	
-	//집주소
-	if(zipcode.value == ""){
-		alert("주소를 입력해 주세요.");
-		zipcode.focus();
-		return false;
-	}
-	
-	alert("회원정보 변경완료");
-	document.getElementById("changeInfo").submit();
-}
+	<script type="text/javascript">
+		function validate() {
+			// 정규식
+			var re_pw = /^.*(?=^.{6,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^+=]).*$/; //비번 검사(특수문자/문자/숫자 포함 6~15자리)
+			var re_email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,4}$/i; //이메일 검사
+			var re_phone = /^01(?:0|1|6-9)(?:\d{3}|\d{4})\d{4}$/;//폰번호 검사
 
-function check(re, checkValue, message){
-	if(re.test(checkValue.value)){
-		return true;
-	}
-	alert(message);
-	checkValue.value = "";
-	checkValue.focus();
-}
-</script>
+			//검사할 값
+			var h_password = document.getElementById("h_password");
+			var password = document.getElementById("password");
+			var email = document.getElementById("email");
+			var birthday = document.getElementById("birthday");
+			var phoneNumber = document.getElementById("phoneNumber");
+			var zipcode = document.getElementById("zipcode");
+			var Manager = document.getElementById("h_manger");
+
+			//비밀번호 검사
+			if (password.value == "") {
+				password.value = h_password.value;
+			}
+
+			if (h_manager.value != '1') {
+				if (!check(re_pw, password,
+						"비밀번호는 특수문자/대소문자/숫자를 포함하여 6~15자여야 합니다.")) {
+					return false;
+				}
+
+			}
+
+			//이메일 검사
+			if (email.value == "") {
+				alert("이메일을 입력해주세요.");
+				email.focus();
+				return false;
+			}
+
+			if (!check(re_email, email, "이메일 양식에 맞지 않습니다.")) {
+				return false;
+			}
+
+			//생년월일 검사
+			if (birthday.value == "") {
+				alert("생년월일을 입력해주세요.");
+				birthday.focus();
+				return false;
+			}
+
+			//전화번호 검사
+			if (phoneNumber.value == "") {
+				alert("전화번호를 입력해주세요.");
+				phoneNumber.focus();
+				return false;
+			}
+
+			if (!check(re_phone, phoneNumber, "전화번호 양식에 맞지 않습니다.")) {
+				return false;
+			}
+
+			//집주소
+			if (zipcode.value == "") {
+				alert("주소를 입력해 주세요.");
+				zipcode.focus();
+				return false;
+			}
+
+			alert("회원정보 변경완료");
+			document.getElementById("changeInfo").submit();
+		}
+
+		function check(re, checkValue, message) {
+			if (re.test(checkValue.value)) {
+				return true;
+			}
+			alert(message);
+			checkValue.value = "";
+			checkValue.focus();
+		}
+	</script>
 
 </body>
 </html>

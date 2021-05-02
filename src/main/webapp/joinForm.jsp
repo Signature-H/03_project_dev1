@@ -61,7 +61,10 @@ function setThumnail(event){
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">아이디</span>
 				</div>
-				<input type="text" class="form-control" placeholder="ID" name="id" id="id">
+				<input type="text" class="form-control" placeholder="ID" name="id" id="id" aria-describedby="inputid">
+			</div>
+			<div class="mb-3">
+				<div id="inputInfo" class="form-text">아이디는 대소문자/숫자를 포함하여 4~15자여야 합니다.</div>
 			</div>
 			
 			<!-- 비밀번호 입력 -->
@@ -70,6 +73,9 @@ function setThumnail(event){
 					<span class="input-group-text" id="basic-addon1">비밀번호</span>
 				</div>
 				<input type="password" class="form-control" placeholder="PASSWORD" name="password" id="password">
+			</div>
+			<div class="mb-3">
+				<div id="inputInfo" class="form-text">비밀번호는 특수문자/대소문자/숫자를 포함하여 6~15자여야 합니다.</div>
 			</div>
 			
 			<!-- 이름 입력 -->
@@ -103,6 +109,14 @@ function setThumnail(event){
 				</div>
 				<input type="text" class="form-control" name="phoneNumber" id="phoneNumber">
 			</div>
+			<div class="mb-3">
+				<div id="inputInfo" class="form-text">전화번호는 -를 제외하고 숫자만 입력해주세요.</div>
+			</div>
+			<div class="mb-3">
+					<div id="inputInfo" class="form-text"
+						style="text-align: left;">-를
+						제외하고 숫자만 입력해주세요.</div>
+				</div>
 			
 			<!-- 우편번호 입력 -->
 			<div class="input-group mb-3">
